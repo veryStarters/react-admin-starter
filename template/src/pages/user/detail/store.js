@@ -1,4 +1,5 @@
-// actionType 定义
+
+// action type
 const actionType = {
   TEST: 'TEST'
 }
@@ -14,7 +15,7 @@ export const reducers = (state = initState, action) => {
     case actionType.TEST:
       return {
         ...state,
-        testKey: action.testKey
+        testKey: 'testValue'
       }
     default:
       return state
@@ -23,6 +24,7 @@ export const reducers = (state = initState, action) => {
 
 // 此处定义actions
 export const actions = {
+  // 同步action
   test() {
     return dispatch => {
       dispatch({
@@ -30,5 +32,12 @@ export const actions = {
         testKey: 'testValue'
       })
     }
-  }
+  },
+  // 异步action，返回一个promise，且将当前state往下传递
+  // test2() {
+  //   return (dispatch, getState) => {
+  //     dispatch({})
+  //     return Promise.resolve(getState())
+  //   }
+  // }
 }
