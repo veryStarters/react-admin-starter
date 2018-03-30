@@ -105,8 +105,14 @@ const Watcher = {
               if (err) throw err
             }
           )
+          // 填充page模板文件
           if (!util.checkExitsAndEmpty(filePath)) {
             util.mkFile(filePath, fixTpl(pageTemplate, name))
+          }
+          // 同时增加route配置文件
+          let routeFilePath = filePath.replace('index.js', 'route.js')
+          if (!util.checkExitsAndEmpty(routeFilePath)) {
+            util.mkFile(routeFilePath, '')
           }
         }
       })
