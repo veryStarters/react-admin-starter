@@ -1,3 +1,8 @@
+/**
+ * Created by Webstorm.
+ * @author taoqili
+ * @date 2017/6/5
+ */
 import fs from 'fs'
 import shell from 'shelljs'
 
