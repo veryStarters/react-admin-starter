@@ -1,0 +1,50 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "rule-empty-line-before": [
+      "always",
+      {
+        "ignore": [
+          "inside-block"
+        ],
+        "except": [
+          "first-nested",
+          "inside-block-and-after-rule"
+        ]
+      }
+    ],
+    "color-hex-case": null,
+    "max-nesting-depth": 10,
+    "comment-whitespace-inside": null,
+    "no-empty-source": null,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": [
+          "global",
+          "hover"
+        ]
+      }
+    ],
+    "no-descending-specificity": null,
+    "declaration-empty-line-before": "never",
+    "selector-class-pattern": null,
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": [
+          "composes"
+        ]
+      }
+    ],
+    "unit-no-unknown": [
+      true,
+      {
+        "ignoreUnits": [
+          "rpx",
+          "dpx"
+        ]
+      }
+    ]
+  }
+}
