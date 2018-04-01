@@ -12,6 +12,7 @@ import storage from 'utils/storage'
 import config from 'config'
 import YXBreadcrunb from 'components/Breadcrumb'
 import style from './index.pcss'
+import NotFound from 'common/error/404'
 
 const { Sider, Content } = Layout
 const MenuItem = Menu.Item
@@ -55,14 +56,14 @@ class MainLayout extends Component {
     }
   }
   // 退出登陆
-  loginOut = async (item) => {
+  logout = async (item) => {
     // 退出登陆接口调用
     if (item.key === 'logout') {
       const userInfo = storage.get('UserInfo')
       const res = await api.logout(userInfo)
-      if (res.code === 0) {
+      if (res.code === 0 && res.data) {
         storage.set('UserInfo', {})
-        location.href = '/login'
+        location.href = '/user/login'
       }
     }
   }
@@ -95,7 +96,7 @@ class MainLayout extends Component {
             <div className={style['right-wrapper']}>
               <Dropdown
                 overlay={<Menu
-                  onClick={this.loginOut}>
+                  onClick={this.logout}>
                   <MenuItem key='detail'>详情</MenuItem>
                   <MenuItem key='logout'>退出登录</MenuItem>
                 </Menu>} placement='bottomCenter'>
@@ -124,6 +125,7 @@ class MainLayout extends Component {
                   )
                 })
               }
+              <Route path="*" component={NotFound}/>
             </Switch>
           </Layout>
         </Layout>

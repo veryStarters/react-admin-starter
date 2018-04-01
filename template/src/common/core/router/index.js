@@ -25,29 +25,22 @@ Object.keys(routes).forEach((routeName) => {
       }
     }
   }
-  const createRouter = path => {
+  const createRouter = () => {
+    custom.path = custom.path || name2path(routeName)
     if (!custom.breadcrumbName && !custom.title && !custom.singlePage) {
-      console.warn(path + '缺少面包屑配置，请到src/config/routes.js文件中配置')
+      console.warn(custom.path + '缺少面包屑配置，请到src/config/routes.js文件中配置')
     }
-    return {
-      title: custom.breadcrumbName || custom.title,
-      path: path,
-      exact: custom.exact || true,
-      component: custom.component || routeComponent,
-      onEnter: custom.onEnter || '',
-      onLeave: custom.onLeave || '',
-      singlePage: custom.singlePage || false,
-      parentPath: getParentPath(custom.parent || custom.parentPath) || ''
-    }
+    custom.parentPath = getParentPath(custom.parent || custom.parentPath)
+    return Object.assign({
+      title: '',
+      path: '',
+      exact: true,
+      component: routeComponent,
+      singlePage: false,
+      parentPath: 'home'
+    }, custom)
   }
-  let path = name2path(routeName)
-  routers.push(createRouter(custom.path || path))
+  routers.push(createRouter())
 })
-
-// routers.push({
-//   path: '*',
-//   exact: true,
-//   component: require('../error/404/index').default
-// })
 
 export default routers
