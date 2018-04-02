@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu, Icon } from 'antd'
@@ -6,6 +5,7 @@ import config from 'config'
 import classNames from 'classnames'
 import Style from './style.pcss'
 import configMenus from 'src/menus'
+import api from 'api'
 
 const SubMenu = Menu.SubMenu
 const MenuItem = Menu.Item
@@ -28,8 +28,30 @@ class MamsMenu extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      mode: 'inline'
+      mode: 'inline',
+      menus: []
     }
+  }
+  componentWillMount() {
+    this.getMenus()
+  }
+
+  getMenus() {
+    api.getMenus().then(res => {
+      if (res.code === 0 && res.data) {
+        this.setState({
+          menus: res.data
+        })
+      } else {
+        this.setState({
+          menus: []
+        })
+      }
+    }).catch(e => {
+      this.setState({
+        menus: []
+      })
+    })
   }
 
   componentWillReceiveProps(nextProps) {
@@ -40,8 +62,6 @@ class MamsMenu extends Component {
 
   render() {
     let openedKeys = []
-    let { data } = this.props
-    data = data || configMenus
     const loop = (data = []) => data.map((item) => {
       if (item.children) {
         if (item.defaultOpened) {
@@ -65,7 +85,7 @@ class MamsMenu extends Component {
         </Link>
       </MenuItem>
     })
-    const menusData = loop(data)
+    const menusData = loop(configMenus.length ? configMenus : this.state.menus)
     return menusData.length > 0 ? <Menu
       theme='dark'
       mode={this.state.mode}
