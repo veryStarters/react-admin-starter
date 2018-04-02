@@ -37,7 +37,7 @@ const Watcher = {
         path = path + 'store.js'
         fs.appendFile(
           modulesPath,
-          `export const ${name} = require('src/pages/${path}')\n`,
+          `export const ${name} = require('src/pages${path}')\n`,
           function (err) {
             if (err) throw err
           }

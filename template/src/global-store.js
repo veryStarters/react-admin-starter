@@ -1,3 +1,6 @@
+/**
+ * 本文件可定义系统全局状态
+ */
 import config from 'config'
 
 const actionType = {
