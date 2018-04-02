@@ -6,11 +6,11 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom'
-import AppMenu from 'components/Menus'
+import AppMenu from './Menus'
 import api from 'api'
 import storage from 'utils/storage'
 import config from 'config'
-import YXBreadcrunb from 'components/Breadcrumb'
+import YXBreadcrunb from './Breadcrumb'
 import style from './index.pcss'
 import NotFound from 'common/error/404'
 
