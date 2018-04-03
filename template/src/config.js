@@ -25,5 +25,12 @@ export default {
     //     // '^/api': '/'
     //   }
     // }
-  }
+  },
+  commonChunk: [
+    'react',
+    'react-dom',
+    'react-redux',
+    'antd/lib/Table',
+    'antd/lib/Button',
+  ]
 }

@@ -11,6 +11,7 @@ import eslintFormatter from 'react-dev-utils/eslintFormatter'
 import paths from './paths'
 import getClientEnvironment from './env'
 import baseConfig from './webpack.config.base'
+import appConfig from '../src/config'
 import merge from 'webpack-merge'
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -61,7 +62,10 @@ export default merge(baseConfig, {
   // You can exclude the *.map files from the build during deployment.
   devtool: shouldUseSourceMap ? 'source-map' : false,
   // In production, we only want to load the polyfills and the app code.
-  entry: [require.resolve('./polyfills'), paths.appIndexJs],
+  entry: {
+    main: paths.appIndexJs,
+    common: appConfig.commonChunk || [],
+  },
   output: {
     // The build folder.
     path: paths.appBuild,
@@ -69,7 +73,7 @@ export default merge(baseConfig, {
     // There will be one main bundle, and one file per asynchronous chunk.
     // We don't currently advertise code splitting but Webpack supports it.
     filename: 'static/js/[name].[chunkhash:8].js',
-    chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
+    chunkFilename: 'static/js/[name].[chunkhash:8].js',
     // We inferred the "public path" (such as / or /my-project) from homepage.
     publicPath: publicPath,
     // Point sourcemap entries to original disk location (format as URL on Windows)
@@ -241,20 +245,18 @@ export default merge(baseConfig, {
         minifyURLs: true,
       },
     }),
-    // // split vendor js into its own file
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   name: 'common',
-    //   minChunks: function (module, count) {
-    //     // any required modules inside node_modules are extracted to vendor
-    //     return (
-    //       module.resource &&
-    //       /\.js$/.test(module.resource) &&
-    //       module.resource.indexOf(
-    //         path.join(__dirname, '../node_modules')
-    //       ) === 0
-    //     )
-    //   }
-    // }),
+    // split vendor js into its own file
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'common',
+      minChunks: function(module) {
+        return module.context && module.context.indexOf('node_modules') !== -1
+      }
+    }),
+    // split vendor js into its own file
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'mainfest',
+      minChunks: Infinity
+    }),
     // // extract webpack runtime and module manifest to its own file in order to
     // // prevent vendor hash from being updated whenever app bundle is updated
     // new webpack.optimize.CommonsChunkPlugin({
