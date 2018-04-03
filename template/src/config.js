@@ -26,6 +26,7 @@ export default {
     //   }
     // }
   },
+  // 需要提取到commonChunk中的依赖组件
   commonChunk: [
     'react',
     'react-dom',
