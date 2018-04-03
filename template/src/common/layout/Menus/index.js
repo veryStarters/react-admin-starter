@@ -32,6 +32,7 @@ class MamsMenu extends Component {
       menus: []
     }
   }
+
   componentWillMount() {
     this.getMenus()
   }
