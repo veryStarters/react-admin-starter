@@ -1,6 +1,8 @@
 export default {
   appName: 'XXX 生 命 周 期',
+  subName: '管理系统',
   homeRoute: '/',
+  loginRoute: '/user/login',
   baseUrl: {
     default: '/api',
     // otherDomain: {

@@ -6,13 +6,15 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom'
-import AppMenu from './Menus'
+import Menus from './Menus'
 import api from 'api'
 import storage from 'utils/storage'
 import config from 'config'
-import YXBreadcrunb from './Breadcrumb'
-import style from './index.pcss'
+import Breadcrumb from './Breadcrumb'
 import NotFound from 'common/error/404'
+import { topMenus } from 'src/menus'
+import logo from 'images/logo.svg'
+import style from './index.pcss'
 
 const { Sider, Content } = Layout
 const MenuItem = Menu.Item
@@ -26,8 +28,6 @@ class MainLayout extends Component {
       collapsed: false
     }
   }
-  componentDidMount() {
-  }
 
   // 设置是否可收起
   toggle = () => {
@@ -36,25 +36,37 @@ class MainLayout extends Component {
     })
   }
 
-  // 拓展时用
-  selectMenu() {
-    const getMenuName = (pathName) => {
-      if (!pathName || pathName === '/') return ''
-      let reg = new RegExp(/\/(\b\w*\b)/)
-      let matchName = pathName.match(reg)[1]
-      let name = matchName.split('')
-      name = name[0].toUpperCase() + name.slice(1).join('')
-      return name
-    }
-    let pathName = decodeURI(location.pathname)
-    let menuName = getMenuName(pathName)
-    switch (menuName) {
-      case 'App':
-        return <AppMenu match={this.props.match} selectedMenu={this.props.selectedMenu} collapsed={this.state.collapsed}/>
-      default :
-        return <AppMenu match={this.props.match} selectedMenu={this.props.selectedMenu} collapsed={this.state.collapsed}/>
-    }
+  // 侧边菜单
+  sidebarMenu() {
+    return <Menus match={this.props.match} selectedMenu={this.props.selectedMenu} collapsed={this.state.collapsed}/>
   }
+
+  // 顶部菜单
+  topMenu() {
+    return (
+      topMenus && topMenus.length
+        ? <Menu
+          onClick={this.handleClick}
+          selectedKeys={[this.state.current]}
+          mode='horizontal'
+          className={style.topMenu}
+        >
+          {
+            topMenus.map(item => {
+              return (
+                <Menu.Item key={item.key}>
+                  <Link to={item.url}>
+                    <Icon type={item.icon}/>{item.value}
+                  </Link>
+                </Menu.Item>
+              )
+            })
+          }
+        </Menu>
+        : null
+    )
+  }
+
   // 退出登陆
   logout = async (item) => {
     // 退出登陆接口调用
@@ -63,7 +75,7 @@ class MainLayout extends Component {
       const res = await api.logout(userInfo)
       if (res.code === 0 && res.data) {
         storage.set('UserInfo', {})
-        location.href = '/user/login'
+        location.href = config.loginRoute
       }
     }
   }
@@ -75,25 +87,28 @@ class MainLayout extends Component {
       <Layout className={style.layout}>
         <Sider className={style.sidebar} trigger={null} collapsible collapsed={collapsed}>
           <div className={style.logo}>
-            <Link className={style['to-home']} to='/'>
-              <img src={require('images/logo.svg')} alt='logo'/>
-              {collapsed ? null : <div className={style.txt}>{config.appName}<div className={style['sub']}>管 理 系 统</div></div>}
+            <Link className={style.toHome} to='/'>
+              <img src={logo} alt='logo'/>
+              {collapsed ? null : <div className={style.txt}>{config.appName}
+                <div className={style.sub}>{config.subName}</div>
+              </div>}
             </Link>
           </div>
-          <div className={style['menu-container']}>
-            {this.selectMenu()}
+          <div className={style.menuContainer}>
+            {this.sidebarMenu()}
           </div>
         </Sider>
-        <Layout className={collapsed ? style['main-content-collapsed'] : style['main-content']}>
+        <Layout className={collapsed ? style.mainContentCollapsed : style.mainContent}>
           {(/Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor))
             ? '' : <Alert message='请使用google chrome浏览器使用系统' banner closable/>}
-          <div className={style['header']}>
-            <div className={style['header-button']} onClick={this.toggle}>
+          <div className={style.header}>
+            <div className={style.headerButton} onClick={this.toggle}>
               <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'}/>
             </div>
-            <div className={style['left-wrapper']}>
+            <div className={style.leftWrapper}>
+              {this.topMenu()}
             </div>
-            <div className={style['right-wrapper']}>
+            <div className={style.rightWrapper}>
               <Dropdown
                 overlay={<Menu
                   onClick={this.logout}>
@@ -114,18 +129,20 @@ class MainLayout extends Component {
                       path={route.path}
                       exact={route.exact}
                       render={(match) => {
-                        return (route.path === '/' && route.path !== config.homeRoute) ? <Redirect to={config.homeRoute}/> : <div>
-                          <YXBreadcrunb match={match} routes={routes}/>
-                          <Content>
-                            <route.component match={match}/>
-                          </Content>
-                        </div>
+                        return (route.path === '/' && route.path !== config.homeRoute)
+                          ? <Redirect to={config.homeRoute}/>
+                          : <div>
+                            <Breadcrumb match={match} routes={routes}/>
+                            <Content>
+                              <route.component match={match}/>
+                            </Content>
+                          </div>
                       }}
                     />
                   )
                 })
               }
-              <Route path="*" component={NotFound}/>
+              <Route path='*' component={NotFound}/>
             </Switch>
           </Layout>
         </Layout>
@@ -135,4 +152,3 @@ class MainLayout extends Component {
 }
 
 export default MainLayout
-

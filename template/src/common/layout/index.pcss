@@ -8,6 +8,47 @@
     height: 100vh;
     position: absolute;
     box-shadow: 1px 0 2px rgba(0, 21, 41, 0.35);
+
+    .logo {
+      height: 64px;
+      line-height: 64px;
+      cursor: pointer;
+      padding-left: 12px;
+      overflow: hidden;
+      background: #3F3F3F;
+      .toHome {
+        cursor: pointer;
+      }
+      img {
+        border-radius: 50%;
+        width: 30px;
+        margin-right: 8px;
+        vertical-align: middle;
+      }
+
+      .txt {
+        position: absolute;
+        top: -6px;
+        font-size: 14px;
+        color: #fff;
+        left: 50px;
+        .sub {
+          position: absolute;
+          font-size: 12px;
+          top: 20px;
+          color: #ddd;
+        }
+      }
+
+      span {
+        vertical-align: middle;
+        font-size: 16px;
+        text-transform: uppercase;
+        display: inline-block;
+        color: #fff;
+      }
+    }
+
     :global(.ant-badge .ant-badge-count) {
       height: 18px;
       margin-left: 5px;
@@ -71,7 +112,7 @@
         }
       }
     }
-    .menu-container {
+    .menuContainer {
       height: calc(100vh - 64px);
       background: #404040;
       overflow-y: auto;
@@ -85,111 +126,64 @@
       }
     }
   }
-}
 
-.logo {
-  height: 64px;
-  line-height: 64px;
-  cursor: pointer;
-  padding-left: 12px;
-  overflow: hidden;
-  background: #3F3F3F;
-  img {
-    border-radius: 50%;
-    width: 30px;
-    margin-right: 8px;
-    vertical-align: middle;
+  .mainContent {
+    margin-left: 200px;
+    overflow: auto;
+    height: 100vh;
+    background: #F8F8F8;
+    transition: margin 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
   }
 
-  .txt {
-    position: absolute;
-    top: -6px;
-    font-size: 14px;
-    color: #fff;
-    left: 50px;
-    .sub {
-      position: absolute;
-      font-size: 12px;
-      top: 20px;
-      color: #ddd;
-    }
+  .mainContentCollapsed {
+    margin-left: 80px;
+    background: #F8F8F8;
+    transition: margin 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
   }
 
-  span {
-    vertical-align: middle;
-    font-size: 16px;
-    text-transform: uppercase;
-    display: inline-block;
-    color: #fff;
-  }
-}
-
-.main-content {
-  margin-left: 200px;
-  overflow: auto;
-  height: 100vh;
-  background: #F8F8F8;
-  transition: margin 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-
-.main-content-collapsed {
-  margin-left: 80px;
-  background: #F8F8F8;
-  transition: margin 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-
-.content {
-  height: calc(100% - 64px);
-}
-
-.header {
-  height: 64px;
-  background: #FFF;
-  padding: 0;
-  position: relative;
-  z-index: 100;
-  box-shadow: 1px 1px 2px 0 rgba(0, 21, 41, 0.35);
-  .header-button {
-    width: 64px;
-    height: 64px;
-    line-height: 64px;
-    text-align: center;
-    font-size: 18px;
-    cursor: pointer;
-    float: left;
-  }
-  .right-wrapper {
-    line-height: 64px;
-    width: 200px;
-    padding-right: 16px;
-    float: right;
-    cursor: pointer;
-    text-align: right;
-    .message {
-      margin-right: 50px;
-      .text {
-        margin-left: 5px;
+  .mainContent,
+  .mainContentCollapsed {
+    .header {
+      height: 64px;
+      background: #FFF;
+      padding: 0;
+      position: relative;
+      z-index: 100;
+      box-shadow: 1px 1px 2px 0 rgba(0, 21, 41, 0.35);
+      .headerButton {
+        width: 64px;
+        height: 64px;
+        line-height: 64px;
+        text-align: center;
+        font-size: 18px;
+        cursor: pointer;
+        float: left;
+      }
+      .leftWrapper {
+        .topMenu {
+          margin-top: 10px;
+        }
+      }
+      .rightWrapper {
+        line-height: 64px;
+        width: 200px;
+        padding-right: 16px;
+        float: right;
+        cursor: pointer;
+        text-align: right;
+        .message {
+          margin-right: 50px;
+          .text {
+            margin-left: 5px;
+          }
+        }
+      }
+      .collapse {
+        font-size: 20px;
+        :global(.ant-collapse > .ant-collapse-item:last-child, .ant-collapse > .ant-collapse-item:last-child > .ant-collapse-header) {
+          background: red;
+        }
       }
     }
   }
-  .collapse {
-    font-size: 20px;
-    :global(.ant-collapse > .ant-collapse-item:last-child, .ant-collapse > .ant-collapse-item:last-child > .ant-collapse-header) {
-      background: red;
-    }
-  }
 }
-
-.message-box {
-  width: 300px;
-  .title {
-    margin-bottom: 5px;
-  }
-  b {
-    font-size: 13px;
-  }
-  .project {
-    color: #7B9BFF;
-  }
-}
-
