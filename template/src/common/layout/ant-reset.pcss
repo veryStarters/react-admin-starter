@@ -1,0 +1,58 @@
+.layout .sidebar {
+  :global(.ant-menu.ant-menu-dark .ant-menu-item-selected) {
+    background: none;
+    span {
+      color: #fff;
+    }
+  }
+  :global(.ant-menu) {
+    :global(.ant-menu-item) {
+      font-size: 12px;
+      &:global(.no-margin) {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    }
+    :global(.ant-menu-submenu-title) {
+      font-size: 12px;
+    }
+  }
+  :global(.ant-menu.ant-menu-dark) {
+    background: #3f3f3f;
+  }
+
+  :global(.ant-menu-dark .ant-menu-inline.ant-menu-sub) {
+    background: #3A3A3A;
+  }
+
+  :global(.ant-menu-inline span) {
+    color: #AAA;
+  }
+
+  :global(.ant-menu-item-active) {
+    span {
+      color: #FFF;
+      a {
+        color: #FFF;
+      }
+    }
+  }
+
+  &:global(.ant-layout-sider-collapsed) {
+    .logo {
+      padding-left: 24px;
+    }
+    :global(.ant-menu-submenu-title) {
+      padding: 0 22px;
+      > a > span,
+      > span > span {
+        display: none;
+      }
+      :global(.anticon) {
+        font-size: 18px;
+        margin-right: 0;
+        transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+    }
+  }
+}

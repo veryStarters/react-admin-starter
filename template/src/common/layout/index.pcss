@@ -1,3 +1,5 @@
+@import "./ant-reset.pcss";
+
 .layout {
   font-size: 12px;
   height: 100vh;
@@ -22,7 +24,6 @@
       img {
         border-radius: 50%;
         width: 30px;
-        margin-right: 8px;
         vertical-align: middle;
       }
 
@@ -49,69 +50,6 @@
       }
     }
 
-    :global(.ant-badge .ant-badge-count) {
-      height: 18px;
-      margin-left: 5px;
-      span {
-        color: #FFF;
-      }
-    }
-    :global(.ant-menu.ant-menu-dark .ant-menu-item-selected) {
-      background: none;
-      span {
-        color: #fff;
-      }
-    }
-    :global(.ant-menu) {
-      :global(.ant-menu-item) {
-        font-size: 12px;
-        &:global(.no-margin) {
-          margin-top: 0;
-          margin-bottom: 0;
-        }
-      }
-      :global(.ant-menu-submenu-title) {
-        font-size: 12px;
-      }
-    }
-    :global(.ant-menu.ant-menu-dark) {
-      background: #3f3f3f;
-    }
-
-    :global(.ant-menu-dark .ant-menu-inline.ant-menu-sub) {
-      background: #3A3A3A;
-    }
-
-    :global(.ant-menu-inline span) {
-      color: #AAA;
-    }
-
-    :global(.ant-menu-item-active) {
-      span {
-        color: #FFF;
-        a {
-          color: #FFF;
-        }
-      }
-    }
-
-    &:global(.ant-layout-sider-collapsed) {
-      .logo {
-        padding-left: 24px;
-      }
-      :global(.ant-menu-submenu-title) {
-        padding: 0 22px;
-        > a > span,
-        > span > span {
-          display: none;
-        }
-        :global(.anticon) {
-          font-size: 18px;
-          margin-right: 0;
-          transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
-        }
-      }
-    }
     .menuContainer {
       height: calc(100vh - 64px);
       background: #404040;
@@ -176,12 +114,6 @@
           .text {
             margin-left: 5px;
           }
-        }
-      }
-      .collapse {
-        font-size: 20px;
-        :global(.ant-collapse > .ant-collapse-item:last-child, .ant-collapse > .ant-collapse-item:last-child > .ant-collapse-header) {
-          background: red;
         }
       }
     }
