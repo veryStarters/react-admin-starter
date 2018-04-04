@@ -9,7 +9,7 @@
     "build:test": "BUILD_ENV=test node scripts/build.js",
     "dll": "webpack --config build/webpack.config.dll.js",
     "test": "node scripts/test.js --env=jsdom",
-    "upgrade": "node scripts/upgrade.js"
+    "updateRas": "node scripts/upgrade.js"
   },
   "dependencies": {
     "antd": "^3.3.1",
