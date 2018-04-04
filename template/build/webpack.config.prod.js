@@ -11,7 +11,7 @@ import eslintFormatter from 'react-dev-utils/eslintFormatter'
 import paths from './paths'
 import getClientEnvironment from './env'
 import baseConfig from './webpack.config.base'
-import appConfig from '../src/config'
+import rasConfig from '../src/ras-config'
 import merge from 'webpack-merge'
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -64,7 +64,7 @@ export default merge(baseConfig, {
   // In production, we only want to load the polyfills and the app code.
   entry: {
     main: paths.appIndexJs,
-    common: appConfig.commonChunk || [],
+    common: rasConfig.dll || [],
   },
   output: {
     // The build folder.

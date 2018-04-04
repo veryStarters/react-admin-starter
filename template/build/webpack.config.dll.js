@@ -1,17 +1,10 @@
 var webpack = require('webpack')
 var path = require('path')
+var rasConfig = require('../src/ras-config')
 
 module.exports = {
   entry: {
-    dll: [
-      'react',
-      'react-dom',
-      'react-router-dom',
-      'redux',
-      'react-redux',
-      'redux-thunk',
-      'react-code-splitting'
-    ]
+    dll: rasConfig.dll || []
   },
   output: {
     path: path.join(__dirname, './dll/'),

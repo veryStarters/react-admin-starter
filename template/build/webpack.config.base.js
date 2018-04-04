@@ -2,10 +2,8 @@
 
 const path = require('path');
 const paths = require('./paths');
+const rasConfig = require('../src/ras-config');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
-const resolve = function (dir) {
-  return path.resolve(__dirname, '../', dir)
-}
 module.exports = {
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
@@ -23,17 +21,7 @@ module.exports = {
     // `web` extension prefixes have been added for better support
     // for React Native Web.
     extensions: ['.web.js', '.js', '.json', '.web.jsx', '.jsx'],
-    alias: {
-      src: resolve('src'),
-      api: resolve('src/api'),
-      utils: resolve('src/common/utils'),
-      pages: resolve('src/pages'),
-      config: resolve('src/config'),
-      common: resolve('src/common'),
-      styles: resolve('src/common/styles'),
-      images: resolve('src/common/images'),
-      components: resolve('src/components')
-    },
+    alias: rasConfig.alias || [],
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
       // This often causes confusion because we only process files within src/ with babel.

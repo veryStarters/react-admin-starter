@@ -65,7 +65,7 @@ AsyncRoutePlugin.prototype.apply = function (compiler) {
           )
         }
       } else if (fs.statSync(filePath).isDirectory()) {
-        walk(filePath, routePath)
+        walk(filePath, routePath, customRoutePath)
       }
     })
   }
