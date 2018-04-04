@@ -30,10 +30,14 @@ export default {
   },
   // 需要提取到commonChunk中的依赖组件
   commonChunk: [
+    'axios',
     'react',
     'react-dom',
     'react-redux',
-    'antd/lib/Table',
-    'antd/lib/Button',
+    'redux-thunk',
+    'react-router-dom',
+    'moment',
+    'antd/lib/table/Table',
+    'antd/lib/button/button'
   ]
 }

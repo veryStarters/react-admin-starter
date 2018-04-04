@@ -14,6 +14,7 @@ AsyncRoutePlugin.prototype.apply = function (compiler) {
   let pagesDir = path.join(__dirname, '../../src/pages/')
   let routeDir = path.join(__dirname, '../../src/common/core/router/')
   let routePath = path.join(routeDir, 'routes.js')
+  let customRoutePath = path.join(routeDir, 'routes-custom.js')
   compiler.plugin("compile", function () {
     util.clearFileContent(routePath,
       [
@@ -23,11 +24,11 @@ AsyncRoutePlugin.prototype.apply = function (compiler) {
       'import React from \'react\'\n' +
       'import Async from \'react-code-splitting\'\n'
     )
-    walk(pagesDir, routePath)
+    walk(pagesDir, routePath, customRoutePath)
     console.log('\nAll routes create done!')
   })
 
-  function walk(dir, routePath) {
+  function walk(dir, routePath, customRoutePath) {
     let fileList = fs.readdirSync(dir)
     fileList.forEach(file => {
       let filePath = path.join(dir, file)
@@ -41,6 +42,23 @@ AsyncRoutePlugin.prototype.apply = function (compiler) {
           fs.appendFile(
             routePath,
             `export const ${name} = props => <Async load={import('pages${path}')} componentProps={props}/>\n`,
+            function (err) {
+              if (err) throw err
+            }
+          )
+        }
+        if (/route\.js/.test(filePath)) {
+          util.clearFileContent(customRoutePath, [
+            '本文件由系统依据pages中的route.js文件生成，请勿更改'
+          ])
+          let path = util.formatPath(filePath, [
+            /.*\/src\/pages/i,
+            'route.js'
+          ])
+          let name = util.path2name(path, 'home')
+          fs.appendFile(
+            customRoutePath,
+            `export const ${name} = require(\'src/pages${path}route.js\')\n`,
             function (err) {
               if (err) throw err
             }
