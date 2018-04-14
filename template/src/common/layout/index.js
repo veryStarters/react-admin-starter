@@ -78,6 +78,9 @@ class MainLayout extends Component {
         location.href = config.loginRoute
       }
     }
+    if (item.key === 'detail') {
+      alert('detail')
+    }
   }
 
   render() {
