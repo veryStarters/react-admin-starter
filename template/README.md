@@ -22,7 +22,7 @@ React-Admin-Starter(以下简称RAS)是基于create-react-app基础上封装的�
 vue init veryStarters/react-admin-starter my-project
 ````
 1. 进入my-project, 安装依赖（yarn install）
-2. 启动开发环境（yarn start），该命令会启动2个本地服务：一个是本地开发服务，另一个是本地数据模拟服务,默认端口为10082
+2. 启动开发环境（yarn start），该命令会启动2个本地服务：一个是本地开发服务，另一个是本地数据模拟服务,默认端口为10086
 3. 找到pages目录，新建一个目录test, 然后在该目录下创建一个index.js文件
 4. 不用做任何事情稍等片刻，在浏览器中输入http://localhost:8080/test，见证奇迹的时刻！
 
@@ -55,7 +55,7 @@ react-redux巨量的模板代码时时刻刻在考验着开发者的耐性，为
 
 ####4、自动Mock
 在src/api/index.js中按照对应格式定义api之后，系统会自动在src/api/mock目录下创建对应的mock文件，填充mock文件中的data字段即可返回mock数据。
-本地mock的proxy配置在src/config中地proxyTable字段。默认情况下，本地mock服务运行在http://localhost:10082
+本地mock的proxy配置在src/config中地proxyTable字段。默认情况下，本地mock服务运行在http://localhost:10086
 
 ####5、
 

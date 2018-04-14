@@ -4,10 +4,11 @@ import * as routesCustom from './routes-custom'
 
 let routers = []
 const name2path = name => {
+  let homeRoute = config.homeRoute || '/'
   if (name === 'home') {
-    return config.homeRoute
+    return homeRoute
   }
-  return `${config.homeRoute}${name.replace(/([A-Z])/g, '/$1').toLowerCase()}`
+  return `${homeRoute}${name.replace(/([A-Z])/g, '/$1').toLowerCase()}`
 }
 const getParentPath = (parent, routeName) => {
   let type = typeof parent

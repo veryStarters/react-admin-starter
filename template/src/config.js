@@ -20,14 +20,14 @@ export default {
   // 代理配置
   proxyTable: {
     '/api': {
-      target: 'http://localhost:10082',
+      target: 'http://localhost:10086',
       changeOrigin: true,
       pathRewrite: {
         // '^/api': '/'
       }
     },
     '/other': {
-      target: 'http://localhost:10082',
+      target: 'http://localhost:10086',
       changeOrigin: true,
       pathRewrite: {}
     }
