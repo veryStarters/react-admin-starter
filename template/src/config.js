@@ -7,7 +7,7 @@ export default {
   homeRoute: '/',
   // 登录路由
   loginRoute: '/user/login',
-  // api域名
+  // api域名前缀，支持向多个系统的api请求，只需要在此处定义prefixName，在api/index.js中添加{prefixName: 'defaultDomain'}参数即可
   baseUrl: {
     default: '/api',
     otherDomain: {
@@ -17,22 +17,6 @@ export default {
       production: '//api.xxx.com'
     }
   },
-  // 代理配置
-  proxyTable: {
-    '/api': {
-      target: 'http://localhost:10086',
-      changeOrigin: true,
-      pathRewrite: {
-        // '^/api': '/'
-      }
-    },
-    '/other': {
-      target: 'http://localhost:10086',
-      changeOrigin: true,
-      pathRewrite: {}
-    }
-  },
-  menus: [
-
-  ]
+  // 如无权限要求，可直接在此配置侧边栏菜单
+  menus: []
 }

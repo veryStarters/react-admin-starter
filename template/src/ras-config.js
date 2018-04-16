@@ -17,6 +17,23 @@ module.exports = {
     images: resolve('common/images'),
     components: resolve('components')
   },
+  devHost: 'localhost',
+  devPort: 3000,
+  // 代理配置
+  proxyTable: {
+    '/api': {
+      target: 'http://localhost:10086',
+      changeOrigin: true,
+      pathRewrite: {
+        // '^/api': '/'
+      }
+    },
+    '/other': {
+      target: 'http://localhost:10086',
+      changeOrigin: true,
+      pathRewrite: {}
+    }
+  },
   // 开发环境dll文件列表、生产环境commonChunk文件列表
   dll: [
     'axios',
