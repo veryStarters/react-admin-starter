@@ -7,6 +7,7 @@ import {
 import routes from './router'
 import Layout from '../layout'
 
+// todo
 let singlePages = []
 let others = []
 routes.forEach(item => {
