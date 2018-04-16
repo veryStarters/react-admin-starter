@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { mapDispatchToProps } from 'common/core/store'
 
-class HomeMenutip extends Component {
+class HomeMenutip extends PureComponent {
   // 如有需通过redux来维护的数据，请在此处映射即可'
   static getStore = store => {
     return {
