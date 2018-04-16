@@ -26,6 +26,6 @@ module.exports = {
     'redux',
     'react-redux',
     'redux-thunk',
-    'react-code-splitting'
+    'react-loadable'
   ]
 }

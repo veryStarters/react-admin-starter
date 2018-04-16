@@ -22,7 +22,8 @@ AsyncRoutePlugin.prototype.apply = function (compiler) {
         '变量名代表route的name，变量名请按照驼峰格式书写，每个驼峰单词将被切分成route的path  userLogin => /user/login'
       ],
       'import React from \'react\'\n' +
-      'import Async from \'react-code-splitting\'\n'
+      'import Loadable from \'react-loadable\'\n' +
+      'const Loading = () => <div>Loading...</div>\n'
     )
     walk(pagesDir, routePath, customRoutePath)
     console.log('\nAll routes create done!')
@@ -41,7 +42,7 @@ AsyncRoutePlugin.prototype.apply = function (compiler) {
           let name = util.path2name(path, 'home')
           fs.appendFile(
             routePath,
-            `export const ${name} = props => <Async load={import('pages${path}')} componentProps={props}/>\n`,
+            `export const ${name} = Loadable({ loader: () => import('pages${path}'), loading: Loading })\n`,
             function (err) {
               if (err) throw err
             }

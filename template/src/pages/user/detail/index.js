@@ -51,7 +51,7 @@ class UserDetail extends Component {
     ]
     return (
       <div>
-        Hello,userDetail!{this.props.appName} {this.props.test}
+        Hello,userDetail!!{this.props.appName} {this.props.test}
         <Table columns={columns} dataSource={list} />
         <p>
           <Button onClick={this.changeAppName}>更改AppName</Button>

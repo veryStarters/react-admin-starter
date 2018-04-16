@@ -3,8 +3,12 @@ export default
 import { connect } from 'react-redux'
 import { mapDispatchToProps } from 'common/core/store'
 
+/**
+ * 如有需通过redux来维护维护状态：
+ * 1、请在static getStore中获取store内的数据
+ * 2、使用this.props.actions[actionName]来调用action
+ */
 class <%className%> extends Component {
-  // 如有需通过redux来维护的数据，请在此处映射即可'
   static getStore = store => {
     return {
       appName: store.global.appName

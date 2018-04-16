@@ -57,7 +57,6 @@ const Watcher = {
             'route.js'
           ])
           let name = util.path2name(path, 'home')
-          console.log(name)
           let reg = new RegExp(`^export const ${name}.*$`, 'gi')
           shell.sed('-i', reg, '', customRoutesPath)
         }
@@ -75,7 +74,9 @@ const Watcher = {
           '变量名代表route的name，变量名请按照驼峰格式书写，每个驼峰单词将被切分成route的path  userLogin => /user/login'
         ],
         'import React from \'react\'\n' +
-        'import Async from \'react-code-splitting\'\n'
+        'import Loadable from \'react-loadable\'\n' +
+        'const Loading = () => <div>Loading...</div>\n'
+        // 'import Async from \'react-code-splitting\'\n'
       )
       const fixTpl = (tpl, name) => {
         return tpl
@@ -100,7 +101,7 @@ const Watcher = {
           path = path + 'index.js'
           fs.appendFile(
             routesPath,
-            `export const ${name} = props => <Async load={import('pages${path}')} componentProps={props}/>\n`,
+            `export const ${name} = Loadable({ loader: () => import('pages${path}'), loading: Loading })\n`,
             function (err) {
               if (err) throw err
             }

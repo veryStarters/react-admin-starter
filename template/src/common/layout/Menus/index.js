@@ -34,24 +34,41 @@ class MamsMenu extends Component {
   }
 
   componentWillMount() {
+    let menus = config.menus
+    if (menus && menus.length) {
+      this.setState({
+        menus: menus
+      })
+      return
+    }
     this.getMenus()
   }
 
   getMenus() {
+    const setDefault = () => {
+      const defaultMenus = [
+        {
+          icon: 'error',
+          value: '未取到menus配置',
+          key: 'error',
+          url: '/home/menutip'
+        }
+      ]
+      this.setState({
+        menus: defaultMenus
+      })
+      console.log('getMenus接口返回数据为空或者出错')
+    }
     api.getMenus().then(res => {
       if (res.code === 0 && res.data) {
         this.setState({
           menus: res.data
         })
       } else {
-        this.setState({
-          menus: []
-        })
+        setDefault()
       }
     }).catch(e => {
-      this.setState({
-        menus: []
-      })
+      setDefault()
     })
   }
 

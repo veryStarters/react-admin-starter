@@ -31,5 +31,8 @@ export default {
       changeOrigin: true,
       pathRewrite: {}
     }
-  }
+  },
+  menus: [
+
+  ]
 }
