@@ -5,20 +5,25 @@ import * as modules from './modules'
 let reducers = {}
 let actions = {}
 Object.keys(modules).forEach(key => {
-  let module = modules[key]
+  const module = modules[key]
   reducers[key] = module.reducers
+  actions[key] = {}
   Object.keys(module.actions).forEach(actionKey => {
-    if (actions[actionKey]) {
-      console.error(actionKey + '方法同时存在于多个store模块，请按照『先到先得』原则检查并修改！！')
-      return
+    const action = module.actions[actionKey]
+    if (key === 'global') {
+      actions[actionKey] = action
     }
-    actions[actionKey] = module.actions[actionKey]
+    actions[key][actionKey] = action
   })
 })
 
 export const mapDispatchToProps = dispatch => {
+  let acts = {}
+  for (let i in actions) {
+    acts[i] = bindActionCreators(actions[i], dispatch)
+  }
   return {
-    actions: bindActionCreators(actions, dispatch)
+    actions: acts
   }
 }
 
