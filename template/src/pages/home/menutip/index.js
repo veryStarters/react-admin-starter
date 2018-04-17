@@ -1,14 +1,12 @@
 import React, { PureComponent } from 'react'
-import { connect } from 'react-redux'
-import { mapDispatchToProps } from 'common/core/store'
+import storeKit from 'storeKit'
 
-class HomeMenutip extends PureComponent {
-  // 如有需通过redux来维护的数据，请在此处映射即可'
-  static getStore = store => {
-    return {
-      appName: store.global.appName
-    }
+@storeKit(store => {
+  return {
+    appName: store.global.appName
   }
+})
+class HomeMenutip extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
@@ -60,4 +58,4 @@ class HomeMenutip extends PureComponent {
   }
 }
 
-export default connect(HomeMenutip.getStore, mapDispatchToProps)(HomeMenutip)
+export default HomeMenutip

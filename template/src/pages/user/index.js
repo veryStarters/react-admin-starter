@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { mapDispatchToProps } from 'common/core/store'
+import storeKit from 'storeKit'
 import { Link } from 'react-router-dom'
 
-class User extends Component {
-  static getStore = store => {
-    return {
-      appName: store.global.appName
-    }
+@storeKit(store => {
+  return {
+    appName: store.global.appName
   }
-
+})
+class User extends Component {
   render() {
     return (
       <div style={{ lineHeight: 3 }}>
@@ -22,4 +20,4 @@ class User extends Component {
   }
 }
 
-export default connect(User.getStore, mapDispatchToProps)(User)
+export default User

@@ -1,19 +1,14 @@
 export default
 `import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { mapDispatchToProps } from 'common/core/store'
+import storeKit from 'storeKit'
 
-/**
- * 如有需通过redux来维护维护状态：
- * 1、请在static getStore中获取store内的数据
- * 2、使用this.props.actions[actionName]来调用action
- */
-class <%className%> extends Component {
-  static getStore = store => {
-    return {
-      appName: store.global.appName
-    }
+// 注入redux
+@storeKit(store => {
+  return {
+    appName: store.global.appName
   }
+})
+class <%className%> extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -31,5 +26,5 @@ class <%className%> extends Component {
   }
 }
 
-export default connect(<%className%>.getStore, mapDispatchToProps)(<%className%>)
+export default <%className%>
 `

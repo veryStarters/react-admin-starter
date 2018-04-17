@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { mapDispatchToProps } from 'common/core/store'
+import storeKit from 'storeKit'
 
-class UserLogin extends Component {
-  // 如有需通过redux来维护的数据，请在此处映射即可'
-  static getStore = store => {
-    return {
-      appName: store.global.appName
-    }
+@storeKit(store => {
+  return {
+    appName: store.global.appName
   }
+})
+class UserLogin extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -26,4 +24,4 @@ class UserLogin extends Component {
   }
 }
 
-export default connect(UserLogin.getStore, mapDispatchToProps)(UserLogin)
+export default UserLogin

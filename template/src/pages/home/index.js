@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { mapDispatchToProps } from 'common/core/store'
+import storeKit from 'storeKit'
 
-class Home extends Component {
-  static getStore = store => {
-    return {
-      appName: store.global.appName
-    }
+// 注入redux
+@storeKit(store => {
+  return {
+    appName: store.global.appName
   }
-
+})
+class Home extends Component {
   render() {
     return (
       <div>
@@ -17,5 +16,4 @@ class Home extends Component {
     )
   }
 }
-
-export default connect(Home.getStore, mapDispatchToProps)(Home)
+export default Home

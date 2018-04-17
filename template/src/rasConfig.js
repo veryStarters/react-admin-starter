@@ -15,7 +15,8 @@ module.exports = {
     common: resolve('common'),
     styles: resolve('common/styles'),
     images: resolve('common/images'),
-    components: resolve('components')
+    components: resolve('components'),
+    storeKit: resolve('common/core/store/storeKit')
   },
   devHost: 'localhost',
   devPort: 3000,

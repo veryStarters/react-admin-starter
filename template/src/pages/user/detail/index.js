@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { mapDispatchToProps } from 'common/core/store'
 import { Button, Table } from 'antd'
 import api from 'api'
+import storeKit from 'storeKit'
+
+@storeKit(store => {
+  return {
+    appName: store.global.appName,
+    test: store.userDetail.testKey
+  }
+})
 
 class UserDetail extends Component {
-  // 从store中取出数据
-  static getStore = store => {
-    return {
-      appName: store.global.appName,
-      test: store.userDetail.testKey
-    }
-  }
-
   constructor(props) {
     super(props)
     this.state = {}
@@ -61,4 +59,4 @@ class UserDetail extends Component {
   }
 }
 
-export default connect(UserDetail.getStore, mapDispatchToProps)(UserDetail)
+export default UserDetail
