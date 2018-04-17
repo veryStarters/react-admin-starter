@@ -18,6 +18,7 @@ class UserDetail extends Component {
 
   changeAppName = () => {
     this.props.actions.changeAppName('xxx管理系统')
+    this.props.actions.changeTestValue('testValue1')
   }
 
   componentDidMount() {

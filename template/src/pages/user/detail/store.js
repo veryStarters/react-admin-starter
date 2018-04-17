@@ -15,7 +15,7 @@ export const reducers = (state = initState, action) => {
     case actionType.TEST:
       return {
         ...state,
-        testKey: 'testValue'
+        testKey: action.testKey
       }
     default:
       return state
@@ -25,11 +25,11 @@ export const reducers = (state = initState, action) => {
 // 此处定义actions
 export const actions = {
   // 同步action
-  test() {
+  changeTestValue(value) {
     return dispatch => {
       dispatch({
         type: actionType.TEST,
-        testKey: 'testValue'
+        testKey: value
       })
     }
   },
