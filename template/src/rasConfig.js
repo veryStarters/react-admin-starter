@@ -13,6 +13,7 @@ module.exports = {
     pages: resolve('pages'),
     config: resolve('config'),
     common: resolve('common'),
+    core: resolve('common/core'),
     styles: resolve('common/styles'),
     images: resolve('common/images'),
     components: resolve('components'),

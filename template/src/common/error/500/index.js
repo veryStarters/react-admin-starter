@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { mapDispatchToProps } from 'common/core/store'
+import { mapDispatchToProps } from 'core/store'
 
 class Error500 extends Component {
   // 如有需通过redux来维护的数据，请在此处映射即可'

@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux'
 import { bindActionCreators } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 import * as modules from './modules'
 
 let reducers = {}
@@ -27,6 +29,8 @@ export const mapDispatchToProps = dispatch => {
   }
 }
 
-export default combineReducers(reducers)
-
-
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore)
+export default createStoreWithMiddleware(
+  combineReducers(reducers),
+  (window.devToolsExtension ? window.devToolsExtension() : undefined)
+)

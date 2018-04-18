@@ -25,7 +25,7 @@ export const reducers = (state = initState, action) => {
 // 此处定义actions
 export const actions = {
   // 同步action
-  changeTestValue(value) {
+  changeTestKey(value) {
     return dispatch => {
       dispatch({
         type: actionType.TEST,

@@ -4,12 +4,14 @@
 import config from 'config'
 
 const actionType = {
-  CHANGE_APP_NAME: 'CHANGE_APP_NAME'
+  CHANGE_APP_NAME: 'CHANGE_APP_NAME',
+  GET_INIT_DATA: 'GET_INIT_DATA'
 }
 
 // reducers初始状态
 const initState = {
-  appName: config.appName
+  appName: config.appName,
+  appInitData: {}
 }
 
 // 在此处定义reducers
@@ -19,6 +21,11 @@ export const reducers = (state = initState, action) => {
       return {
         ...state,
         appName: action.appName
+      }
+    case actionType.GET_INIT_DATA: // 这个action在core/index.js文件中直接触发
+      return {
+        ...state,
+        appInitData: action.appInitData
       }
     default:
       return state

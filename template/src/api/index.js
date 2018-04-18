@@ -12,5 +12,9 @@ export default {
   },
   getUserInfo(params) {
     return fetch('/user/info', params)
+  },
+  // 获取APP初始化信息，包含权限等内容
+  getInitState(params) {
+    return fetch('/base/initState', params)
   }
 }
