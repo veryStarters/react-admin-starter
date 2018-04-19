@@ -19,7 +19,7 @@ import auth from 'core/auth'
 class DemoAuth extends Component {
   render() {
     return (
-      <div onCpck= {this.test}>
+      <div onClick={this.test}>
         <p>{this.props.appName}</p>
         如果有权限，下方将会出现红色『权限内容』字样，否则会出现灰色『无权限』字样：（可以通过调整InnerComponent组件对应的装饰器中的code来改变，为3时无权限）
         <InnerComponent/>
@@ -64,7 +64,7 @@ class DemoAuth extends Component {
     }
   })
   test = () => {
-    console.log('ttt')
+    console.log('我被点击了！！')
   }
 }
 
