@@ -19,6 +19,21 @@ export default {
       production: '//api.xxx.com'
     }
   },
+  // 代理配置
+  proxyTable: {
+    '/api': {
+      target: 'http://localhost:10086',
+      changeOrigin: true,
+      pathRewrite: {
+        // '^/api': '/'
+      }
+    },
+    '/other': {
+      target: 'http://localhost:10086',
+      changeOrigin: true,
+      pathRewrite: {}
+    }
+  },
   // 如无权限要求，可直接在此配置侧边栏菜单
   menus: []
 }
