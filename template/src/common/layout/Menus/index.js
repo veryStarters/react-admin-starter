@@ -51,7 +51,7 @@ class MamsMenu extends Component {
           icon: 'error',
           value: '未取到menus配置',
           key: 'error',
-          url: '/home/menutip'
+          url: '/demo/menutip'
         }
       ]
       this.setState({
