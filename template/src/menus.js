@@ -12,15 +12,7 @@ const sidebarMenus = [
     key: 'user',
     value: '用户管理',
     icon: 'solution',
-    // url: '/user'
-    children: [
-      {
-        key: 'user1',
-        value: '用户Test',
-        icon: 'edit',
-        url: '/user/test'
-      }
-    ]
+    url: '/user'
   },
   {
     key: 'demo',

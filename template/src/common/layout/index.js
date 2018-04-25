@@ -6,8 +6,8 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom'
-import SidebarMenu from './SidebarMenu'
-// import TopMenu from './TopMenu'
+import SidebarMenu from './Menu/SidebarMenu'
+// import TopMenu from './Menu/TopMenu'
 import api from 'api'
 import storage from 'utils/storage'
 import config from 'config'
