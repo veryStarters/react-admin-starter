@@ -7,7 +7,7 @@ import {
   Switch
 } from 'react-router-dom'
 import SidebarMenu from './Menu/SidebarMenu'
-// import TopMenu from './Menu/TopMenu'
+import TopMenu from './Menu/TopMenu'
 import Breadcrumb from './Breadcrumb'
 import api from 'api'
 import storage from 'utils/storage'
@@ -44,8 +44,7 @@ class MainLayout extends Component {
 
   // 顶部菜单
   topMenu() {
-    return null
-    // return <TopMenu />
+    return <TopMenu />
   }
 
   // 退出登陆
