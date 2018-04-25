@@ -10,6 +10,7 @@ import config from 'config'
 import NotFound from 'common/error/404'
 import logo from 'images/logo.svg'
 import style from './index.pcss'
+import classnames from 'classnames'
 
 const { Sider, Content } = Layout
 const MenuItem = Menu.Item
@@ -20,7 +21,8 @@ class MainLayout extends Component {
     super(props)
     this.state = {
       userName: userInfo.userName || '',
-      sidebarCollapsed: false
+      sidebarCollapsed: false,
+      fixed: config.fixedHeader
     }
   }
 
@@ -80,7 +82,7 @@ class MainLayout extends Component {
             {this.sidebarMenu()}
           </div>
         </Sider>
-        <Layout className={sidebarCollapsed ? style.mainContentCollapsed : style.mainContent}>
+        <Layout className={classnames({ [style.mainContentCollapsed]: sidebarCollapsed, [style.mainContent]: !sidebarCollapsed, 'fixed': this.state.fixed })}>
           {(/Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor))
             ? '' : <Alert message='请使用google chrome浏览器使用系统' banner closable/>}
           <table className={style.header}>

@@ -68,19 +68,36 @@
   .mainContent {
     margin-left: 200px;
     overflow: auto;
-    height: 100vh;
-    background: #F8F8F8;
     transition: margin 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+    &:global(.fixed) {
+      .header {
+        position: fixed;
+        width: calc(100% - 200px);
+        transition: width 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+    }
   }
 
   .mainContentCollapsed {
     margin-left: 80px;
     background: #F8F8F8;
     transition: margin 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
+    &:global(.fixed) {
+      .header {
+        position: fixed;
+        width: calc(100% - 80px);
+        transition: width 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+    }
   }
 
   .mainContent,
   .mainContentCollapsed {
+    &:global(.fixed) {
+      .body {
+        margin-top: 64px;
+      }
+    }
     .header {
       height: 64px;
       line-height: 64px;
