@@ -40,8 +40,14 @@ class User extends Component {
     const list = [
       {
         key: 1,
-        title: '达到的',
-        name: 'taoqili',
+        name: '吕不韦',
+        title: 'lvbuwei',
+        age: 18
+      },
+      {
+        key: 2,
+        name: '张益达',
+        title: 'zhangyida',
         age: 18
       }
     ]
