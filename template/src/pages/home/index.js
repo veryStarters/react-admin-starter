@@ -10,7 +10,7 @@ import storeKit from 'storeKit'
 class Home extends Component {
   render() {
     return (
-      <div>
+      <div style={{ height: '1000px' }}>
         Hello, world! {this.props.appName}
       </div>
     )

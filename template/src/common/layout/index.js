@@ -33,12 +33,12 @@ class MainLayout extends Component {
 
   // 侧边菜单
   sidebarMenu() {
-    return <SidebarMenu collapsed={this.state.sidebarCollapsed} />
+    return <SidebarMenu collapsed={this.state.sidebarCollapsed} {...this.props} />
   }
 
   // 顶部菜单
   topMenu() {
-    return <TopMenu />
+    return <TopMenu {...this.props} />
   }
 
   // 退出登陆

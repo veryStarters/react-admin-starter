@@ -1,7 +1,6 @@
 import React from 'react'
 import { Menu, Icon } from 'antd'
 import { Link } from 'react-router-dom'
-import getMenuItemClass from './getMenuItemClass'
 
 const SubMenu = Menu.SubMenu
 const MenuItem = Menu.Item
@@ -28,9 +27,8 @@ const createMenus = (data = []) => data.map((item) => {
       </SubMenu>
     )
   }
-  console.log(getMenuItemClass(item.url), item.key)
   return (
-    <MenuItem key={item.key} className={getMenuItemClass(item.url)}>
+    <MenuItem key={item.key}>
       <Link to={item.url} className={style.ellip}>
         <Icon type={item.icon}/>
         <span title={item.value}>{item.value}</span>
