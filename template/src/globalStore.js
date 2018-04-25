@@ -22,7 +22,8 @@ export const reducers = (state = initState, action) => {
         ...state,
         appName: action.appName
       }
-    case actionType.GET_INIT_DATA: // 这个action在core/index.js文件中直接触发
+    // 这个action在core/index.js文件中直接触发
+    case actionType.GET_INIT_DATA:
       return {
         ...state,
         appInitData: action.appInitData
