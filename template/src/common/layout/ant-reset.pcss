@@ -60,16 +60,25 @@
   .mainContent,
   .mainContentCollapsed {
     .leftWrapper {
-      :global(.ant-menu-item) {
+      :global(.ant-menu-item),
+      :global(.ant-menu-item-selected),
+      :global(.ant-menu-item-active),
+      :global(.ant-menu-submenu),
+      :global(.ant-menu-submenu-selected),
+      :global(.ant-menu-submenu-active) {
         border-bottom: none;
       }
-      :global(.ant-menu-item-active) {
-        border-bottom: none;
-      }
-      :global(.ant-menu-item-selected) {
-        border-bottom: none;
+      :global(.ant-menu-item-selected),
+      :global(.ant-menu-submenu-selected) {
         > a {
           color: #1890ff;
+        }
+      }
+      :global(.ant-menu-submenu-popup) {
+        :global(.ant-menu) {
+          :global(.ant-menu-item-selected) {
+            background-color: red;
+          }
         }
       }
     }

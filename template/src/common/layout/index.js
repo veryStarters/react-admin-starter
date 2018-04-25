@@ -6,13 +6,13 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom'
-import Menus from './Menus'
+import SidebarMenu from './SidebarMenu'
+// import TopMenu from './TopMenu'
 import api from 'api'
 import storage from 'utils/storage'
 import config from 'config'
 import Breadcrumb from './Breadcrumb'
 import NotFound from 'common/error/404'
-import { topMenus } from 'src/menus'
 import logo from 'images/logo.svg'
 import style from './index.pcss'
 
@@ -37,40 +37,15 @@ class MainLayout extends Component {
     })
   }
 
-  handleClick = e => {
-    this.setState({
-      current: e.key
-    })
-  }
-
   // 侧边菜单
   sidebarMenu() {
-    return <Menus match={this.props.match} selectedMenu={this.props.selectedMenu} collapsed={this.state.collapsed}/>
+    return <SidebarMenu collapsed={this.state.collapsed} match={this.props.match} selectedMenu={this.props.selectedMenu}/>
   }
 
   // 顶部菜单
   topMenu() {
-    return (
-      topMenus && topMenus.length
-        ? <Menu
-          onClick={this.handleClick}
-          selectedKeys={[this.state.current]}
-          mode='horizontal'
-        >
-          {
-            topMenus.map(item => {
-              return (
-                <Menu.Item key={item.key}>
-                  <Link to={item.url}>
-                    <Icon type={item.icon} />{item.value}
-                  </Link>
-                </Menu.Item>
-              )
-            })
-          }
-        </Menu>
-        : null
-    )
+    return null
+    // return <TopMenu />
   }
 
   // 退出登陆
