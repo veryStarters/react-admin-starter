@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 import { Layout, Icon, Alert, Dropdown, Menu } from 'antd'
-import {
-  Link,
-  Route,
-  Redirect,
-  Switch
-} from 'react-router-dom'
+import { Link, Route, Redirect, Switch } from 'react-router-dom'
 import SidebarMenu from './Menu/SidebarMenu'
 import TopMenu from './Menu/TopMenu'
 import Breadcrumb from './Breadcrumb'
