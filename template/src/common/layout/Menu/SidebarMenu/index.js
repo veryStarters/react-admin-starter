@@ -3,12 +3,13 @@ import { Menu } from 'antd'
 import config from 'config'
 import sidebarMenus from 'src/menus'
 import api from 'api'
-import createSubMenus, { openedKeys } from '../createSubMenus'
+import createMenuItem, { openedKeys } from '../createMenuItem'
 
-class MamsMenu extends Component {
+class SidebarMenu extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      theme: 'dark',
       mode: 'inline',
       menus: []
     }
@@ -60,15 +61,11 @@ class MamsMenu extends Component {
   }
 
   render() {
-    const menusData = createSubMenus(sidebarMenus.length ? sidebarMenus : this.state.menus)
-    return menusData.length > 0 ? <Menu
-      theme='dark'
-      mode={this.state.mode}
-      defaultOpenKeys={openedKeys}
-      style={{ border: 'none' }}>
-      {menusData}
-    </Menu> : null
+    const menuData = createMenuItem(sidebarMenus.length ? sidebarMenus : this.state.menus)
+    return menuData.length > 0
+      ? <Menu theme={this.state.theme} mode={this.state.mode} defaultOpenKeys={openedKeys}>{menuData}</Menu>
+      : null
   }
 }
 
-export default MamsMenu
+export default SidebarMenu

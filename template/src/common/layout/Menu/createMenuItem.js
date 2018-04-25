@@ -39,5 +39,6 @@ const createMenus = (data = []) => data.map((item) => {
   )
 })
 
-export default createMenus
 export const openedKeys = openedMenus
+
+export default createMenus

@@ -1,23 +1,20 @@
 import React, { Component } from 'react'
 import { Menu } from 'antd'
-import createMenus, { openedKeys } from '../createSubMenus'
+import createMenuItem from '../createMenuItem'
 import { topMenus } from 'src/menus'
 
 class TopMenu extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      mode: 'horizontal'
+      menus: []
     }
   }
   render() {
-    const menusData = createMenus(topMenus.length ? topMenus : this.state.menus)
-    return menusData.length > 0 ? <Menu
-      mode={this.state.mode}
-      defaultOpenKeys={openedKeys}
-      style={{ border: 'none' }}>
-      {menusData}
-    </Menu> : null
+    const menuData = createMenuItem(topMenus.length ? topMenus : this.state.menus)
+    return menuData.length > 0
+      ? <Menu mode='horizontal'>{menuData}</Menu>
+      : null
   }
 }
 

@@ -20,21 +20,20 @@ class MainLayout extends Component {
     super(props)
     this.state = {
       userName: userInfo.userName || '',
-      collapsed: false,
-      current: 'home'
+      sidebarCollapsed: false
     }
   }
 
-  // 设置是否可收起
-  toggle = () => {
+  // 切换侧边栏状态
+  toggleSidebar = () => {
     this.setState({
-      collapsed: !this.state.collapsed,
+      sidebarCollapsed: !this.state.sidebarCollapsed,
     })
   }
 
   // 侧边菜单
   sidebarMenu() {
-    return <SidebarMenu collapsed={this.state.collapsed} match={this.props.match} selectedMenu={this.props.selectedMenu}/>
+    return <SidebarMenu collapsed={this.state.sidebarCollapsed} />
   }
 
   // 顶部菜单
@@ -60,30 +59,35 @@ class MainLayout extends Component {
 
   render() {
     const { routes } = this.props
-    const { collapsed, userName } = this.state
+    const { sidebarCollapsed, userName } = this.state
     return (
       <Layout className={style.layout}>
-        <Sider className={style.sidebar} trigger={null} collapsible collapsed={collapsed}>
+        <Sider className={style.sidebar} trigger={null} collapsible collapsed={sidebarCollapsed}>
           <div className={style.logo}>
-            <Link className={style.toHome} to='/'>
+            <Link className={style.toHome} to={config.homeRoute}>
               <img src={logo} alt='logo'/>
-              {collapsed ? null : <div className={style.txt}>{config.appName}
-                <div className={style.sub}>{config.subName}</div>
-              </div>}
+              {
+                !sidebarCollapsed
+                  ? (
+                    <div className={style.txt}>{config.appName}
+                      <div className={style.sub}>{config.subName}</div>
+                    </div>
+                  ) : null
+              }
             </Link>
           </div>
           <div className={style.menuContainer}>
             {this.sidebarMenu()}
           </div>
         </Sider>
-        <Layout className={collapsed ? style.mainContentCollapsed : style.mainContent}>
+        <Layout className={sidebarCollapsed ? style.mainContentCollapsed : style.mainContent}>
           {(/Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor))
             ? '' : <Alert message='请使用google chrome浏览器使用系统' banner closable/>}
           <table className={style.header}>
             <tbody>
               <tr width={'100%'}>
-                <td width={'64'} className={style.collapseButton} onClick={this.toggle}>
-                  <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'}/>
+                <td width={'64'} className={style.collapseButton} onClick={this.toggleSidebar}>
+                  <Icon type={sidebarCollapsed ? 'menu-unfold' : 'menu-fold'}/>
                 </td>
                 <td className={style.leftWrapper}>
                   {this.topMenu()}
@@ -101,7 +105,7 @@ class MainLayout extends Component {
               </tr>
             </tbody>
           </table>
-          <Layout style={{ padding: '0 24px 24px' }}>
+          <Layout className={style.body}>
             <Switch>
               {
                 routes.map((route, index) => {
