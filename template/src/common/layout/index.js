@@ -25,7 +25,8 @@ class MainLayout extends Component {
     super(props)
     this.state = {
       userName: userInfo.userName || '',
-      collapsed: false
+      collapsed: false,
+      current: 'home'
     }
   }
 
@@ -33,6 +34,12 @@ class MainLayout extends Component {
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed,
+    })
+  }
+
+  handleClick = e => {
+    this.setState({
+      current: e.key
     })
   }
 
@@ -49,14 +56,13 @@ class MainLayout extends Component {
           onClick={this.handleClick}
           selectedKeys={[this.state.current]}
           mode='horizontal'
-          className={style.topMenu}
         >
           {
             topMenus.map(item => {
               return (
                 <Menu.Item key={item.key}>
                   <Link to={item.url}>
-                    <Icon type={item.icon}/>{item.value}
+                    <Icon type={item.icon} />{item.value}
                   </Link>
                 </Menu.Item>
               )
@@ -104,24 +110,28 @@ class MainLayout extends Component {
         <Layout className={collapsed ? style.mainContentCollapsed : style.mainContent}>
           {(/Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor))
             ? '' : <Alert message='请使用google chrome浏览器使用系统' banner closable/>}
-          <div className={style.header}>
-            <div className={style.headerButton} onClick={this.toggle}>
-              <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'}/>
-            </div>
-            <div className={style.leftWrapper}>
-              {this.topMenu()}
-            </div>
-            <div className={style.rightWrapper}>
-              <Dropdown
-                overlay={<Menu
-                  onClick={this.logout}>
-                  <MenuItem key='detail'>详情</MenuItem>
-                  <MenuItem key='logout'>退出登录</MenuItem>
-                </Menu>} placement='bottomCenter'>
-                <span><Icon type='user'/> {userName}</span>
-              </Dropdown>
-            </div>
-          </div>
+          <table className={style.header}>
+            <tbody>
+              <tr width={'100%'}>
+                <td width={'64'} className={style.collapseButton} onClick={this.toggle}>
+                  <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'}/>
+                </td>
+                <td className={style.leftWrapper}>
+                  {this.topMenu()}
+                </td>
+                <td width={'200'} className={style.rightWrapper}>
+                  <Dropdown
+                    overlay={<Menu
+                      onClick={this.logout}>
+                      <MenuItem key='detail'>详情</MenuItem>
+                      <MenuItem key='logout'>退出登录</MenuItem>
+                    </Menu>} placement='bottomCenter'>
+                    <span><Icon type='user'/> {userName}</span>
+                  </Dropdown>
+                </td>
+              </tr>
+            </tbody>
+          </table>
           <Layout style={{ padding: '0 24px 24px' }}>
             <Switch>
               {

@@ -83,38 +83,25 @@
   .mainContentCollapsed {
     .header {
       height: 64px;
-      background: #FFF;
-      padding: 0;
-      position: relative;
-      z-index: 100;
-      box-shadow: 1px 1px 2px 0 rgba(0, 21, 41, 0.35);
-      .headerButton {
-        width: 64px;
-        height: 64px;
-        line-height: 64px;
+      line-height: 64px;
+      background: #fff;
+      .collapseButton {
         text-align: center;
-        font-size: 18px;
         cursor: pointer;
-        float: left;
+        font-size: 16px;
+        &:hover {
+          color: #1890ff;
+        }
       }
       .leftWrapper {
-        .topMenu {
-          margin-top: 10px;
+        > ul {
+          border-bottom: none;
         }
       }
       .rightWrapper {
-        line-height: 64px;
-        width: 200px;
-        padding-right: 16px;
-        float: right;
-        cursor: pointer;
         text-align: right;
-        .message {
-          margin-right: 50px;
-          .text {
-            margin-left: 5px;
-          }
-        }
+        padding-right: 30px;
+        cursor: pointer;
       }
     }
   }

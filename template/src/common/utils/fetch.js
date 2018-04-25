@@ -9,7 +9,8 @@ let fetcher = axios.create({
   headers: {
     'Accept': '*',
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*'
+    'Access-Control-Allow-Origin': '*',
+    'AccessToken': storage.get('AccessToken') || ''
   },
   transformRequest: [function (data) {
     const userInfo = storage.get('UserInfo')
