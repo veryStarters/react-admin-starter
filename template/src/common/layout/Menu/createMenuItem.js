@@ -4,11 +4,6 @@ import { Link } from 'react-router-dom'
 
 const SubMenu = Menu.SubMenu
 const MenuItem = Menu.Item
-const style = {
-  whiteSpace: 'nowrap',
-  overflow: 'hidden',
-  textOverflow: 'ellipsis'
-}
 
 let openedMenus = []
 const createMenus = (data = []) => data.map((item) => {
@@ -18,7 +13,7 @@ const createMenus = (data = []) => data.map((item) => {
     }
     return (
       <SubMenu key={item.key} title={
-        <span className={style.ellip}>
+        <span>
           <Icon type={item.icon}/>
           <span title={item.value}>{item.value}</span>
         </span>
@@ -29,7 +24,7 @@ const createMenus = (data = []) => data.map((item) => {
   }
   return (
     <MenuItem key={item.key} className={'no-margin'}>
-      <Link to={item.url} className={style.ellip}>
+      <Link to={item.url}>
         <Icon type={item.icon}/>
         <span title={item.value}>{item.value}</span>
       </Link>
