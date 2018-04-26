@@ -28,7 +28,7 @@ const createMenus = (data = []) => data.map((item) => {
     )
   }
   return (
-    <MenuItem key={item.key}>
+    <MenuItem key={item.key} className={'no-margin'}>
       <Link to={item.url} className={style.ellip}>
         <Icon type={item.icon}/>
         <span title={item.value}>{item.value}</span>

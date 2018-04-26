@@ -2,6 +2,7 @@ import api from 'api'
 import storage from 'utils/storage'
 import config from 'config'
 export default {
+  theme: 'light',
   // 固定顶部
   fixedHeader: false,
 
