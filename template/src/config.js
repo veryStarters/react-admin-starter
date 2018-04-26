@@ -9,8 +9,6 @@ export default {
   needAuth: true,
   // 登录路由
   loginRoute: '/user/login',
-  // 固定顶部
-  fixedHeader: false,
   // api域名前缀，支持向多个系统的api请求，只需要在此处定义prefixName，在api/index.js中添加{prefixName: 'defaultDomain'}参数即可
   baseUrl: {
     default: '/api',

@@ -4,12 +4,13 @@ import sidebarMenus from 'src/menus'
 import api from 'api'
 import createMenuItem, { openedKeys } from '../createMenuItem'
 import getCurrentMenu from '../getCurrentMenu'
+import layoutConfig from '../../config'
 
 class SidebarMenu extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      theme: 'dark',
+      theme: layoutConfig.theme || 'dark',
       mode: 'inline',
       current: '',
       menus: []

@@ -7,6 +7,7 @@ import Breadcrumb from './Breadcrumb'
 import api from 'api'
 import storage from 'utils/storage'
 import config from 'config'
+import layoutConfig from './config'
 import NotFound from 'common/error/404'
 import logo from 'images/logo.svg'
 import style from './index.pcss'
@@ -22,7 +23,7 @@ class MainLayout extends Component {
     this.state = {
       userName: userInfo.userName || '',
       sidebarCollapsed: false,
-      fixed: config.fixedHeader
+      fixed: layoutConfig.fixedHeader || false
     }
   }
 
