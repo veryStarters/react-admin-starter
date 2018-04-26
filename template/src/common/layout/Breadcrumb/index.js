@@ -68,12 +68,22 @@ class App extends Component {
       </Breadcrumb.Item>
     )
   }
+  goBack = () => {
+    window.history.go(-1)
+  }
 
   render() {
     let isHome = this.state.breadcrumbItems.length === 1 && this.state.breadcrumbItems[0].key === config.homeRoute
     return (
       <Breadcrumb className={style.bread}>
-        {!isHome ? <Breadcrumb.Item><Link to={config.homeRoute}>首页</Link></Breadcrumb.Item> : null}
+        {!isHome
+          ? (
+            <Breadcrumb.Item>
+              <span className={style.back} onClick={this.goBack}>返回</span>&nbsp;&nbsp;/&nbsp;&nbsp;
+              <Link to={config.homeRoute}>首页</Link>
+            </Breadcrumb.Item>
+          )
+          : null}
         {this.state.breadcrumbItems}
       </Breadcrumb>
     )

@@ -12,8 +12,8 @@
     box-shadow: 1px 0 2px rgba(0, 21, 41, 0.35);
 
     .logo {
-      height: 64px;
-      line-height: 64px;
+      height: 67px;
+      line-height: 67px;
       cursor: pointer;
       padding-left: 12px;
       overflow: hidden;
@@ -51,11 +51,15 @@
     }
 
     .menuContainer {
-      height: calc(100vh - 64px);
+      height: calc(100vh - 67px);
       background: #404040;
       overflow-y: auto;
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
       &::-webkit-scrollbar-thumb {
         background-color: transparent;
+        border-radius: 4px;
       }
       &:hover {
         &::-webkit-scrollbar-thumb {
@@ -95,7 +99,7 @@
   .mainContentCollapsed {
     &:global(.fixed) {
       .body {
-        margin-top: 64px;
+        margin-top: 67px;
       }
     }
     .header {
