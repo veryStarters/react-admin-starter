@@ -8,6 +8,7 @@ import sleep from 'system-sleep'
 import Mock from 'mockjs'
 
 const data = Mock.mock({
+  userName: 'TAOQILI'
 })
 
 export default (req, res, next) => {

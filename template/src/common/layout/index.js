@@ -4,7 +4,6 @@ import { Link, Route, Redirect, Switch } from 'react-router-dom'
 import SidebarMenu from './Menu/SidebarMenu'
 import TopMenu from './Menu/TopMenu'
 import Breadcrumb from './Breadcrumb'
-import api from 'api'
 import storage from 'utils/storage'
 import config from 'config'
 import layoutConfig from './config'
@@ -21,7 +20,7 @@ class MainLayout extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      userName: userInfo.userName || '',
+      userName: userInfo.userName || '游客',
       sidebarCollapsed: false,
       fixed: layoutConfig.fixedHeader || false
     }
@@ -45,26 +44,34 @@ class MainLayout extends Component {
   }
 
   // 退出登陆
-  logout = async (item) => {
-    // 退出登陆接口调用
-    if (item.key === 'logout') {
-      const userInfo = storage.get('UserInfo')
-      const res = await api.logout(userInfo)
-      if (res.code === 0 && res.data) {
-        storage.set('UserInfo', {})
-        location.href = config.loginRoute
-      }
-    }
-    if (item.key === 'detail') {
-      alert('detail')
-    }
+  handleToolbar = async (item) => {
+    let { toolbar } = layoutConfig
+    toolbar[item.key].action.call(this)
+  }
+  getToolbar() {
+    const keys = Object.keys(layoutConfig.toolbar)
+    return (
+      <Menu onClick={this.handleToolbar}>
+        {
+          userInfo.userName ? keys.map((key) => {
+            let item = layoutConfig.toolbar[key]
+            if (key === 'login') {
+              return null
+            }
+            return (
+              <MenuItem key={key}>{item.title}</MenuItem>
+            )
+          }) : <MenuItem key={'login'}>{layoutConfig.toolbar['login'].title}</MenuItem>
+        }
+      </Menu>
+    )
   }
 
   render() {
     const { routes } = this.props
     const { sidebarCollapsed, userName } = this.state
     return (
-      <Layout className={style.layout}>
+      <Layout className={classnames({ [style.layout]: true, 'theme-light': layoutConfig.theme === 'light' })}>
         <Sider className={style.sidebar} trigger={null} collapsible collapsed={sidebarCollapsed}>
           <div className={style.logo}>
             <Link className={style.toHome} to={config.homeRoute}>
@@ -97,11 +104,8 @@ class MainLayout extends Component {
                 </td>
                 <td width={'200'} className={style.rightWrapper}>
                   <Dropdown
-                    overlay={<Menu
-                      onClick={this.logout}>
-                      <MenuItem key='detail'>详情</MenuItem>
-                      <MenuItem key='logout'>退出登录</MenuItem>
-                    </Menu>} placement='bottomCenter'>
+                    overlay={this.getToolbar()}
+                    placement='bottomCenter'>
                     <span><Icon type='user'/> {userName}</span>
                   </Dropdown>
                 </td>

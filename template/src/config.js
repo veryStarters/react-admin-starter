@@ -33,7 +33,5 @@ export default {
       changeOrigin: true,
       pathRewrite: {}
     }
-  },
-  // 如无权限要求，可直接在此配置侧边栏菜单
-  menus: []
+  }
 }
