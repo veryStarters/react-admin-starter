@@ -14,8 +14,9 @@ class TopMenu extends Component {
   }
   componentWillReceiveProps(nextProps) {
     const location = nextProps.location
+    let current = getCurrentMenu(topMenus, location.pathname)
     this.setState({
-      current: getCurrentMenu(topMenus, location.pathname)
+      current: current
     })
   }
   onClickHandler = e => {
