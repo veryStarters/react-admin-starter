@@ -1,12 +1,46 @@
-.layout {
-  .sidebar {
-    :global(.ant-menu.ant-menu-dark .ant-menu-item-selected) {
-      background: none;
-      span {
-        color: #fff;
+/* 弹出的菜单样式 */
+
+:global(.ant-menu-submenu-popup) {
+  :global(.ant-menu),
+  :global(.ant-menu-submenu) {
+    :global(.ant-menu-item) {
+      &:global(.no-margin) {
+        margin-top: 0;
+        margin-bottom: 0;
       }
     }
-    :global(.ant-menu) {
+  }
+  &:global(.ant-menu-dark) {
+    background: #3f3f3f;
+    :global(.ant-menu-item-selected) {
+      background-color: transparent;
+    }
+    :global(.ant-menu-sub) {
+      background: #3f3f3f;
+    }
+  }
+  &:global(.ant-menu-light) {
+    :global(.ant-menu-item-selected),
+    :global(.ant-menu-item-active) {
+      background-color: #f8f8f8;
+    }
+  }
+}
+
+/* 布局 */
+
+.layout {
+  .sidebar {
+    /*sidebar collapsed*/
+    &:global(.ant-layout-sider-collapsed) {
+      .logo {
+        padding-left: 24px;
+      }
+    }
+
+    :global(.ant-menu),
+    :global(.ant-menu-submenu) {
+      /*====全主题覆盖====*/
       :global(.ant-menu-item) {
         font-size: 12px;
         &:global(.no-margin) {
@@ -14,55 +48,51 @@
           margin-bottom: 0;
         }
       }
+
       :global(.ant-menu-submenu-title) {
         font-size: 12px;
       }
-    }
-    :global(.ant-menu.ant-menu-dark) {
-      background: #3f3f3f;
-    }
 
-    :global(.ant-menu-dark .ant-menu-inline.ant-menu-sub) {
-      background: #3A3A3A;
-    }
-
-    :global(.ant-menu-inline span) {
-      color: #AAA;
-    }
-
-    :global(.ant-menu-submenu-selected) {
-      :global(.ant-menu-submenu-title span) {
-        color: #fff;
-      }
-    }
-
-    :global(.ant-menu-item-active) {
-      span {
-        color: #FFF;
-        a {
-          color: #FFF;
+      /*====黑色主题覆盖====*/
+      &:global(.ant-menu-dark) {
+        background: #3f3f3f;
+        :global(.ant-menu-submenu-open) {
+          color: #bbb;
+        }
+        :global(.ant-menu-submenu-active) {
+          background: #3a3a3a;
+        }
+        :global(.ant-menu-submenu-selected) {
+          color: #fff;
+        }
+        :global(.ant-menu-sub.ant-menu-inline) {
+          background: #3f3f3f;
+          box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25) inset;
+        }
+        :global(.ant-menu-item-active) {
+          background: #3a3a3a;
+          span {
+            color: #fff;
+            a {
+              color: #fff;
+            }
+          }
+        }
+        :global(.ant-menu-item-selected) {
+          background: #3a3a3a;
+          span {
+            color: #fff;
+          }
         }
       }
-    }
 
-    &:global(.ant-layout-sider-collapsed) {
-      .logo {
-        padding-left: 24px;
-      }
-      :global(.ant-menu-submenu-title) {
-        padding: 0 22px;
-        > a > span,
-        > span > span {
-          display: none;
-        }
-        :global(.anticon) {
-          font-size: 18px;
-          margin-right: 0;
-          transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
-        }
+      /*====白色主题覆盖====*/
+      &:global(.ant-menu-light) {
+        position: inherit;
       }
     }
   }
+
   .mainContent,
   .mainContentCollapsed {
     .leftWrapper {
