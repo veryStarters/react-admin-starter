@@ -17,6 +17,7 @@
     "max-nesting-depth": 10,
     "comment-whitespace-inside": null,
     "no-empty-source": null,
+    "font-family-no-missing-generic-family-keyword": null,
     "selector-pseudo-class-no-unknown": [
       true,
       {

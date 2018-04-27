@@ -9,8 +9,10 @@ import config from 'config'
 import layoutConfig from './config'
 import NotFound from 'common/error/404'
 import logo from 'images/logo.svg'
-import style from './index.pcss'
 import classnames from 'classnames'
+import 'styles/index.pcss'
+import style from './index.pcss'
+
 
 const { Sider, Content } = Layout
 const MenuItem = Menu.Item

@@ -15,6 +15,7 @@ module.exports = {
     common: resolve('common'),
     core: resolve('common/core'),
     styles: resolve('common/styles'),
+    fonts: resolve('common/fonts'),
     images: resolve('common/images'),
     components: resolve('components'),
     storeKit: resolve('common/core/store/storeKit')

@@ -12,6 +12,9 @@ class Home extends Component {
     return (
       <div style={{ height: '1000px' }}>
         Hello, world! {this.props.appName}
+        <p>
+          I <i className='icon heart'> YOU</i>
+        </p>
       </div>
     )
   }
