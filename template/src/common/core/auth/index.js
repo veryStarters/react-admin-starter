@@ -1,5 +1,6 @@
+import React from 'react'
 import authCheck from 'utils/authCheck'
-import Redirect from './Redirect'
+import { Redirect } from 'react-router-dom'
 
 const emptyFn = () => {
 }
@@ -50,7 +51,7 @@ export default ({ code, type, onReject = emptyFn, onAccept = emptyFn, preventDef
         code: -1,
         msg: '拒绝本次路由请求'
       })
-      return Redirect
+      return props => <Redirect to='/error/forbidden' />
     }
 
     // 组件装饰器
