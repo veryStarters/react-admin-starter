@@ -17,7 +17,7 @@ React-Admin-Starter(以下简称RAS)是基于create-react-app基础上封装的�
 4、高度自动化（以page级组件作为开发入口，监测并自动生成各种类型的文件框架和中间配置，摒弃重复、低效的模板化编码）
 
 ### 开始
-0. 安装vue-cli, 初始化一个项目 
+0. 安装vue-cli, 初始化一个项目
 ````
 vue init veryStarters/react-admin-starter my-project
 ````
@@ -37,6 +37,7 @@ vue init veryStarters/react-admin-starter my-project
 外部约定来达到自动配置路由的目的。
 
 在RAS中，目录pages作为所有业务的入口，在里面创建的任何index.js文件都将以该文件的目录层级作为前端路由的默认配置。
+
 如页面组件pages/user/detail/index.js对应的前端路由为/user/detail。该默认配置将有系统自动完成，开发层面仅需创建index.js即可。
 
 特殊情况下，如果需要配置当前路由的细节特性，可以直接在同步自动生成的route.js文件中设置即可。面包屑配置以及路由参数配置是该文件使用最多的两个场景。
@@ -50,14 +51,59 @@ vue init veryStarters/react-admin-starter my-project
 react-redux巨量的模板代码时时刻刻在考验着开发者的耐性，为了简化开发流程，RAS脚手架通过在index.js中自动插入对应模板函数以及自动生成redux相关
 概念模块的方式，来解决redux使用不便的问题。
 
-具体来说，在上述已经创建的index.js的目录下，创建一个store.js文件，系统将自动创建该文件的代码骨架。在该文件中相应的states, reducers和actions中
-填充对应代码后，即可在index.js文件中直接使用。
+具体来说，在上述已经创建的index.js的目录下，创建一个store.js文件，系统将自动创建该文件的代码骨架。
+
+在该文件中相应的states, reducers和actions中填充对应代码后，即可在index.js文件中直接使用。
 
 ####4、自动Mock
 在src/api/index.js中按照对应格式定义api之后，系统会自动在src/api/mock目录下创建对应的mock文件，填充mock文件中的data字段即可返回mock数据。
+
 本地mock的proxy配置在src/config中地proxyTable字段。默认情况下，本地mock服务运行在http://localhost:10086
 
-####5、
+####5、接口环境切换与配置
+除了利用webpack-dev-server的proxyTable实现多环境接口切换功能之外，还可以通过配置方便地实现一个前端工程同时对接多个后端工程
+
+####6、权限管理
+作为后台管理系统来说，权限问题至关重要。RAS将系统权限分成如下集中类型，分别是接口、菜单、路由、组件以及方法。
+
+接口权限直接由后端项目控制。
+
+菜单权限则通过获取菜单接口getMenus由后端返回，理论上也是由后端负责控制，前端来完成路由（包含嵌套）的渲染生成。
+
+除了上述两种类型之外，后面的三种权限在RAS系统中统一通过装饰器@auth来实现，从而避免对业务代码的逻辑侵入。
+
+A、路由权限：基于RAS系统的设定，pages下的每个index.js文件对应着一个页面，因此针对路由进行权限控制的装饰器实质上就是针对该页面组件的装饰器
+
+````
+@auth({
+  code: 2,  // 权限标识
+  type: 'route',   // 装饰器类型，默认值，可省略
+  // 默认情况下，无权限路由自动跳转到/error/forbidden页；
+  // 如果想更改此默认设定，可以设置本参数为true，然后在onReject中自行处理
+  preventDefault: true,
+  onReject() {
+    return props => {
+      return (
+        <Redirect to={'/error/forbidden'} />
+      )
+    }
+  }
+})
+class SomePage extends Component {
+}
+````
+
+B、组件权限：组件权限跟路由权限基本一致，其type为component。
+
+C、方法权限：方法权限无需指名type类型，系统自动判断。具体的例子可以参考/demo/auth/index.js文件
+
+
+####7、代码拆分
+RAS系统按照路由对代码进行了拆分，也即pages下的每一个index.js都将生成一个单独的文件
+
+
+
+
 
 
 

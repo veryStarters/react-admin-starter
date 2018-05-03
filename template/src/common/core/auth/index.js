@@ -6,12 +6,13 @@ const emptyFn = () => {
 }
 const emptyInitializer = () => emptyFn
 export default ({ code, type, onReject = emptyFn, onAccept = emptyFn, preventDefault = false }) => {
-  const authRet = !!authCheck(code)
+  const authResult = !!authCheck(code)
+  type = type || 'route'
   return (target, name, descriptor) => {
     // 方法装饰器
     if (descriptor &&
       (typeof descriptor.value === 'function' || typeof descriptor.initializer() === 'function')) {
-      if (authRet) {
+      if (authResult) {
         onAccept({
           code: 0,
           msg: '允许执行本方法！'
@@ -34,7 +35,7 @@ export default ({ code, type, onReject = emptyFn, onAccept = emptyFn, preventDef
 
     // 路由装饰器
     if (type === 'route') {
-      if (authRet) {
+      if (authResult) {
         onAccept({
           code: 0,
           msg: '允许路由跳转'
@@ -53,9 +54,8 @@ export default ({ code, type, onReject = emptyFn, onAccept = emptyFn, preventDef
       })
       return props => <Redirect to='/error/forbidden' />
     }
-
     // 组件装饰器
-    if (authRet) {
+    if (authResult) {
       onAccept({
         code: 0,
         msg: '本组件有显示权限'

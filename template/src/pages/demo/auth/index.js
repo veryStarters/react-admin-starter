@@ -4,7 +4,6 @@ import auth from 'core/auth'
 
 @auth({
   code: 2,
-  type: 'route',
   // 默认情况下，无权限路由自动跳转到/error/forbidden页；
   // 如果想更改此默认设定，可以设置本参数为true，然后在onReject中自行处理
   preventDefault: true,
@@ -70,6 +69,7 @@ class DemoAuth extends Component {
 
 @auth({
   code: 2,
+  type: 'component',
   // 默认情况下，无权限组件将显示为空
   // 如果想更改此默认设定，可以设置本参数为true，然后在onReject中自行返回需要的组件
   preventDefault: true,
