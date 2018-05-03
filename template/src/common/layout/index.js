@@ -40,30 +40,48 @@ class MainLayout extends Component {
     return <SidebarMenu collapsed={this.state.sidebarCollapsed} {...this.props} />
   }
 
+  topToolbar() {
+    const toolbars = layoutConfig.topToolbar
+    const keys = Object.keys(toolbars)
+    return (
+      <ul className={style.topToolbar}>
+        {keys.map(key => {
+          let Toolbar = toolbars[key]
+          return (
+            <li key={key}>
+              <Toolbar {...this.props} />
+            </li>
+          )
+        })}
+      </ul>
+    )
+  }
+
   // 顶部菜单
   topMenu() {
     return <TopMenu {...this.props} />
   }
 
+
   // 退出登陆
-  handleToolbar = async (item) => {
-    let { toolbar } = layoutConfig
-    toolbar[item.key].action.call(this)
+  handleUserItem = async (item) => {
+    let { userItem } = layoutConfig
+    userItem[item.key].action.call(this)
   }
-  getToolbar() {
-    const keys = Object.keys(layoutConfig.toolbar)
+  userItem() {
+    const keys = Object.keys(layoutConfig.userItem)
     return (
-      <Menu onClick={this.handleToolbar}>
+      <Menu onClick={this.handleUserItem}>
         {
           userInfo.userName ? keys.map((key) => {
-            let item = layoutConfig.toolbar[key]
+            let item = layoutConfig.userItem[key]
             if (key === 'login') {
               return null
             }
             return (
               <MenuItem key={key}>{item.title}</MenuItem>
             )
-          }) : <MenuItem key={'login'}>{layoutConfig.toolbar['login'].title}</MenuItem>
+          }) : <MenuItem key={'login'}>{layoutConfig.userItem['login'].title}</MenuItem>
         }
       </Menu>
     )
@@ -104,9 +122,12 @@ class MainLayout extends Component {
                 <td className={style.leftWrapper}>
                   {this.topMenu()}
                 </td>
-                <td width={'200'} className={style.rightWrapper}>
+                <td width={'300'} className={style.topToolbar}>
+                  {this.topToolbar()}
+                </td>
+                <td width={'120'} className={style.rightWrapper}>
                   <Dropdown
-                    overlay={this.getToolbar()}
+                    overlay={this.userItem()}
                     placement='bottomCenter'>
                     <span><Icon type='user'/> {userName}</span>
                   </Dropdown>

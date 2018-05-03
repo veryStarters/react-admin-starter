@@ -1,13 +1,40 @@
+import React from 'react'
 import api from 'api'
 import storage from 'utils/storage'
 import config from 'config'
+
+/**
+ * 最好放到外边去，此处仅为示例
+ */
+class Tip extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
+  handle = () => {
+    alert('tip')
+  }
+  render() {
+    return (
+      <div onClick={this.handle}>
+        <i className='icon setup' />Alert Tip
+      </div>
+    )
+  }
+}
+
 export default {
   theme: 'dark',
   // 固定顶部
   fixedHeader: false,
 
-  // 右上角配置
-  toolbar: {
+  // 右上角工具栏配置
+  topToolbar: {
+    tip: Tip
+  },
+
+  // 右上角弹出层配置
+  userItem: {
     detail: {
       title: '详情',
       action: () => {
