@@ -5,8 +5,25 @@ import { Redirect } from 'react-router-dom'
 const emptyFn = () => {
 }
 const emptyInitializer = () => emptyFn
-export default ({ code, type, onReject = emptyFn, onAccept = emptyFn, preventDefault = false }) => {
-  const authResult = !!authCheck(code)
+export default (
+  {
+    uiModuleId,
+    associatedApi,
+    type,
+    onReject = emptyFn,
+    onAccept = emptyFn,
+    preventDefault = false,
+    component = null,
+    props = null
+  }
+) => {
+  const authResult = !!authCheck(uiModuleId || associatedApi)
+  if (component) {
+    const Com = component
+    return (
+      authResult ? <Com {...props} /> : null
+    )
+  }
   type = type || 'route'
   return (target, name, descriptor) => {
     // 方法装饰器
