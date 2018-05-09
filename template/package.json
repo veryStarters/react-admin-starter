@@ -61,6 +61,7 @@
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
     "mockjs": "^1.0.1-beta3",
+    "path-to-regexp": "^2.2.1",
     "postcss-cssnext": "^3.1.0",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-import": "^11.1.0",

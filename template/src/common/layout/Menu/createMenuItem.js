@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom'
 const SubMenu = Menu.SubMenu
 const MenuItem = Menu.Item
 
-let openedMenus = []
+let defaultOpenedMenus = []
 const createMenus = (data = []) => data.map((item) => {
   if (item.children) {
     if (item.defaultOpened) {
-      openedKeys.push(item.key)
+      defaultOpenedMenus.push(item.key)
     }
     return (
       <SubMenu key={item.key} title={
@@ -32,6 +32,6 @@ const createMenus = (data = []) => data.map((item) => {
   )
 })
 
-export const openedKeys = openedMenus
+export const defaultOpenKeys = defaultOpenedMenus
 
 export default createMenus
