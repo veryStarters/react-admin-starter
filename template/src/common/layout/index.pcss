@@ -24,8 +24,9 @@
       }
       img {
         border-radius: 50%;
-        width: 30px;
+        width: 35px;
         vertical-align: middle;
+        animation: app-logo-spin infinite 20s linear;
       }
 
       .txt {
@@ -147,5 +148,14 @@
     .body {
       padding: 0 24px 24px;
     }
+  }
+}
+
+@keyframes app-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
