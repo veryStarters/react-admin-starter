@@ -6,7 +6,7 @@ const SubMenu = Menu.SubMenu
 const MenuItem = Menu.Item
 
 let defaultOpenedMenus = []
-const createMenus = (data = []) => data.map((item) => {
+const createMenus = (data = [], parent = null) => data.map((item) => {
   if (item.children) {
     if (item.defaultOpened) {
       defaultOpenedMenus.push(item.key)
@@ -18,9 +18,12 @@ const createMenus = (data = []) => data.map((item) => {
           <span title={item.value}>{item.value}</span>
         </span>
       }>
-        {createMenus(item.children)}
+        {createMenus(item.children, item)}
       </SubMenu>
     )
+  }
+  if (parent) {
+    item.parent = parent
   }
   return (
     <MenuItem key={item.key} className={'no-margin'}>

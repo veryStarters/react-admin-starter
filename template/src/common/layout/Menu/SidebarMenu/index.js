@@ -4,19 +4,29 @@ import sidebarMenus from 'src/menus'
 import api from 'api'
 import createMenuItem, { defaultOpenKeys } from '../createMenuItem'
 import getCurrentMenu from '../getCurrentMenu'
-import getCurrentSubMenu from '../getCurrentSubMenu'
+import getOpenMenuKeys from '../getOpenMenuKeys'
 import layoutConfig from '../../config'
 
 class SidebarMenu extends Component {
   constructor(props) {
     super(props)
+    // console.log(sidebarMenus, 1)
     this.state = {
       theme: layoutConfig.theme || 'dark',
       mode: 'inline',
-      current: getCurrentMenu(sidebarMenus, location.pathname),
-      openKeys: getCurrentSubMenu(sidebarMenus, location.pathname),
+      current: '',
+      openKeys: [],
       menus: sidebarMenus && sidebarMenus.length ? sidebarMenus : this.getMenus()
     }
+  }
+
+  componentDidMount() {
+    // let { currentKey, parents } = getCurrentMenu(this.state.menus, location.pathname)
+    // // console.log(this.state.menus, 2)
+    // this.setState({
+    //   current: currentKey,
+    //   openKeys: parents
+    // })
   }
 
   getMenus() {
@@ -25,7 +35,6 @@ class SidebarMenu extends Component {
         {
           icon: 'error',
           value: '未取到menus配置',
-          key: 'menuError',
           url: '/demo/menutip'
         }
       ]
@@ -37,10 +46,11 @@ class SidebarMenu extends Component {
     }
     api.getMenus().then(res => {
       if (res.code === 0 && res.data) {
+        let { currentKey, currentItem } = getCurrentMenu(res.data, location.pathname)
         this.setState({
           menus: res.data,
-          current: getCurrentMenu(res.data, location.pathname),
-          openKeys: getCurrentSubMenu(sidebarMenus, location.pathname)
+          current: currentKey,
+          openKeys: getOpenMenuKeys(res.data, currentItem)
         })
       } else {
         setDefault()
@@ -52,23 +62,24 @@ class SidebarMenu extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let { pathname } = nextProps.location
-    this.setState({
-      mode: nextProps.collapsed ? 'vertical' : 'inline',
-      current: getCurrentMenu(this.state.menus, pathname),
-      openKeys: getCurrentSubMenu(this.state.menus, pathname)
-    })
+    // let { pathname } = nextProps.location
+    // let { currentKey, currentItem } = getCurrentMenu(this.state.menus, pathname)
+    // this.setState({
+    //   mode: nextProps.collapsed ? 'vertical' : 'inline',
+    //   current: currentKey,
+    //   openKeys: getOpenMenuKeys(this.state.menus, currentItem)
+    // })
   }
 
   onClickHandler = e => {
-    this.setState({
-      current: e.key
-    })
+    // this.setState({
+    //   current: e.key
+    // })
   }
 
   render() {
     const { menus, theme, mode, current, openKeys } = this.state
-    const menuData = createMenuItem(sidebarMenus.length ? sidebarMenus : menus)
+    const menuData = createMenuItem(menus)
     return menuData.length > 0
       ? <Menu
         theme={theme}
