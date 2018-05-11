@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Menu } from 'antd'
 import sidebarMenus from 'src/menus'
 import api from 'api'
-import createMenuItem, { openedKeys } from '../createMenuItem'
+import createMenuItem from '../createMenuItem'
 import getCurrentMenu from '../getCurrentMenu'
 import layoutConfig from '../../config'
 
@@ -12,24 +12,14 @@ class SidebarMenu extends Component {
     this.state = {
       theme: layoutConfig.theme || 'dark',
       mode: 'inline',
-      current: '',
-      menus: []
+      selectedKeys: [],
+      openKeys: [],
+      menus: sidebarMenus && sidebarMenus.lenght ? sidebarMenus : this.getMenus()
     }
-  }
-
-  componentWillMount() {
-    if (sidebarMenus && sidebarMenus.length) {
-      this.setState({
-        menus: sidebarMenus,
-        current: getCurrentMenu(sidebarMenus, location.pathname)
-      })
-      return
-    }
-    this.getMenus()
   }
 
   getMenus() {
-    const setDefault = () => {
+    const setDefaultMenus = () => {
       const defaultMenus = [
         {
           icon: 'error',
@@ -40,7 +30,8 @@ class SidebarMenu extends Component {
       ]
       this.setState({
         menus: defaultMenus,
-        current: 'menuError'
+        openKeys: [],
+        selectedKeys: ['menuError']
       })
       console.log('getMenus接口返回数据为空或者出错')
     }
@@ -48,14 +39,15 @@ class SidebarMenu extends Component {
       if (res.code === 0 && res.data) {
         this.setState({
           menus: res.data,
-          current: getCurrentMenu(res.data, location.pathname)
+          selectedKeys: getCurrentMenu(res.data, location.pathname)
         })
       } else {
-        setDefault()
+        setDefaultMenus()
       }
     }).catch(e => {
-      setDefault()
+      setDefaultMenus()
     })
+    return []
   }
 
   componentWillReceiveProps(nextProps) {
@@ -68,20 +60,20 @@ class SidebarMenu extends Component {
 
   onClickHandler = e => {
     this.setState({
-      current: e.key
+      selectedKeys: [e.key]
     })
   }
 
   render() {
-    const { menus, theme, mode, current } = this.state
+    const { menus, theme, mode, selectedKeys, openKeys } = this.state
     const menuData = createMenuItem(sidebarMenus.length ? sidebarMenus : menus)
     return menuData.length > 0
       ? <Menu
         theme={theme}
         mode={mode}
-        defaultSelectedKeys={['home']}
-        selectedKeys={[current]}
-        defaultOpenKeys={openedKeys}
+        selectedKeys={selectedKeys}
+        openKeys={openKeys}
+        // defaultOpenKeys={openedKeys}
         onClick={this.onClickHandler}
       >{menuData}</Menu>
       : null
