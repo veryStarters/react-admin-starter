@@ -44,7 +44,7 @@ export default async (url = '', params = {}, option = {}) => {
     if (typeof baseUrl === 'object') {
       baseUrl = baseUrl[buildEnv]
     }
-    console.log('API BASE_URL: ', baseUrl)
+    // console.log('API BASE_URL: ', baseUrl)
     url = baseUrl + url
   }
   switch (method) {
