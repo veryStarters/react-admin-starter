@@ -4,6 +4,7 @@ import sidebarMenus from 'src/menus'
 import api from 'api'
 import createMenuItem from '../createMenuItem'
 import getMenusInfo from '../getMenusInfo'
+import fixMenus from '../fixMenus'
 import layoutConfig from '../../config'
 
 class SidebarMenu extends Component {
@@ -13,7 +14,7 @@ class SidebarMenu extends Component {
     let selectedKeys = []
     let defaultOpenKeys = []
     if (sidebarMenus && sidebarMenus.length) {
-      SidebarMenu.fixMenus(sidebarMenus)
+      fixMenus(sidebarMenus)
       menusInfo = getMenusInfo(sidebarMenus, location.pathname)
       selectedKeys = [menusInfo.currentKey]
       defaultOpenKeys = menusInfo.defaultOpenKeys
@@ -27,27 +28,6 @@ class SidebarMenu extends Component {
       defaultOpenKeys: defaultOpenKeys,
       menus: sidebarMenus
     }
-  }
-
-  /**
-   * 为menus增加key
-   * @param menus
-   * @param parent
-   * @returns {[null]}
-   */
-  static fixMenus(menus, parent = null) {
-    if (!menus || !menus.length) {
-      return
-    }
-    menus.forEach(item => {
-      if (item.children && item.children.length) {
-        SidebarMenu.fixMenus(item.children, item)
-      }
-      item.key = 'menu_' + setTimeout(0)
-      if (parent) {
-        item.parent = parent
-      }
-    })
   }
 
   setDefaultMenus = () => {
@@ -69,7 +49,7 @@ class SidebarMenu extends Component {
     api.getMenus().then(res => {
       if (res.code === 0 && res.data) {
         let menus = res.data
-        SidebarMenu.fixMenus(menus)
+        fixMenus(menus)
         let { currentKey } = getMenusInfo(menus, location.pathname)
         this.setState({
           menus: menus,
