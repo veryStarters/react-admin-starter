@@ -9,9 +9,6 @@ const fixMenus = (menus, parent = null) => {
     item.key = 'menu_' + setTimeout(0)
     if (parent) {
       item.parent = parent
-      if (parent.url && item.url.indexOf(parent.url) !== 0) {
-        item.url = parent.url + item.url
-      }
     }
   })
 }

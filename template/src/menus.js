@@ -39,12 +39,20 @@ const sidebarMenus = [
       {
         value: '权限示例',
         icon: 'edit',
-        url: '/auth'
+        url: '/demo/auth',
+        defaultOpened: true,
+        children: [
+          {
+            value: 'ddd',
+            icon: 'edit',
+            url: '/demo/auth/test'
+          }
+        ]
       },
       {
         value: '菜单项配置示例',
         icon: 'edit',
-        url: '/menutip'
+        url: '/demo/menutip'
       }
     ]
   }

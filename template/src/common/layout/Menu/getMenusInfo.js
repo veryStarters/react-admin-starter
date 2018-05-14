@@ -35,6 +35,13 @@ const getCurrent = (menus, keyOrPathname) => {
     if (menu.children && menu.children.length) {
       if (menu.defaultOpened) {
         defaultOpenMenus.push(menu.key)
+        if (menu.parent) {
+          let parent = menu.parent
+          parent.defaultOpened = true
+          if (defaultOpenMenus.indexOf(parent.key) === -1) {
+            defaultOpenMenus.push(parent.key)
+          }
+        }
       }
       if (menu.url === keyOrPathname || menu.key === keyOrPathname) { // 直接访问submenu对应的url时的处理
         if (!menuKey) {
