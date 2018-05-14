@@ -16,7 +16,8 @@ const sidebarMenus = [
   {
     value: 'demo1',
     icon: 'edit',
-    // url: '/demo1',
+    url: '/demo1',
+    defaultOpened: true,
     children: [
       {
         value: '权限示例',
@@ -33,8 +34,7 @@ const sidebarMenus = [
   {
     value: '示例',
     icon: 'edit',
-    defaultOpened: true,
-    // url: '/demo',
+    url: '/demo',
     children: [
       {
         value: '权限示例',

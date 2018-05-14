@@ -5,12 +5,8 @@ import { Link } from 'react-router-dom'
 const SubMenu = Menu.SubMenu
 const MenuItem = Menu.Item
 
-let defaultOpenedMenus = []
-const createMenus = (data = [], parent = null) => data.map((item) => {
+const createMenus = (data = []) => data.map((item) => {
   if (item.children) {
-    if (item.defaultOpened) {
-      defaultOpenedMenus.push(item.key)
-    }
     return (
       <SubMenu key={item.key} title={
         <span>
@@ -18,12 +14,9 @@ const createMenus = (data = [], parent = null) => data.map((item) => {
           <span title={item.value}>{item.value}</span>
         </span>
       }>
-        {createMenus(item.children, item)}
+        {createMenus(item.children)}
       </SubMenu>
     )
-  }
-  if (parent) {
-    item.parent = parent
   }
   return (
     <MenuItem key={item.key} className={'no-margin'}>
@@ -34,7 +27,5 @@ const createMenus = (data = [], parent = null) => data.map((item) => {
     </MenuItem>
   )
 })
-
-export const defaultOpenKeys = defaultOpenedMenus
 
 export default createMenus

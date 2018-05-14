@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
 import { Menu } from 'antd'
 import createMenuItem from '../createMenuItem'
-import getCurrentMenu from '../getCurrentMenu'
+import getMenusInfo from '../getMenusInfo'
 import { topMenus } from 'src/menus'
 
 class TopMenu extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      current: getCurrentMenu(topMenus, location.pathname),
+      current: getMenusInfo(topMenus, location.pathname),
       menus: []
     }
   }
   componentWillReceiveProps(nextProps) {
     const location = nextProps.location
-    let current = getCurrentMenu(topMenus, location.pathname)
+    let current = getMenusInfo(topMenus, location.pathname)
     this.setState({
       current: current
     })
