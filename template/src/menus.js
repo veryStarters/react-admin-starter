@@ -14,7 +14,7 @@ const sidebarMenus = [
     url: '/user'
   },
   {
-    value: '示例1',
+    value: '组件示例',
     icon: 'edit',
     url: '/demo1',
     defaultOpened: true,
@@ -32,7 +32,7 @@ const sidebarMenus = [
     ]
   },
   {
-    value: '示例2',
+    value: '系统用法示例',
     icon: 'edit',
     url: '/demo',
     children: [
