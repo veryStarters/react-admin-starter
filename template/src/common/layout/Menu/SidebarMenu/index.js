@@ -65,7 +65,7 @@ class SidebarMenu extends Component {
 
   componentWillReceiveProps(nextProps) {
     let { pathname } = nextProps.location
-    let menusInfo = getMenusInfo(sidebarMenus, pathname)
+    let menusInfo = getMenusInfo(this.state.menus, pathname)
     let selectedKeys = [menusInfo.currentKey]
     this.setState({
       mode: nextProps.collapsed ? 'vertical' : 'inline',
