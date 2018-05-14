@@ -39,12 +39,12 @@ const sidebarMenus = [
       {
         value: '权限示例',
         icon: 'edit',
-        url: '/demo/auth'
+        url: '/auth'
       },
       {
         value: '菜单项配置示例',
         icon: 'edit',
-        url: '/demo/menutip'
+        url: '/menutip'
       }
     ]
   }
