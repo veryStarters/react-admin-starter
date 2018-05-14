@@ -2,32 +2,36 @@ import React, { Component } from 'react'
 import { Menu } from 'antd'
 import createMenuItem from '../createMenuItem'
 import getMenusInfo from '../getMenusInfo'
+import fixMenus from '../fixMenus'
 import { topMenus } from 'src/menus'
 
 class TopMenu extends Component {
   constructor(props) {
     super(props)
+    fixMenus(topMenus)
+    let { currentKey } = getMenusInfo(topMenus, location.pathname)
     this.state = {
-      current: getMenusInfo(topMenus, location.pathname),
-      menus: []
+      selectedKeys: [currentKey],
+      menus: topMenus || []
     }
   }
   componentWillReceiveProps(nextProps) {
-    const location = nextProps.location
-    let current = getMenusInfo(topMenus, location.pathname)
+    let { pathname } = nextProps.location
+    let menusInfo = getMenusInfo(this.state.menus, pathname)
+    let selectedKeys = [menusInfo.currentKey]
     this.setState({
-      current: current
+      selectedKeys: selectedKeys
     })
   }
   onClickHandler = e => {
     this.setState({
-      current: e.key
+      selectedKeys: [e.key]
     })
   }
   render() {
-    const menuData = createMenuItem(topMenus.length ? topMenus : this.state.menus)
+    const menuData = createMenuItem(this.state.menus)
     return menuData.length > 0
-      ? <Menu mode='horizontal' selectedKeys={[this.state.current]} onClick={this.onClickHandler}>{menuData}</Menu>
+      ? <Menu mode='horizontal' selectedKeys={this.state.selectedKeys} onClick={this.onClickHandler}>{menuData}</Menu>
       : null
   }
 }

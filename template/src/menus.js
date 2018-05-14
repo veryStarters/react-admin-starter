@@ -56,31 +56,26 @@ const sidebarMenus = [
  */
 export const topMenus = [
   // {
-  //   key: 'home',
   //   value: '首页',
   //   icon: 'home',
   //   url: '/'
   // },
   // {
-  //   key: 'user',
   //   value: '用户管理',
   //   icon: 'solution',
   //   url: '/user'
   // },
   // {
-  //   key: 'demo',
   //   value: '系统用法示例',
   //   icon: 'edit',
   //   url: '/demo',
   //   children: [
   //     {
-  //       key: 'demo1',
   //       value: 'demo1',
   //       icon: 'edit',
   //       url: '/demo/auth'
   //     },
   //     {
-  //       key: 'demo2',
   //       value: 'demo2',
   //       icon: 'edit',
   //       url: '/demo/menutip'
