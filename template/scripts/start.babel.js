@@ -25,8 +25,8 @@ import openBrowser from 'react-dev-utils/openBrowser'
 import paths from '../build/paths'
 import config from '../build/webpack.config.dev'
 import createDevServerConfig from '../build/webpackDevServer.config'
-import appConfig from '../src/config'
-import rasConfig from '../src/rasConfig'
+import appConfig from '../src/config/app'
+import rasConfig from '../src/config/ras'
 
 const useYarn = fs.existsSync(paths.yarnLockFile)
 const isInteractive = process.stdout.isTTY

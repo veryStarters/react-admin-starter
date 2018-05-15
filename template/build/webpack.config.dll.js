@@ -1,6 +1,6 @@
 var webpack = require('webpack')
 var path = require('path')
-var rasConfig = require('../src/rasConfig')
+var rasConfig = require('../src/config/ras')
 
 module.exports = {
   entry: {

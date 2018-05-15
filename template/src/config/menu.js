@@ -1,6 +1,7 @@
 /**
  * 侧边菜单配置, 需要嵌套时请使用children属性
  * 如果此处留空，请实现api.getMenus接口
+ * api.getMenus接口返回数据格式详见api/mock/user/menus
  */
 const sidebarMenus = [
   {

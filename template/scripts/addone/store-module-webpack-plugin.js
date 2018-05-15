@@ -19,7 +19,7 @@ function StoreModulePlugin(options) {
 StoreModulePlugin.prototype.apply = function (compiler) {
   const opt = this.options
   compiler.plugin('compile', () => {
-    util.clearFileContent(opt.modulePath, ['本文件由系统自动生成'], 'export const global = require(\'src/globalStore\')\n')
+    util.clearFileContent(opt.modulePath, ['本文件由系统自动生成'], 'export const global = require(\'src/store-global\')\n')
     walk(opt.dirPath, opt.modulePath)
     console.log('\nstore module create done')
   })
