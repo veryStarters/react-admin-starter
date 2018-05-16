@@ -9,6 +9,7 @@ import shell from 'shelljs'
 import chokidar from 'chokidar'
 import * as util from './util'
 import pageTemplate from './template/page-template'
+// import tablePageTemplate from './template/page-template-table'
 import componentTemplate from './template/component-template'
 import routeTemplate from './template/route-template'
 

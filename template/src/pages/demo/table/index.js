@@ -1,5 +1,4 @@
-export default
-`import React, { Component } from 'react'
+import React, { Component } from 'react'
 import storeKit from 'storeKit'
 import { Table, Pagination } from 'antd'
 import api from 'api'
@@ -10,7 +9,7 @@ import api from 'api'
     appName: store.global.appName
   }
 })
-class <%className%> extends Component {
+class DemoTable extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -22,9 +21,11 @@ class <%className%> extends Component {
       }
     }
   }
+
   componentDidMount() {
     this.fetchData({ pageNo: 1, pageSize: 8 })
   }
+
   fetchData(option) {
     api['getSomeList'](option).then(res => {
       if (res.code === 0 && res.data) {
@@ -34,6 +35,7 @@ class <%className%> extends Component {
       }
     })
   }
+
   onPageChange = (pageNo) => {
     let { page } = this.state
     let newPage = {
@@ -73,7 +75,7 @@ class <%className%> extends Component {
           total={page.totalSize}
           current={page.pageNo}
           pageSize={page.pageSize}
-          showTotal={total => \`共${total}条数据\`}
+          showTotal={total => `共${total}条数据`}
           showQuickJumper
           onChange={this.onPageChange}
           style={{ marginTop: '15px', float: 'right' }}
@@ -83,5 +85,4 @@ class <%className%> extends Component {
   }
 }
 
-export default <%className%>
-`
+export default DemoTable

@@ -46,6 +46,11 @@ const sidebarMenus = [
         value: '菜单项配置示例',
         icon: 'edit',
         url: '/demo/menutip'
+      },
+      {
+        value: '表格使用示例',
+        icon: 'edit',
+        url: '/demo/table'
       }
     ]
   }

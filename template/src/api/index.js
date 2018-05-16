@@ -16,5 +16,8 @@ export default {
   // 获取APP初始化信息，包含权限等内容
   getInitState(params) {
     return fetch('/base/initState', params)
+  },
+  getSomeList(params) {
+    return fetch('/base/getSomeList', params)
   }
 }
