@@ -19,7 +19,7 @@ class SidebarMenu extends Component {
       selectedKeys = [menusInfo.currentKey]
       defaultOpenKeys = menusInfo.defaultOpenKeys
     } else {
-      this.getMenus({ a: 1 })
+      this.getMenus()
     }
     this.state = {
       theme: layoutConfig.theme || 'dark',

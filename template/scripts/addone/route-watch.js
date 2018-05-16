@@ -85,8 +85,8 @@ const Watcher = {
         ignored: /(^|[\/\\])\../
       })
       watcher.on('add', filePath => {
-        // page页面
-        if (/index\.js$/.test(filePath) && filePath.indexOf('pages/common/components') === -1) {
+        // 除components目录下的所有index.js文件构成一个独立路由
+        if (/index\.js$/.test(filePath) && filePath.indexOf('/components/') === -1) {
           if (blocks[filePath]) {
             delete blocks[filePath]
             return

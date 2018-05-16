@@ -4,7 +4,6 @@ const path = require('path');
 const paths = require('./paths');
 const rasConfig = require('../src/config/ras');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
-console.log(rasConfig.alias, 1111)
 module.exports = {
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
