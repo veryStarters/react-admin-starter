@@ -11,7 +11,7 @@ import eslintFormatter from 'react-dev-utils/eslintFormatter'
 import paths from './paths'
 import getClientEnvironment from './env'
 import baseConfig from './webpack.config.base'
-import rasConfig from '../src/rasConfig'
+import rasConfig from '../src/config/ras'
 import merge from 'webpack-merge'
 
 // Webpack uses `publicPath` to determine where the app is being served from.

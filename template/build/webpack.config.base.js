@@ -2,7 +2,7 @@
 
 const path = require('path');
 const paths = require('./paths');
-const rasConfig = require('../src/rasConfig');
+const rasConfig = require('../src/config/ras');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 module.exports = {
   resolve: {

@@ -3,7 +3,7 @@
 const path = require('path');
 const fs = require('fs');
 const url = require('url');
-const rasConfig = require('../src/rasConfig')
+const rasConfig = require('../src/config/ras')
 
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebookincubator/create-react-app/issues/637

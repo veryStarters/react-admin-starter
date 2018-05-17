@@ -9,6 +9,7 @@ import shell from 'shelljs'
 import chokidar from 'chokidar'
 import * as util from './util'
 import pageTemplate from './template/page-template'
+import componentTemplate from './template/component-template'
 import routeTemplate from './template/route-template'
 
 const Watcher = {
@@ -37,7 +38,7 @@ const Watcher = {
             /.*\/src\/pages/i,
             'route.js'
           ])
-          let name = util.path2name(path, 'home')
+          let name = util.path2name(path)
           fs.appendFile(
             customRoutesPath,
             `export const ${name} = require(\'src/pages${path}route.js\')\n`,
@@ -56,7 +57,7 @@ const Watcher = {
             /.*\/src\/pages/i,
             'route.js'
           ])
-          let name = util.path2name(path, 'home')
+          let name = util.path2name(path)
           let reg = new RegExp(`^export const ${name}.*$`, 'gi')
           shell.sed('-i', reg, '', customRoutesPath)
         }
@@ -85,8 +86,8 @@ const Watcher = {
         ignored: /(^|[\/\\])\../
       })
       watcher.on('add', filePath => {
-        // page页面
-        if (/index\.js$/.test(filePath) && filePath.indexOf('pages/common/components') === -1) {
+        // 除components目录下的所有index.js文件构成一个独立路由
+        if (/index\.js$/.test(filePath)) {
           if (blocks[filePath]) {
             delete blocks[filePath]
             return
@@ -95,8 +96,15 @@ const Watcher = {
             /.*\/src\/pages/i,
             'index.js'
           ])
-          let name = util.path2name(path, 'home')
-          path = path + 'index.js'
+          let name = util.path2name(path)
+          // 如果index.js创建于components目录，则仅填充模板，不创建路由
+          if (filePath.indexOf('/components/') !== -1) {
+            // 填充component模板文件
+            if (!util.checkExitsAndEmpty(filePath)) {
+              util.mkFile(filePath, fixTpl(componentTemplate, name.replace(/Components/g, '')))
+            }
+            return
+          }
           fs.appendFile(
             routesPath,
             `export const ${name} = Loadable({ loader: () => import('pages${path}'), loading: Loading })\n`,
@@ -121,7 +129,7 @@ const Watcher = {
             /.*\/src\/pages/i,
             'index.js'
           ])
-          let name = util.path2name(path, 'home')
+          let name = util.path2name(path)
           let reg = new RegExp(`^export const ${name}.*$`, 'gi')
           shell.sed('-i', reg, '', routesPath)
         }

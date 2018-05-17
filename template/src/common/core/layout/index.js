@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Layout, Icon, Alert, Dropdown, Menu } from 'antd'
 import { Link, Route, Redirect, Switch } from 'react-router-dom'
-import SidebarMenu from './Menu/SidebarMenu'
-import TopMenu from './Menu/TopMenu'
-import Breadcrumb from './Breadcrumb'
+import SidebarMenu from './Menu/SidebarMenu/index'
+import TopMenu from './Menu/TopMenu/index'
+import Breadcrumb from './Breadcrumb/index'
 import storage from 'utils/storage'
 import config from 'config'
-import layoutConfig from './config'
+import layoutConfig from 'src/config/layout'
 import NotFound from 'common/error/404'
 import logo from 'images/logo.svg'
 import classnames from 'classnames'
@@ -41,12 +41,12 @@ class MainLayout extends Component {
   }
 
   topToolbar() {
-    const toolbars = layoutConfig.topToolbar
+    const toolbars = layoutConfig.topToolbars
     const keys = Object.keys(toolbars)
     return (
       <ul className={style.topToolbar}>
         {keys.map(key => {
-          let Toolbar = toolbars[key]
+          let Toolbar = toolbars[key].default || toolbars[key]
           return (
             <li key={key}>
               <Toolbar {...this.props} />

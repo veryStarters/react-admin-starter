@@ -38,7 +38,7 @@ AsyncRoutePlugin.prototype.apply = function (compiler) {
             /.*\/src\/pages/i,
             'index.js'
           ])
-          let name = util.path2name(path, 'home')
+          let name = util.path2name(path)
           fs.appendFile(
             routePath,
             `export const ${name} = Loadable({ loader: () => import('pages${path}'), loading: Loading })\n`,
@@ -55,7 +55,7 @@ AsyncRoutePlugin.prototype.apply = function (compiler) {
             /.*\/src\/pages/i,
             'route.js'
           ])
-          let name = util.path2name(path, 'home')
+          let name = util.path2name(path)
           fs.appendFile(
             customRoutePath,
             `export const ${name} = require(\'src/pages${path}route.js\')\n`,

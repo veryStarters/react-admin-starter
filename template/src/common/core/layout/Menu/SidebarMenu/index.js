@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Menu } from 'antd'
-import sidebarMenus from 'src/menus'
+import sidebarMenus from 'src/config/menu'
 import api from 'api'
 import createMenuItem from '../createMenuItem'
 import getMenusInfo from '../getMenusInfo'
 import fixMenus from '../fixMenus'
-import layoutConfig from '../../config'
+import layoutConfig from 'src/config/layout'
 
 class SidebarMenu extends Component {
   constructor(props) {
@@ -45,8 +45,8 @@ class SidebarMenu extends Component {
     console.log('getMenus接口返回数据为空或者出错')
   }
 
-  getMenus() {
-    api.getMenus().then(res => {
+  getMenus(params) {
+    api.getMenus(params || {}).then(res => {
       if (res.code === 0 && res.data) {
         let menus = res.data
         fixMenus(menus)

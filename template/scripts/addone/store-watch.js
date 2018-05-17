@@ -18,7 +18,7 @@ const Watcher = {
     util.clearFileContent(
       modulesPath,
       ['本文件由系统生成，一般情况下无需修改'],
-      'export const global = require(\'src/globalStore\')\n'
+      'export const global = require(\'src/store-global\')\n'
     )
     const watcher = chokidar.watch(modulesDir, {
       ignored: /(^|[\/\\])\../
@@ -33,7 +33,7 @@ const Watcher = {
           /.*\/src\/pages/i,
           /store.js/
         ])
-        const name = util.path2name(path, 'home')
+        const name = util.path2name(path)
         path = path + 'store.js'
         fs.appendFile(
           modulesPath,
@@ -51,7 +51,7 @@ const Watcher = {
     watcher.on('unlink', filePath => {
       if (/store\.js$/.test(filePath)) {
         const path = util.formatPath(filePath, [/.*\/src\/pages\//i, /\.js$/])
-        const name = util.path2name(path + '/', 'home')
+        const name = util.path2name(path)
         const reg = new RegExp(`^export const ${name.replace('Store', '')}.*$`, 'gi')
         shell.sed('-i', reg, '', modulesPath)
       }

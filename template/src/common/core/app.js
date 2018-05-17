@@ -5,7 +5,7 @@ import {
   Switch
 } from 'react-router-dom'
 import routes from './router'
-import Layout from '../layout'
+import Layout from './layout'
 
 // todo
 let singlePages = []

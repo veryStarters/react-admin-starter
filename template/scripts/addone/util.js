@@ -5,6 +5,7 @@
  */
 import fs from 'fs'
 import shell from 'shelljs'
+import appConfig from '../../src/config/app'
 
 /**
  * 清空并初始化文件内容
@@ -30,7 +31,7 @@ export const clearFileContent = (filePath, headNotes, headContent) => {
 }
 
 /**
- * 格式化文件路径，将/Users/xxx/pages/yyy/zzz/sdsd.js类型的文件path转化成/yyy/zzz/
+ * 格式化文件路径，将/Users/xxx/pages/yyy/zzz/xxxx.js类型的文件path转化成/yyy/zzz/
  * @param filePath
  * @param removeRegs
  * @returns {*}
@@ -53,12 +54,11 @@ export const formatPath = (filePath, removeRegs) => {
  * 将格式化后的文件路径转化成驼峰形式的变量名
  * 如路径中存在"-"，则将其替换成"_"
  * @param formativePath
- * @param defaultName
  * @returns {*}
  */
-export const path2name = (formativePath, defaultName) => {
-  if (formativePath === '/') {
-    return defaultName
+export const path2name = (formativePath) => {
+  if (formativePath === appConfig.homeRoute) {
+    return appConfig.homeName
   }
   formativePath = formativePath.toLowerCase()
   return formativePath.replace(/^\/|\/$/g, '')

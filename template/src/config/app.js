@@ -3,8 +3,10 @@ export default {
   appName: 'XXX 生 命 周 期',
   // 子名称
   subName: '管理系统',
-  // 首页路由
+  // 首页路由path
   homeRoute: '/',
+  // 首页路由name
+  homeName: 'home',
   // 是否开启权限校验, 默认false
   needAuth: true,
   // 登录路由

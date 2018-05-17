@@ -1,6 +1,6 @@
 const path = require('path')
 const resolve = function (dir) {
-  return path.resolve(__dirname, dir)
+  return path.resolve(__dirname, '..', dir)
 }
 module.exports = {
   // 入口JS
@@ -11,7 +11,7 @@ module.exports = {
     api: resolve('api'),
     utils: resolve('common/utils'),
     pages: resolve('pages'),
-    config: resolve('config'),
+    config: resolve('config/app'),
     common: resolve('common'),
     core: resolve('common/core'),
     styles: resolve('common/styles'),
