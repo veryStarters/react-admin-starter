@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table } from 'antd'
+import { Table, Pagination } from 'antd'
 import storeKit from 'storeKit'
 import api from 'api'
 
@@ -11,21 +11,52 @@ import api from 'api'
 class User extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
-  }
-
-  changeAppName = () => {
-    this.props.actions.changeAppName('xxx管理系统')
+    this.state = {
+      dataSource: [],
+      page: {
+        pageNo: 1,
+        totalSize: 9,
+        pageSize: 8
+      }
+    }
   }
 
   componentDidMount() {
-    api.getUserInfo().then(res => {
-      console.log(res)
+    this.fetchData({ pageNo: 1, pageSize: 8 })
+  }
+
+  fetchData(option) {
+    api.getUserList(option).then(res => {
+      if (res.code === 0 && res.data) {
+        this.setState({
+          dataSource: res.data.data || []
+        })
+      }
+    })
+  }
+
+  onPageChange = (pageNo) => {
+    let { page } = this.state
+    let newPage = {
+      ...page,
+      pageNo
+    }
+    this.fetchData({
+      ...newPage
+    })
+    this.setState({
+      page: newPage
     })
   }
 
   render() {
-    const columns = [
+    let { dataSource, page } = this.state
+    let columns = [
+      {
+        title: '用户ID',
+        dataIndex: 'id',
+        key: 'id'
+      },
       {
         title: '姓名',
         dataIndex: 'name',
@@ -37,23 +68,22 @@ class User extends Component {
         key: 'age'
       }
     ]
-    const list = [
-      {
-        key: 1,
-        name: '吕不韦',
-        title: 'lvbuwei',
-        age: 18
-      },
-      {
-        key: 2,
-        name: '张益达',
-        title: 'zhangyida',
-        age: 18
-      }
-    ]
     return (
       <div>
-        <Table columns={columns} dataSource={list} />
+        <Table
+          dataSource={dataSource}
+          columns={columns}
+          pagination={false}
+        />
+        <Pagination
+          total={page.totalSize}
+          current={page.pageNo}
+          pageSize={page.pageSize}
+          showTotal={total => `共${total}条数据`}
+          showQuickJumper
+          onChange={this.onPageChange}
+          style={{ marginTop: '15px', float: 'right' }}
+        />
       </div>
     )
   }

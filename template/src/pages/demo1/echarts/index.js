@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import storeKit from 'storeKit'
 import EChart from 'components/EChart'
 import style from './index.pcss'
+
 // 引入柱状图
 import 'echarts/lib/chart/bar'
 import 'echarts/lib/chart/line'
@@ -9,6 +10,8 @@ import 'echarts/lib/chart/line'
 import 'echarts/lib/component/polar'
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/title'
+
+import { Button } from 'antd'
 
 // 注入redux
 @storeKit(store => {
@@ -85,13 +88,20 @@ class DemoTest extends Component {
     }
   }
 
-  change = () => {
+  changeSize = () => {
     this.setState({
       width: '600px',
       height: '500px',
+    })
+  }
+
+  changeContent = () => {
+    this.setState({
       option1: {
         ...this.state.option1,
-        title: { text: '标题' + Math.random(1000) }
+        title: {
+          text: 'ECharts 变更头部'
+        }
       }
     })
   }
@@ -99,13 +109,22 @@ class DemoTest extends Component {
   render() {
     let { width, height, option1, option2 } = this.state
     return (
-      <div className={style.main}>
-        <EChart
-          option={option1}
-          style={{ width: width, height: height, border: '1px solid green', borderRadius: '10px', marginBottom: '20px' }}
-        />
-        <EChart option={option2} style={{ border: '1px solid red', borderRadius: '10px' }} />
-        <div onClick={this.change}>更改</div>
+      <div>
+        <div className={style.main}>
+          <EChart
+            option={option1}
+            className={'ras-echart'}
+            style={{ width: width, height: height, border: '1px solid green', borderRadius: '10px', marginBottom: '20px' }}
+          />
+          <EChart
+            option={option2}
+            className={'ras-echart'}
+            style={{ border: '1px solid red', borderRadius: '10px'
+            }}
+          />
+        </div>
+        <Button style={{ marginRight: '10px' }} onClick={this.changeSize}> 更改图表高度 </Button>
+        <Button onClick={this.changeContent}> 更改图表内容 </Button>
       </div>
     )
   }

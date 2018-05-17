@@ -17,7 +17,7 @@ export default {
   getInitState(params) {
     return fetch('/base/initState', params)
   },
-  getSomeList(params) {
-    return fetch('/base/getSomeList', params)
+  getUserList(params) {
+    return fetch('/user/list', params)
   }
 }

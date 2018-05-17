@@ -30,16 +30,17 @@ class EChart extends Component {
     this.state.echart.dispose()
   }
   render() {
-    let { style } = this.props
+    let { style, className } = this.props
     return (
-      <div style = { Object.assign({ width: '400px', height: '300px' }, style || {}) } id={this.state.domId} />
+      <div className={className} style = { Object.assign({ width: '400px', height: '300px' }, style || {}) } id={this.state.domId} />
     )
   }
 }
 
 EChart.propStyle = {
   option: PropStyles.object,
-  style: PropStyles.string
+  style: PropStyles.string,
+  className: PropStyles.string
 }
 
 export default EChart

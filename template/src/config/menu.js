@@ -17,6 +17,7 @@ const sidebarMenus = [
   {
     value: '系统用法示例',
     icon: 'edit',
+    defaultOpened: true,
     url: '/demo',
     children: [
       {
@@ -30,9 +31,9 @@ const sidebarMenus = [
         url: '/demo/menutip'
       },
       {
-        value: '表格使用示例',
+        value: 'redux集成示例',
         icon: 'edit',
-        url: '/demo/table'
+        url: '/demo/redux'
       }
     ]
   },
@@ -40,8 +41,12 @@ const sidebarMenus = [
     value: '组件示例',
     icon: 'edit',
     url: '/demo1',
-    defaultOpened: true,
     children: [
+      {
+        value: '更多ECharts示例',
+        icon: 'edit',
+        url: '/demo1/echarts'
+      },
       {
         value: '权限示例',
         icon: 'edit',
