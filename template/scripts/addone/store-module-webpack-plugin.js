@@ -34,7 +34,7 @@ StoreModulePlugin.prototype.apply = function (compiler) {
             /.*\/src\/pages/i,
             /store.js/
           ])
-          const name = util.path2name(path, 'home')
+          const name = util.path2name(path)
           path = path + 'store.js'
           fs.appendFile(
             modulePath,

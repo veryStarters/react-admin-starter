@@ -15,24 +15,6 @@ const sidebarMenus = [
     url: '/user'
   },
   {
-    value: '组件示例',
-    icon: 'edit',
-    url: '/demo1',
-    defaultOpened: true,
-    children: [
-      {
-        value: '权限示例',
-        icon: 'edit',
-        url: '/demo1/demo11'
-      },
-      {
-        value: '菜单项配置示例',
-        icon: 'edit',
-        url: '/demo1/demo12'
-      }
-    ]
-  },
-  {
     value: '系统用法示例',
     icon: 'edit',
     url: '/demo',
@@ -51,6 +33,24 @@ const sidebarMenus = [
         value: '表格使用示例',
         icon: 'edit',
         url: '/demo/table'
+      }
+    ]
+  },
+  {
+    value: '组件示例',
+    icon: 'edit',
+    url: '/demo1',
+    defaultOpened: true,
+    children: [
+      {
+        value: '权限示例',
+        icon: 'edit',
+        url: '/demo1/demo11'
+      },
+      {
+        value: '菜单项配置示例',
+        icon: 'edit',
+        url: '/demo1/demo12'
       }
     ]
   }

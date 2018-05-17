@@ -47,6 +47,10 @@ class <%className%> extends Component {
       page: newPage
     })
   }
+  
+  showTotal(total) {
+    return '共 ' + total + ' 条数据'
+  }
 
   render() {
     let { dataSource, page } = this.state
@@ -62,11 +66,6 @@ class <%className%> extends Component {
         key: 'name'
       }
     ]
-    
-    showTotal(total) {
-      return '共 ' + total + ' 条数据'
-    }
-    
     return (
       <div>
         <Table

@@ -9,7 +9,6 @@ import shell from 'shelljs'
 import chokidar from 'chokidar'
 import * as util from './util'
 import pageTemplate from './template/page-template'
-// import tablePageTemplate from './template/page-template-table'
 import componentTemplate from './template/component-template'
 import routeTemplate from './template/route-template'
 
@@ -39,7 +38,7 @@ const Watcher = {
             /.*\/src\/pages/i,
             'route.js'
           ])
-          let name = util.path2name(path, 'home')
+          let name = util.path2name(path)
           fs.appendFile(
             customRoutesPath,
             `export const ${name} = require(\'src/pages${path}route.js\')\n`,
@@ -58,7 +57,7 @@ const Watcher = {
             /.*\/src\/pages/i,
             'route.js'
           ])
-          let name = util.path2name(path, 'home')
+          let name = util.path2name(path)
           let reg = new RegExp(`^export const ${name}.*$`, 'gi')
           shell.sed('-i', reg, '', customRoutesPath)
         }
@@ -97,9 +96,7 @@ const Watcher = {
             /.*\/src\/pages/i,
             'index.js'
           ])
-          let name = util.path2name(path, 'home')
-          path = path + 'index.js'
-
+          let name = util.path2name(path)
           // 如果index.js创建于components目录，则仅填充模板，不创建路由
           if (filePath.indexOf('/components/') !== -1) {
             // 填充component模板文件
@@ -132,7 +129,7 @@ const Watcher = {
             /.*\/src\/pages/i,
             'index.js'
           ])
-          let name = util.path2name(path, 'home')
+          let name = util.path2name(path)
           let reg = new RegExp(`^export const ${name}.*$`, 'gi')
           shell.sed('-i', reg, '', routesPath)
         }
