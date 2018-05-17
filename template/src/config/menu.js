@@ -16,45 +16,45 @@ const sidebarMenus = [
   },
   {
     value: '系统用法示例',
-    icon: 'edit',
+    icon: 'eye',
     defaultOpened: true,
     url: '/demo',
     children: [
       {
         value: '权限示例',
-        icon: 'edit',
+        icon: 'code',
         url: '/demo/auth'
       },
       {
         value: '菜单项配置示例',
-        icon: 'edit',
+        icon: 'smile',
         url: '/demo/menutip'
       },
       {
         value: 'redux集成示例',
-        icon: 'edit',
+        icon: 'tag',
         url: '/demo/redux'
       }
     ]
   },
   {
     value: '组件示例',
-    icon: 'edit',
+    icon: 'bell',
     url: '/demo1',
     children: [
       {
         value: '更多ECharts示例',
-        icon: 'edit',
+        icon: 'scan',
         url: '/demo1/echarts'
       },
       {
         value: '权限示例',
-        icon: 'edit',
+        icon: 'tool',
         url: '/demo1/demo11'
       },
       {
         value: '菜单项配置示例',
-        icon: 'edit',
+        icon: 'apple',
         url: '/demo1/demo12'
       }
     ]

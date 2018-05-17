@@ -1,4 +1,5 @@
 import React from 'react'
+import { Icon } from 'antd'
 
 /**
  * 最好放到外边去，此处仅为示例
@@ -14,7 +15,7 @@ class Tip extends React.Component {
   render() {
     return (
       <div onClick={this.handle}>
-        <i className='icon setup' />Alert Tip
+        <Icon type='bell' />Alert Tip
       </div>
     )
   }
