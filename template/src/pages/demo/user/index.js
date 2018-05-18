@@ -13,6 +13,7 @@ class User extends Component {
     super(props)
     this.state = {
       dataSource: [],
+      loading: true,
       page: {
         pageNo: 1,
         totalSize: 9,
@@ -27,6 +28,9 @@ class User extends Component {
 
   fetchData(option) {
     api.getUserList(option).then(res => {
+      this.setState({
+        loading: false
+      })
       if (res.code === 0 && res.data) {
         this.setState({
           dataSource: res.data.data || []
@@ -50,7 +54,7 @@ class User extends Component {
   }
 
   render() {
-    let { dataSource, page } = this.state
+    let { dataSource, page, loading } = this.state
     let columns = [
       {
         title: '用户ID',
@@ -73,6 +77,7 @@ class User extends Component {
         <Table
           dataSource={dataSource}
           columns={columns}
+          loading={loading}
           pagination={false}
         />
         <Pagination

@@ -6,7 +6,7 @@ import storeKit from 'storeKit'
 @storeKit(store => {
   return {
     appName: store.global.appName,
-    testKey: store.helpRedux.testKey
+    testKey: store.demoHelpRedux.testKey
   }
 })
 class DemoRedux extends Component {

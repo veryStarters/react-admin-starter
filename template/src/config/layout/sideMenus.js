@@ -12,7 +12,7 @@ export default [
   {
     value: '用户管理',
     icon: 'solution',
-    url: '/user'
+    url: '/demo/user'
   },
   {
     value: '示例',
@@ -20,19 +20,24 @@ export default [
     url: '/demo',
     children: [
       {
-        value: '更多ECharts示例',
+        value: '图表统计',
         icon: 'scan',
-        url: '/demo/echarts'
+        url: '/demo/chart'
       },
       {
-        value: '权限',
+        value: '表单',
         icon: 'tool',
-        url: '/demo/demo11'
+        url: '/demo/form'
       },
       {
-        value: '菜单项配置',
+        value: '列表',
         icon: 'apple',
-        url: '/demo/demo12'
+        url: '/demo/list'
+      },
+      {
+        value: '详情',
+        icon: 'apple',
+        url: '/demo/detail'
       }
     ]
   },
@@ -40,22 +45,22 @@ export default [
     value: '帮助',
     icon: 'question',
     defaultOpened: true,
-    url: '/help',
+    url: '/demo/help',
     children: [
       {
         value: '权限',
         icon: 'code',
-        url: '/help/auth'
+        url: '/demo/help/auth'
       },
       {
-        value: '菜单项配置',
+        value: '菜单',
         icon: 'smile',
-        url: '/help/menu'
+        url: '/demo/help/menu'
       },
       {
-        value: 'redux集成',
+        value: 'Redux',
         icon: 'tag',
-        url: '/help/redux'
+        url: '/demo/help/redux'
       }
     ]
   }

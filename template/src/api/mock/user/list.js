@@ -89,7 +89,7 @@ const createData = params => {
 
 export default (req, res, next) => {
   // 模拟网络环境，延迟100ms返回
-  sleep(100)
+  sleep(1000)
   return {
     ret: 'success',
     code: 0,

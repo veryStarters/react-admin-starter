@@ -11,27 +11,27 @@ export default [
   {
     value: '用户管理',
     icon: 'solution',
-    url: '/user'
+    url: '/demo/user'
   },
   {
-    value: '系统用法示例',
-    icon: 'edit',
+    value: '帮助',
+    icon: 'down',
     url: '/demo',
     children: [
       {
         value: '权限',
-        icon: 'edit',
-        url: '/demo/auth'
+        icon: 'code',
+        url: '/demo/help/auth'
       },
       {
-        value: '菜单项配置',
-        icon: 'edit',
-        url: '/demo/menutip'
+        value: '菜单',
+        icon: 'smile',
+        url: '/demo/help/menu'
       },
       {
-        value: 'redux集成',
+        value: 'Redux',
         icon: 'tag',
-        url: '/demo/redux'
+        url: '/demo/help/redux'
       }
     ]
   }

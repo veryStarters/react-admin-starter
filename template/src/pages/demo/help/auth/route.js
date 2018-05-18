@@ -6,5 +6,5 @@
 */
 export default {
   title: '权限用法',
-  parent: 'help'
+  parent: 'demoHelp'
 }
