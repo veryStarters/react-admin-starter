@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Menu } from 'antd'
-import sidebarMenus from 'src/config/menu'
+import sidebarMenus from 'src/config/layout/sideMenus'
 import api from 'api'
 import createMenuItem from '../createMenuItem'
 import getMenusInfo from '../getMenusInfo'

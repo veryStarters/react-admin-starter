@@ -23,14 +23,14 @@ class Home extends Component {
       let option = {
         ...this.state.option
       }
-      option.series[0].data[0].value = (Math.random() * 100).toFixed(2)
-      option.series[1].data[0].value = (Math.random() * 7).toFixed(2)
-      option.series[2].data[0].value = (Math.random() * 2).toFixed(2)
-      option.series[3].data[0].value = (Math.random() * 2).toFixed(2)
+      let series = option.series
+      series.forEach(item => {
+        item.data[0].value = (Math.random() * 10).toFixed(2)
+      })
       this.setState({
         option: option
       })
-    }, 1000)
+    }, 800)
   }
 
   render() {

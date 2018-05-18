@@ -1,3 +1,9 @@
+/* 变量定义*/
+
+:root {
+  --menu-bg-color: #011925;
+}
+
 /* 弹出的菜单样式 */
 
 :global(.ant-menu-submenu-popup) {
@@ -11,12 +17,12 @@
     }
   }
   &:global(.ant-menu-dark) {
-    background: #3f3f3f;
+    background: var(--menu-bg-color);
     :global(.ant-menu-item-selected) {
       background-color: transparent;
     }
     :global(.ant-menu-sub) {
-      background: #3f3f3f;
+      background: var(--menu-bg-color);
     }
   }
   &:global(.ant-menu-light) {
@@ -27,7 +33,7 @@
   }
 }
 
-/* 布局 */
+/* 布局样式 */
 
 .layout {
   .sidebar {
@@ -55,22 +61,22 @@
 
       /*====黑色主题覆盖====*/
       &:global(.ant-menu-dark) {
-        background: #3f3f3f;
+        background: var(--menu-bg-color);
         :global(.ant-menu-submenu-open) {
           color: #ddd;
         }
         :global(.ant-menu-submenu-active) {
-          background: #3a3a3a;
+          background: var(--menu-bg-color);
         }
         :global(.ant-menu-submenu-selected) {
           color: #fff;
         }
         :global(.ant-menu-sub.ant-menu-inline) {
-          background: #3f3f3f;
+          background: var(--menu-bg-color);
           box-shadow: 0 0 1px rgba(0, 0, 0, 0.2) inset;
         }
         :global(.ant-menu-item-active) {
-          background: #3a3a3a;
+          background: var(--menu-bg-color);
           span {
             color: #fff;
             a {
@@ -79,7 +85,7 @@
           }
         }
         :global(.ant-menu-item-selected) {
-          background: #3a3a3a;
+          background: #2592fc;
           span {
             color: #fff;
           }

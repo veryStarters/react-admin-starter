@@ -3,7 +3,7 @@
  * 如果此处留空，请实现api.getMenus接口
  * api.getMenus接口返回数据格式详见api/mock/user/menus
  */
-const sidebarMenus = [
+export default [
   {
     value: '首页',
     icon: 'home',
@@ -21,17 +21,17 @@ const sidebarMenus = [
     url: '/demo',
     children: [
       {
-        value: '权限示例',
+        value: '权限',
         icon: 'code',
         url: '/demo/auth'
       },
       {
-        value: '菜单项配置示例',
+        value: '菜单项配置',
         icon: 'smile',
         url: '/demo/menutip'
       },
       {
-        value: 'redux集成示例',
+        value: 'redux集成',
         icon: 'tag',
         url: '/demo/redux'
       }
@@ -48,51 +48,15 @@ const sidebarMenus = [
         url: '/demo1/echarts'
       },
       {
-        value: '权限示例',
+        value: '权限',
         icon: 'tool',
         url: '/demo1/demo11'
       },
       {
-        value: '菜单项配置示例',
+        value: '菜单项配置',
         icon: 'apple',
         url: '/demo1/demo12'
       }
     ]
   }
 ]
-
-/**
- * 顶部菜单配置, 如果留空，则无顶部菜单
- * @type {[null,null,null]}
- */
-export const topMenus = [
-  // {
-  //   value: '首页',
-  //   icon: 'home',
-  //   url: '/'
-  // },
-  // {
-  //   value: '用户管理',
-  //   icon: 'solution',
-  //   url: '/user'
-  // },
-  // {
-  //   value: '系统用法示例',
-  //   icon: 'edit',
-  //   url: '/demo',
-  //   children: [
-  //     {
-  //       value: 'demo1',
-  //       icon: 'edit',
-  //       url: '/demo/auth'
-  //     },
-  //     {
-  //       value: 'demo2',
-  //       icon: 'edit',
-  //       url: '/demo/menutip'
-  //     }
-  //   ]
-  // }
-]
-
-export default sidebarMenus

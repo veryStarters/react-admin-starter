@@ -3,7 +3,7 @@ import { Menu } from 'antd'
 import createMenuItem from '../createMenuItem'
 import getMenusInfo from '../getMenusInfo'
 import fixMenus from '../fixMenus'
-import { topMenus } from 'src/config/menu'
+import topMenus from 'src/config/layout/topMenus'
 
 class TopMenu extends Component {
   constructor(props) {

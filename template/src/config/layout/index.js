@@ -1,10 +1,11 @@
 import api from 'api'
 import storage from 'utils/storage'
 import config from 'config'
-import * as topToolbars from 'components/topToolbars'
+import * as topToolbars from './topToolbars.js'
 
 export default {
   theme: 'dark',
+
   // 固定顶部
   fixedHeader: false,
 
