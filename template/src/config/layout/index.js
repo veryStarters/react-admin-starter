@@ -2,6 +2,7 @@ import api from 'api'
 import storage from 'utils/storage'
 import config from 'config'
 import * as topToolbars from './topToolbars.js'
+import Footer from 'components/Footer'
 
 export default {
   theme: 'dark',
@@ -11,6 +12,9 @@ export default {
 
   // 右上角工具栏配置
   topToolbars: topToolbars,
+
+  // 底部固定信息栏
+  Footer: Footer || null,
 
   // 右上角弹出层配置
   userItem: {

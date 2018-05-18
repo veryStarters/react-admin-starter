@@ -15,47 +15,47 @@ export default [
     url: '/user'
   },
   {
-    value: '系统用法示例',
-    icon: 'eye',
-    defaultOpened: true,
-    url: '/demo',
-    children: [
-      {
-        value: '权限',
-        icon: 'code',
-        url: '/demo/auth'
-      },
-      {
-        value: '菜单项配置',
-        icon: 'smile',
-        url: '/demo/menutip'
-      },
-      {
-        value: 'redux集成',
-        icon: 'tag',
-        url: '/demo/redux'
-      }
-    ]
-  },
-  {
-    value: '组件示例',
+    value: '示例',
     icon: 'bell',
-    url: '/demo1',
+    url: '/demo',
     children: [
       {
         value: '更多ECharts示例',
         icon: 'scan',
-        url: '/demo1/echarts'
+        url: '/demo/echarts'
       },
       {
         value: '权限',
         icon: 'tool',
-        url: '/demo1/demo11'
+        url: '/demo/demo11'
       },
       {
         value: '菜单项配置',
         icon: 'apple',
-        url: '/demo1/demo12'
+        url: '/demo/demo12'
+      }
+    ]
+  },
+  {
+    value: '帮助',
+    icon: 'question',
+    defaultOpened: true,
+    url: '/help',
+    children: [
+      {
+        value: '权限',
+        icon: 'code',
+        url: '/help/auth'
+      },
+      {
+        value: '菜单项配置',
+        icon: 'smile',
+        url: '/help/menu'
+      },
+      {
+        value: 'redux集成',
+        icon: 'tag',
+        url: '/help/redux'
       }
     ]
   }

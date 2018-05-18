@@ -5,6 +5,6 @@
 * title：面包屑名称；parent：上级路由名称(规则为所有目录的驼峰组合，如pages/user/detail => userDetail)
 */
 export default {
-  title: '侧边栏配置',
-  parent: 'demo'
+  title: 'Redux用法',
+  parent: 'help'
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import storeKit from 'storeKit'
-import echartOption from './echartOption'
+import option1 from './echarts/option1'
 import EChart from 'components/EChart'
 import 'echarts/lib/chart/gauge'
 
@@ -14,7 +14,7 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      option: echartOption
+      option: option1
     }
   }
 

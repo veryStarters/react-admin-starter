@@ -152,6 +152,7 @@ class MainLayout extends Component {
                             <Content>
                               <route.component match={match}/>
                             </Content>
+                            <layoutConfig.Footer />
                           </div>
                       }}
                     />

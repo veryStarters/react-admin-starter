@@ -20,9 +20,9 @@ const createData = params => {
       url: '/user'
     },
     {
-      value: '系统用法示例',
+      value: '帮助',
       icon: 'solution',
-      url: '/demo'
+      url: '/help'
     }
   ])
 }

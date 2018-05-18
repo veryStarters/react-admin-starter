@@ -5,6 +5,5 @@
 * title：面包屑名称；parent：上级路由名称(规则为所有目录的驼峰组合，如pages/user/detail => userDetail)
 */
 export default {
-  title: 'Redux用法',
-  parent: 'demo'
+  title: '帮助'
 }

@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import style from './index.pcss'
+import storeKit from 'storeKit'
+
+// 注入redux
+@storeKit(store => {
+  return {
+    appName: store.global.appName
+  }
+})
 class Demo extends Component {
   constructor(props) {
     super(props)
@@ -12,17 +18,8 @@ class Demo extends Component {
   render() {
     return (
       <div>
-        <ul className={style.demos}>
-          <li>
-            <Link to={'/demo/redux'}>1、Redux 使用方法</Link>
-          </li>
-          <li>
-            <Link to={'/demo/auth'}>2、Auth 使用方法</Link>
-          </li>
-          <li>
-            <Link to={'/demo/menutip'}>3、侧边菜单栏 使用方法</Link>
-          </li>
-        </ul>
+        <p>本系统叫 {this.props.appName}，我是从store中获取的哦</p>
+        Hello, 当前页面名称叫 demo!
       </div>
     )
   }
