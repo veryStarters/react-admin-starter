@@ -18,19 +18,23 @@ class Home extends Component {
     }
   }
 
-  componentDidMount() {
-    setInterval(() => {
-      let option = {
-        ...this.state.option
-      }
-      let series = option.series
-      series.forEach(item => {
-        item.data[0].value = (Math.random() * 10).toFixed(2)
-      })
-      this.setState({
-        option: option
-      })
-    }, 800)
+  onMouseOver = () => {
+    // console.log('mouse over')
+  }
+  onMouseOut = () => {
+    // console.log('mouse out')
+  }
+  change = () => {
+    let option = {
+      ...this.state.option
+    }
+    let series = option.series
+    series.forEach(item => {
+      item.data[0].value = (Math.random() * 10).toFixed(2)
+    })
+    this.setState({
+      option: option
+    })
   }
 
   render() {
@@ -39,11 +43,14 @@ class Home extends Component {
       <div style={{ height: '1000px' }}>
         Hello, world! {this.props.appName}
         <p>
-          I <i style={{ color: 'red' }} className='icon heart'/> You!!
+          I <i style={{ color: 'red' }} className='icon heart'/> You!! (PS: 点击下，指针会动哦！)
         </p>
         <EChart
           option={option}
           style={{ width: '100%', height: '400px' }}
+          onClick={this.change}
+          onMouseOver={this.onMouseOver}
+          onMouseOut={this.onMouseOut}
         />
       </div>
     )
