@@ -31,8 +31,12 @@ class EChart extends Component {
   }
   render() {
     let { style, ...rest } = this.props
+    style = Object.assign({
+      width: '400px',
+      height: '300px'
+    }, style || {})
     return (
-      <div {...rest} style = { Object.assign({ width: '400px', height: '300px' }, style || {}) } id={this.state.domId} />
+      <div {...rest} style = {style} id={this.state.domId} />
     )
   }
 }
