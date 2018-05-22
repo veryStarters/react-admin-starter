@@ -26,8 +26,15 @@ class User extends Component {
     this.fetchData({ pageNo: 1, pageSize: 8 })
   }
 
+  componentWillUnmount() {
+    this.isUnmount = true
+  }
+
   fetchData(option) {
     api.getUserList(option).then(res => {
+      if (this.isUnmount) {
+        return
+      }
       this.setState({
         loading: false
       })

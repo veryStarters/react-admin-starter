@@ -18,10 +18,12 @@ class DemoRedux extends Component {
   componentDidMount() {
   }
   changeAppName = () => {
-    this.props.actions.changeAppName('xxx管理系统')
+    let { changeAppName } = this.props.actions
+    changeAppName('xxx管理系统')
   }
   changeTestKey = () => {
-    this.props.actions.demoRedux.changeTestKey('testValue1')
+    let { changeTestKey } = this.props.actions.demoHelpRedux
+    changeTestKey('testValue1')
   }
   render() {
     return (

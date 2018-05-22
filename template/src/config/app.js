@@ -9,8 +9,17 @@ export default {
   homeName: 'home',
   // 是否开启权限校验, 默认false
   needAuth: true,
+  // 会话过期时间，单位ms
+  sessionDuration: 30 * 60 * 1000,
   // 登录路由
-  loginRoute: '/ras/user/login',
+  loginRoute: '/login',
+  // 监控全局路由变化
+  onRouteChange(routeInfo) {
+    // let { location, preLocation } = routeInfo
+    // console.log('Preview route: %c' + preLocation.pathname + '\n', 'color: green')
+    // console.log('Current route: %c' + location.pathname, 'color: green')
+    // console.log('------------------')
+  },
   // api域名前缀，支持向多个系统的api请求，只需要在此处定义prefixName，在api/index.js中添加{prefixName: 'defaultDomain'}参数即可
   baseUrl: {
     default: '/api',

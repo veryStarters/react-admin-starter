@@ -1,6 +1,6 @@
-import storage from './storage'
 import axios from 'axios'
 import config from 'config'
+import { getAccessToken } from './loginHelper'
 
 const buildEnv = process.env.BUILD_ENV || 'development'
 let fetcher = axios.create({
@@ -10,24 +10,24 @@ let fetcher = axios.create({
     'Accept': '*',
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
-    'AccessToken': storage.get('AccessToken') || ''
+    'AccessToken': getAccessToken()
   },
   transformRequest: [function (data) {
-    const userInfo = storage.get('UserInfo')
-    if (userInfo && data && !data.NOUSERINFO) {
-      data.token = userInfo.token
+    const accessToken = getAccessToken()
+    if (accessToken && !data.AccessToken) {
+      data.AccessToken = accessToken
     }
     return JSON.stringify(data)
   }]
 })
 
-fetcher.interceptors.request.use(function (config) {
+fetcher.interceptors.request.use((config) => {
   return config
 }, function (error) {
   return Promise.reject(error)
 })
 
-fetcher.interceptors.response.use(function (response) {
+fetcher.interceptors.response.use((response) => {
   return response.data
 }, function (error) {
   return Promise.reject(error)

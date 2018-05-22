@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import storeKit from 'storeKit'
 import style from './index.pcss'
 import api from 'api'
+import { setUserInfo } from 'utils/loginHelper'
+import config from 'config'
 
 @storeKit(store => {
   return {
@@ -18,13 +20,13 @@ class UserLogin extends Component {
   }
   doLogin = () => {
     let { userName, password } = this.state
-    debugger
     api.login({
       userName: userName,
       password: password
     }).then(res => {
       if (res.code === 0 && res.data) {
-        location.href = '/'
+        setUserInfo(res.data)
+        location.href = config.homeRoute
       }
     })
   }

@@ -4,7 +4,6 @@ import { Link, Route, Redirect, Switch } from 'react-router-dom'
 import SidebarMenu from './Menu/SidebarMenu/index'
 import TopMenu from './Menu/TopMenu/index'
 import Breadcrumb from './Breadcrumb/index'
-import storage from 'utils/storage'
 import config from 'config'
 import layoutConfig from 'src/config/layout'
 import NotFound from 'common/error/404'
@@ -13,18 +12,36 @@ import classnames from 'classnames'
 import 'styles/index.pcss'
 import style from './index.pcss'
 
+import { getUserInfo, checkLogin } from 'utils/loginHelper'
 
 const { Sider, Content } = Layout
 const MenuItem = Menu.Item
-const userInfo = storage.get('UserInfo') || {}
+const userInfo = getUserInfo()
 
 class MainLayout extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      userName: userInfo.userName || '游客',
-      sidebarCollapsed: false,
-      fixed: layoutConfig.fixedHeader || false
+      sidebarCollapsed: false
+    }
+    if (!checkLogin()) {
+      location.href = config.loginRoute
+    }
+  }
+
+  componentDidUpdate(preProps) {
+    let location = this.props.location
+    let preLocation = preProps.location
+    if (location.pathname !== preLocation.pathname) {
+      config.onRouteChange && config.onRouteChange({
+        location,
+        preLocation,
+        props: this.props,
+        preProps
+      })
+    }
+    if (!checkLogin()) {
+      location.href = config.loginRoute
     }
   }
 
@@ -62,7 +79,6 @@ class MainLayout extends Component {
     return <TopMenu {...this.props} />
   }
 
-
   // 退出登陆
   handleUserItem = async (item) => {
     let { userItem } = layoutConfig
@@ -89,7 +105,7 @@ class MainLayout extends Component {
 
   render() {
     const { routes } = this.props
-    const { sidebarCollapsed, userName } = this.state
+    const { sidebarCollapsed } = this.state
     return (
       <Layout className={classnames({ [style.layout]: true, 'theme-light': layoutConfig.theme === 'light' })}>
         <Sider className={style.sidebar} trigger={null} collapsible collapsed={sidebarCollapsed}>
@@ -110,7 +126,7 @@ class MainLayout extends Component {
             {this.sidebarMenu()}
           </div>
         </Sider>
-        <Layout className={classnames({ [style.mainContentCollapsed]: sidebarCollapsed, [style.mainContent]: !sidebarCollapsed, 'fixed': this.state.fixed })}>
+        <Layout className={classnames({ [style.mainContentCollapsed]: sidebarCollapsed, [style.mainContent]: !sidebarCollapsed, 'fixed': layoutConfig.fixedHeader || false })}>
           {(/Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor))
             ? '' : <Alert message='请使用google chrome浏览器使用系统' banner closable/>}
           <table className={style.header}>
@@ -129,7 +145,7 @@ class MainLayout extends Component {
                   <Dropdown
                     overlay={this.userItem()}
                     placement='bottomCenter'>
-                    <span><Icon type='user'/> {userName}</span>
+                    <span><Icon type='user'/> {userInfo.userName || '游客'}</span>
                   </Dropdown>
                 </td>
               </tr>

@@ -1,8 +1,8 @@
 import api from 'api'
-import storage from 'utils/storage'
 import config from 'config'
 import * as topToolbars from './topToolbars.js'
 import Footer from 'components/Footer'
+import { getUserInfo, removeUserInfo, setUserInfo } from 'utils/loginHelper'
 
 export default {
   theme: 'dark',
@@ -21,7 +21,7 @@ export default {
     detail: {
       title: '详情',
       action: () => {
-        const userInfo = storage.get('UserInfo')
+        const userInfo = getUserInfo()
         alert(`Hello, ${userInfo.userName}!`)
       }
     },
@@ -30,7 +30,7 @@ export default {
       action: async () => {
         const res = await api.logout()
         if (res.code === 0 && res.data) {
-          storage.set('UserInfo', {})
+          removeUserInfo()
           location.href = config.loginRoute
         }
       }
@@ -41,7 +41,7 @@ export default {
       action: async () => {
         const res = await api.login()
         if (res.code === 0 && res.data) {
-          storage.set('UserInfo', res.data)
+          setUserInfo(res.data)
           location.href = config.homeRoute
         }
       }
