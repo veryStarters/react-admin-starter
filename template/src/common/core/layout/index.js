@@ -6,7 +6,6 @@ import TopMenu from './Menu/TopMenu/index'
 import Breadcrumb from './Breadcrumb/index'
 import config from 'config'
 import layoutConfig from 'src/config/layout'
-import NotFound from 'common/error/404'
 import logo from 'images/logo.svg'
 import classnames from 'classnames'
 import 'styles/index.pcss'
@@ -175,7 +174,7 @@ class MainLayout extends Component {
                   )
                 })
               }
-              <Route path='*' component={NotFound}/>
+              <Route path={'*'} render={ props => <Redirect to={{ pathname: config.homeRoute + 'common/error404' }} /> } />
             </Switch>
           </Layout>
         </Layout>

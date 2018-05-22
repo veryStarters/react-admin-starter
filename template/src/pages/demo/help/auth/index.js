@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import auth from 'core/auth'
 import storeKit from 'storeKit'
+import config from 'config'
 
 @storeKit(store => {
   return {
@@ -14,14 +15,14 @@ import storeKit from 'storeKit'
   // 关联的API, 优先级低于UI模块ID
   associatedApi: '/ddd/xxx/xxx/xxx',
   // 可省略
-  // 默认情况下，无权限路由自动跳转到/error/forbidden页；
+  // 默认情况下，无权限路由自动跳转到/common/forbidden页；
   // 如果想更改此默认设定，可以设置本参数为true，然后在onReject中自行处理
   preventDefault: true,
   // 可省略
   onReject() {
     return props => {
       return (
-        <Redirect to={'/error/forbidden'}/>
+        <Redirect to={{ pathname: config.homeRoute + 'common/forbidden' }}/>
       )
     }
   }

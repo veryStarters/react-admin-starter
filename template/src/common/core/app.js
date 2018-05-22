@@ -7,7 +7,7 @@ import {
 import routes from './router'
 import Layout from './layout'
 import config from 'config'
-import { checkLogin, loginMonitor } from 'utils/loginHelper'
+import { loginMonitor } from 'utils/loginHelper'
 
 class App extends Component {
   componentDidMount() {
@@ -17,10 +17,6 @@ class App extends Component {
           location.href = config.loginRoute
         }
       }, 10)
-    } else {
-      if (checkLogin()) {
-        location.href = config.homeRoute
-      }
     }
   }
   render() {

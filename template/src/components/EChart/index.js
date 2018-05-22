@@ -21,6 +21,9 @@ class EChart extends Component {
   }
   componentWillReceiveProps(nextProps) {
     let { echart } = this.state
+    if (!echart) {
+      return
+    }
     echart.setOption(nextProps.option)
     setTimeout(() => {
       echart.resize()

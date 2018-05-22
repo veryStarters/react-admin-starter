@@ -1,7 +1,6 @@
 import config from 'config'
 import * as routes from './routes'
 import * as routesCustom from './routes-custom'
-import Forbidden from 'common/error/forbidden'
 
 let routers = []
 const name2path = name => {
@@ -46,11 +45,6 @@ Object.keys(routes).forEach((routeName) => {
     console.warn(custom.path + '缺少面包屑配置，请到src/config/routes.js文件中配置')
   }
   routers.push(createRouter({ routeName, routeComponent, customRoute: custom }))
-})
-
-routers.push({
-  path: '/error/forbidden',
-  component: Forbidden
 })
 
 export default routers

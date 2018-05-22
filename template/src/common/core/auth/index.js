@@ -1,6 +1,7 @@
 import React from 'react'
 import authCheck from 'utils/authCheck'
 import { Redirect } from 'react-router-dom'
+import config from 'config'
 
 const emptyFn = () => {
 }
@@ -69,7 +70,7 @@ export default (
         code: -1,
         msg: '拒绝本次路由请求'
       })
-      return props => <Redirect to='/error/forbidden' />
+      return props => <Redirect to={{ pathname: `${config.homeRoute}common/forbidden` }} />
     }
     // 组件装饰器
     if (authResult) {
