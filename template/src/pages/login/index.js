@@ -14,14 +14,14 @@ class UserLogin extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      userName: '',
+      username: '',
       password: ''
     }
   }
   doLogin = () => {
-    let { userName, password } = this.state
+    let { username, password } = this.state
     api.login({
-      userName: userName,
+      username: username,
       password: password
     }).then(res => {
       if (res.code === 0 && res.data) {
@@ -32,7 +32,7 @@ class UserLogin extends Component {
   }
   changeName = e => {
     this.setState({
-      userName: e.target.value
+      username: e.target.value
     })
   }
   changePassword = e => {
@@ -47,7 +47,7 @@ class UserLogin extends Component {
           <p className={style.title}>系统登录</p>
           <form>
             <p>
-              <input type="text" value={this.state.userName} onChange={this.changeName} placeholder="请输入用户名" />
+              <input type="text" value={this.state.username} onChange={this.changeName} placeholder="请输入用户名" />
             </p>
             <p>
               <input type="password" value={this.state.password} onChange={this.changePassword} placeholder="请输入密码" />

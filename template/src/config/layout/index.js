@@ -22,7 +22,7 @@ export default {
       title: '详情',
       action: () => {
         const userInfo = getUserInfo()
-        alert(`Hello, ${userInfo.userName}!`)
+        alert(`Hello, ${userInfo.username}!`)
       }
     },
     logout: {

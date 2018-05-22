@@ -8,7 +8,7 @@ import sleep from 'system-sleep'
 import Mock from 'mockjs'
 
 const data = Mock.mock({
-  userName: 'TAOQILI'
+  username: 'TAOQILI'
 })
 
 export default (req, res, next) => {
@@ -18,6 +18,6 @@ export default (req, res, next) => {
     ret: 'success',
     code: 0,
     msg: '接口提示信息',
-    data: data
+    data: Object.assign(data, { username: req.body.username })
   }
 }

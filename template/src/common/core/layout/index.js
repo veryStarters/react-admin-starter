@@ -88,7 +88,7 @@ class MainLayout extends Component {
     return (
       <Menu onClick={this.handleUserItem}>
         {
-          userInfo.userName ? keys.map((key) => {
+          userInfo.username ? keys.map((key) => {
             let item = layoutConfig.userItem[key]
             if (key === 'login') {
               return null
@@ -140,11 +140,11 @@ class MainLayout extends Component {
                 <td width={'300'} className={style.topToolbar}>
                   {this.topToolbar()}
                 </td>
-                <td width={'120'} className={style.rightWrapper}>
+                <td width={'160'} className={style.rightWrapper}>
                   <Dropdown
                     overlay={this.userItem()}
                     placement='bottomCenter'>
-                    <span><Icon type='user'/> {userInfo.userName || '游客'}</span>
+                    <span><Icon type='user'/> {userInfo.username || '游客'}</span>
                   </Dropdown>
                 </td>
               </tr>
