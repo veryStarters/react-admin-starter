@@ -5,7 +5,7 @@ import api from 'api'
 import createMenuItem from '../createMenuItem'
 import getMenusInfo from '../getMenusInfo'
 import fixMenus from '../fixMenus'
-import layoutConfig from 'src/config/layout'
+import layoutConfig from '../../config'
 
 class SidebarMenu extends Component {
   constructor(props) {

@@ -1,21 +1,25 @@
+/**
+ * 系统布局配置，所以配置项均可省略，默认值见具体配置项
+ */
+
 import api from 'api'
 import config from 'config'
-// import * as topToolbars from './topToolbars.js'
-// import Footer from 'components/Footer'
+import * as topToolbars from './topToolbars.js'
+import Footer from 'components/Footer'
 import { getUserInfo, removeUserInfo } from 'utils/loginHelper'
 
 export default {
 
-  // // 固定顶部
-  // fixedHeader: false,
-  //
-  // // 右上角工具栏配置
-  // topToolbars: topToolbars,
-  //
-  // // 底部固定信息栏
-  // Footer: Footer || null,
+  // 是否固定顶部菜单栏，默认值false
+  fixedHeader: false,
 
-  // 右上角弹出层配置
+  // 右上角工具栏组件列表，默认为{}
+  topToolbars: topToolbars,
+
+  // 底部信息栏，默认值为Footer组件
+  Footer: Footer,
+
+  // 右上角弹出层配置，默认值为 {}
   popupItems: {
     detail: {
       title: '详情',

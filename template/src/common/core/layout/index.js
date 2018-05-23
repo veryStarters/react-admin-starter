@@ -78,13 +78,18 @@ class MainLayout extends Component {
     return <TopMenu {...this.props} />
   }
 
-  // 退出登陆
+  // 执行弹出层中定义的操作
   handlePopupItems = async (item) => {
+    let { popupItems } = layoutConfig
+    let popupItem = popupItems[item.key]
     if (item.key === 'rasLogin') {
-      location.href = config.loginRoute
+      if (popupItem && popupItem.action) {
+        popupItem.action.call(this)
+      } else {
+        location.href = config.loginRoute
+      }
       return
     }
-    let { popupItems } = layoutConfig
     popupItems[item.key].action.call(this)
   }
   popupItems() {
@@ -95,7 +100,7 @@ class MainLayout extends Component {
           userInfo.username ? keys.map((key) => {
             let item = layoutConfig.popupItems[key]
             return (
-              <MenuItem key={key}>{item.title}</MenuItem>
+              <MenuItem key={key}>{item.title || ''}</MenuItem>
             )
           }) : <MenuItem key={'rasLogin'}>{'登 录'}</MenuItem>
         }
@@ -111,7 +116,7 @@ class MainLayout extends Component {
       if (!name) {
         return '游客'
       }
-      return name.length <= 13 ? name : name.substr(0, 12) + '..'
+      return name.length <= 14 ? name : name.substr(0, 13)
     })()
     return (
       <Layout className={classnames({ [style.layout]: true, 'theme-light': layoutConfig.theme === 'light' })}>
@@ -148,12 +153,12 @@ class MainLayout extends Component {
                 <td width={'300'} className={style.topToolbar}>
                   {this.topToolbar()}
                 </td>
-                <td width={'130'} className={style.rightWrapper}>
+                <td width={'140'} className={style.rightWrapper}>
                   <Dropdown
                     overlay={this.popupItems()}
                     placement='bottomCenter'
                   >
-                    <span><Icon type='user'/> {username}</span>
+                    <span><Icon type='user'/> {username}<Icon type={'down'}/></span>
                   </Dropdown>
                 </td>
               </tr>
