@@ -5,7 +5,7 @@ import SidebarMenu from './Menu/SidebarMenu/index'
 import TopMenu from './Menu/TopMenu/index'
 import Breadcrumb from './Breadcrumb/index'
 import config from 'config'
-import layoutConfig from 'src/config/layout'
+import layoutConfig from './config'
 import logo from 'images/logo.svg'
 import classnames from 'classnames'
 import 'styles/index.pcss'
@@ -79,24 +79,25 @@ class MainLayout extends Component {
   }
 
   // 退出登陆
-  handleUserItem = async (item) => {
-    let { userItem } = layoutConfig
-    userItem[item.key].action.call(this)
+  handlePopupItems = async (item) => {
+    if (item.key === 'rasLogin') {
+      location.href = config.loginRoute
+      return
+    }
+    let { popupItems } = layoutConfig
+    popupItems[item.key].action.call(this)
   }
-  userItem() {
-    const keys = Object.keys(layoutConfig.userItem)
+  popupItems() {
+    const keys = Object.keys(layoutConfig.popupItems)
     return (
-      <Menu onClick={this.handleUserItem}>
+      <Menu onClick={this.handlePopupItems}>
         {
           userInfo.username ? keys.map((key) => {
-            let item = layoutConfig.userItem[key]
-            if (key === 'login') {
-              return null
-            }
+            let item = layoutConfig.popupItems[key]
             return (
               <MenuItem key={key}>{item.title}</MenuItem>
             )
-          }) : <MenuItem key={'login'}>{layoutConfig.userItem['login'].title}</MenuItem>
+          }) : <MenuItem key={'rasLogin'}>{'登 录'}</MenuItem>
         }
       </Menu>
     )
@@ -149,8 +150,9 @@ class MainLayout extends Component {
                 </td>
                 <td width={'130'} className={style.rightWrapper}>
                   <Dropdown
-                    overlay={this.userItem()}
-                    placement='bottomCenter'>
+                    overlay={this.popupItems()}
+                    placement='bottomCenter'
+                  >
                     <span><Icon type='user'/> {username}</span>
                   </Dropdown>
                 </td>

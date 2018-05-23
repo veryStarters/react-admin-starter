@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import auth from 'core/auth'
+import auth from 'auth'
 import storeKit from 'storeKit'
 import config from 'config'
 

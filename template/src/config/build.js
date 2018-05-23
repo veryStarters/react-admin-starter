@@ -9,16 +9,17 @@ module.exports = {
   alias: {
     src: resolve('.'),
     api: resolve('api'),
+    core: resolve('common/core'),
+    auth: resolve('common/core/auth'),
     utils: resolve('common/utils'),
     pages: resolve('pages'),
+    fonts: resolve('common/fonts'),
     config: resolve('config/app'),
     common: resolve('common'),
-    core: resolve('common/core'),
     styles: resolve('common/styles'),
-    fonts: resolve('common/fonts'),
     images: resolve('common/images'),
-    components: resolve('components'),
-    storeKit: resolve('common/core/store/storeKit')
+    storeKit: resolve('common/core/store/storeKit'),
+    components: resolve('components')
   },
   devHost: 'localhost',
   devPort: 3000,
