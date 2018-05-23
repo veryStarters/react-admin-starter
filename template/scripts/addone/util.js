@@ -5,7 +5,7 @@
  */
 import fs from 'fs'
 import shell from 'shelljs'
-import appConfig from '../../src/config/app'
+import appConfig from '../../src/config'
 
 /**
  * 清空并初始化文件内容

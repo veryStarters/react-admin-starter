@@ -18,7 +18,7 @@ const Watcher = {
     util.clearFileContent(
       modulesPath,
       ['本文件由系统生成，一般情况下无需修改'],
-      'export const global = require(\'src/store-global\')\n'
+      'export const global = require(\'globalStore\')\n'
     )
     const watcher = chokidar.watch(modulesDir, {
       ignored: /(^|[\/\\])\../
@@ -37,7 +37,7 @@ const Watcher = {
         path = path + 'store.js'
         fs.appendFile(
           modulesPath,
-          `export const ${name} = require('src/pages${path}')\n`,
+          `export const ${name} = require('pages${path}')\n`,
           function (err) {
             if (err) throw err
           }

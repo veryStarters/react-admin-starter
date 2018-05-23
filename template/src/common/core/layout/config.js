@@ -1,5 +1,5 @@
 import Footer from 'components/Footer'
-import layoutConfig from 'src/config/layout'
+import layoutConfig from 'config/layout'
 
 export default Object.assign({
   theme: 'dark',

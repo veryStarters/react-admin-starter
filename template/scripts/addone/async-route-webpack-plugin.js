@@ -58,7 +58,7 @@ AsyncRoutePlugin.prototype.apply = function (compiler) {
           let name = util.path2name(path)
           fs.appendFile(
             customRoutePath,
-            `export const ${name} = require(\'src/pages${path}route.js\')\n`,
+            `export const ${name} = require(\'pages${path}route.js\')\n`,
             function (err) {
               if (err) throw err
             }

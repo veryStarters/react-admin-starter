@@ -8,10 +8,7 @@ export default {
     return fetch('/logout', params)
   },
   getMenus(params) {
-    return fetch('/user/menus', params)
-  },
-  getUserInfo(params) {
-    return fetch('/user/info', params)
+    return fetch('/base/menus', params)
   },
   // 获取APP初始化信息，包含权限等内容
   getInitState(params) {
@@ -19,5 +16,8 @@ export default {
   },
   getUserList(params) {
     return fetch('/user/list', params)
-  }
+  },
+  getUserInfo(params) {
+    return fetch('/user/info', params)
+  },
 }

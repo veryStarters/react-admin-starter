@@ -10,16 +10,16 @@ import { getUserInfo, removeUserInfo } from 'utils/loginHelper'
 
 export default {
 
-  // 是否固定顶部菜单栏，默认值false
+  // 是否固定顶部菜单栏，默认值false，可省略
   fixedHeader: false,
 
-  // 右上角工具栏组件列表，默认为{}
+  // 右上角工具栏组件列表，默认为{}，可省略
   topToolbars: topToolbars,
 
-  // 底部信息栏，默认值为Footer组件
+  // 底部信息栏，默认值为Footer组件，可省略
   Footer: Footer,
 
-  // 右上角弹出层配置，默认值为 {}
+  // 右上角弹出层配置，默认值为 {}，可省略
   popupItems: {
     detail: {
       title: '详情',

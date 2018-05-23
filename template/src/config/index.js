@@ -1,3 +1,6 @@
+/**
+ * 业务相关配置
+ */
 export default {
   // 应用名称
   appName: 'XXX 生 命 周 期',

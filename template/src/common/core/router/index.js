@@ -42,7 +42,7 @@ Object.keys(routes).forEach((routeName) => {
   let custom = routesCustom[routeName] || {}
   custom = custom.default || {}
   if (!custom.breadcrumbName && !custom.title && !custom.singlePage) {
-    console.warn(custom.path + '缺少面包屑配置，请到src/config/routes.js文件中配置')
+    console.warn(custom.path + '缺少面包屑配置，请到src/pages/**/route.js文件中配置')
   }
   routers.push(createRouter({ routeName, routeComponent, customRoute: custom }))
 })

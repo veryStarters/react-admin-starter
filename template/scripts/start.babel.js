@@ -25,7 +25,7 @@ import openBrowser from 'react-dev-utils/openBrowser'
 import paths from '../build/paths'
 import config from '../build/webpack.config.dev'
 import createDevServerConfig from '../build/webpackDevServer.config'
-import appConfig from '../src/config/app'
+import appConfig from '../src/config'
 import rasConfig from '../src/config/build'
 
 const useYarn = fs.existsSync(paths.yarnLockFile)

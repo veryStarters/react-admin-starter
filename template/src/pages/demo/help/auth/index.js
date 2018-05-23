@@ -76,7 +76,7 @@ class DemoAuth extends Component {
             `
           }
         </pre>
-        <p>5、系统默认开启了权限管理，如需关闭，请至config/app文件中修改needAuth为false</p>
+        <p>5、系统默认开启了权限管理，如需关闭，请至config/index.js文件中修改needAuth为false</p>
         <p>6、配合getInitState接口返回的数据，请自行修正utils/authCheck.js中的权限校验逻辑</p>
         <p>7、前期准备工作到这里就完成了，后面只需要到具体的组件页面中设置对应的装饰器即可，具体可参考本页面源码</p>
       </div>

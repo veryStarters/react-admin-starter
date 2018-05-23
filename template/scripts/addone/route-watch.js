@@ -41,7 +41,7 @@ const Watcher = {
           let name = util.path2name(path)
           fs.appendFile(
             customRoutesPath,
-            `export const ${name} = require(\'src/pages${path}route.js\')\n`,
+            `export const ${name} = require(\'pages${path}route.js\')\n`,
             function (err) {
               if (err) throw err
             }

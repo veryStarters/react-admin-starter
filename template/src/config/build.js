@@ -1,3 +1,6 @@
+/**
+ * 系统编译相关配置
+ */
 const path = require('path')
 const resolve = function (dir) {
   return path.resolve(__dirname, '..', dir)
@@ -9,16 +12,17 @@ module.exports = {
   alias: {
     src: resolve('.'),
     api: resolve('api'),
-    core: resolve('common/core'),
     auth: resolve('common/core/auth'),
     utils: resolve('common/utils'),
     pages: resolve('pages'),
+    store: resolve('common/core/store'),
     fonts: resolve('common/fonts'),
-    config: resolve('config/app'),
+    config: resolve('config'),
     common: resolve('common'),
     styles: resolve('common/styles'),
     images: resolve('common/images'),
-    storeKit: resolve('common/core/store/storeKit'),
+    storeKit: resolve('common/core/store/storeKit.js'),
+    globalStore: resolve('store-global.js'),
     components: resolve('components')
   },
   devHost: 'localhost',

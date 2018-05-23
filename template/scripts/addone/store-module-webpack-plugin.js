@@ -19,7 +19,7 @@ function StoreModulePlugin(options) {
 StoreModulePlugin.prototype.apply = function (compiler) {
   const opt = this.options
   compiler.plugin('compile', () => {
-    util.clearFileContent(opt.modulePath, ['本文件由系统自动生成'], 'export const global = require(\'src/store-global\')\n')
+    util.clearFileContent(opt.modulePath, ['本文件由系统自动生成'], 'export const global = require(\'globalStore\')\n')
     walk(opt.dirPath, opt.modulePath)
     console.log('\nstore module create done')
   })
@@ -38,7 +38,7 @@ StoreModulePlugin.prototype.apply = function (compiler) {
           path = path + 'store.js'
           fs.appendFile(
             modulePath,
-            `export const ${name} = require('src/pages${path}')\n`,
+            `export const ${name} = require('pages${path}')\n`,
             function (err) {
               if (err) throw err
             }
