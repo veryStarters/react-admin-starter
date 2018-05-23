@@ -105,6 +105,13 @@ class MainLayout extends Component {
   render() {
     const { routes } = this.props
     const { sidebarCollapsed } = this.state
+    const username = (() => {
+      let name = userInfo.username
+      if (!name) {
+        return '游客'
+      }
+      return name.length <= 13 ? name : name.substr(0, 12) + '..'
+    })()
     return (
       <Layout className={classnames({ [style.layout]: true, 'theme-light': layoutConfig.theme === 'light' })}>
         <Sider className={style.sidebar} trigger={null} collapsible collapsed={sidebarCollapsed}>
@@ -140,11 +147,11 @@ class MainLayout extends Component {
                 <td width={'300'} className={style.topToolbar}>
                   {this.topToolbar()}
                 </td>
-                <td width={'160'} className={style.rightWrapper}>
+                <td width={'130'} className={style.rightWrapper}>
                   <Dropdown
                     overlay={this.userItem()}
                     placement='bottomCenter'>
-                    <span><Icon type='user'/> {userInfo.username || '游客'}</span>
+                    <span><Icon type='user'/> {username}</span>
                   </Dropdown>
                 </td>
               </tr>
