@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon } from 'antd'
+import { Icon, message } from 'antd'
 
 /**
  * 最好放到外边去，此处仅为示例
@@ -10,7 +10,7 @@ class Tip extends Component {
     this.state = {}
   }
   handle = () => {
-    alert('tip')
+    message.success('tip')
   }
   render() {
     return (
