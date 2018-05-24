@@ -215,7 +215,7 @@ class DemoAuth extends Component {
         </div>
         <div className={style.section}>
           <p className={style.title}>自定义权限校验逻辑</p>
-          <p>基于上述『权限数据结构』中的描述，RAS的权限校验逻辑特别简单。如果默认的权限数据结构不满足具体业务的需要，那也可以调整该数据结构，同时更新common/utils/authCheck.js中的权限判断逻辑即可。</p>
+          <p>基于上述『权限数据结构』中的描述，RAS的权限校验逻辑特别简单,仅需判断permission是否存在对应的id即可。如果默认的权限数据结构不满足具体业务的需要，那也可以调整该数据结构，同时更新common/utils/authCheck.js中的权限判断逻辑。</p>
           <p>默认的权限校验逻辑代码如下：</p>
           <pre style={{ background: '#ddd', pneHeight: 2 }}>
             {
