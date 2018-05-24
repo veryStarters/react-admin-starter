@@ -10,6 +10,7 @@ export default (
   {
     uiModuleId,
     associatedApi,
+    funId,
     isRoute = false,
     onReject = emptyFn,
     onAccept = emptyFn,
@@ -18,7 +19,7 @@ export default (
     props = null
   }
 ) => {
-  const authResult = !!authCheck(uiModuleId || associatedApi)
+  const authResult = !!authCheck(uiModuleId || associatedApi || funId)
   if (component) {
     const Com = component
     return (

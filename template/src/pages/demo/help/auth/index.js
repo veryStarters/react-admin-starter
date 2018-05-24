@@ -35,7 +35,7 @@ class DemoAuth extends Component {
       <div className={style.wrapper}>
         <div className={style.section}>
           <p>对于后台管理系统来说，权限控制是一个绕不开的话题。同时由于需要跟后端进行深度对接，在代码组织和实现上往往不是那么直观和方便。</p>
-          <p>RAS系统通过总结前期多个系统的权限设计实践，开发出了一套适合各种场景使用的权限管理实现机制，能极大降低用户的开发成本。</p>
+          <p>RAS系统通过总结前期多个系统的权限设计实践，开发出了一套适合在各种场景下使用的权限管理机制，从而极大降低了用户的开发成本。</p>
         </div>
         <div className={style.section}>
           <p className={style.title}>设计要求及思路：</p>
@@ -161,7 +161,7 @@ class DemoAuth extends Component {
         <div className={style.section}>
           <p className={style.title}>实际代码示例</p>
           <p>下方放置了两个组件(会分别显示『我应该会出现在界面上』和『我可能不会出现在界面上』)。实际显示结果跟预期相符。</p>
-          <div onClick={this.test} style={{ cursor: 'pointer' }}>
+          <div onClick={this.test} style={{ cursor: 'pointer' }} title={'点我体验方法权限'}>
             <Permission />
             <Refuse />
           </div>
@@ -186,12 +186,29 @@ class DemoAuth extends Component {
             }
           </pre>
         </div>
+        <div className={style.section}>
+          <p className={style.title}>自定义权限校验逻辑</p>
+          <p>基于上述『权限数据结构』中的描述，RAS的权限校验逻辑特别简单。如果默认的权限数据结构不满足具体业务的需要，那也可以调整该数据结构，同时更新common/utils/authCheck.js中的权限判断逻辑即可。</p>
+          <p>默认的权限校验逻辑代码如下：</p>
+          <pre style={{ background: '#ddd', pneHeight: 2 }}>
+            {
+              `
+              import store from 'store'
+              export default key => {
+                let state = store.getState()
+                let permission = state.global.appInitData.permission
+                return permission && !!permission[key]
+              }
+              `
+            }
+          </pre>
+        </div>
       </div>
     )
   }
 
   @auth({
-    uiModuleId: 'funId1',
+    funId: 'funId1',
     // 可省略
     // 默认情况下，无权限方法将不做任何操作
     // 如果想更改此默认设定，可以设置本参数为true，然后在onReject中自行处理
@@ -202,7 +219,7 @@ class DemoAuth extends Component {
     }
   })
   test = () => {
-    console.log('我被点击了！！')
+    alert('我被点击了！！如果希望弹出alert框的方法被禁止，修改源码中funId即可')
   }
 }
 
