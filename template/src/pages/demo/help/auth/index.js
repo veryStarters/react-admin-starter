@@ -161,10 +161,37 @@ class DemoAuth extends Component {
         <div className={style.section}>
           <p className={style.title}>实际代码示例</p>
           <p>下方放置了两个组件(会分别显示『我应该会出现在界面上』和『我可能不会出现在界面上』)。实际显示结果跟预期相符。</p>
-          <div onClick={this.test} style={{ cursor: 'pointer' }} title={'点我体验方法权限'}>
-            <Permission />
+          <div onClick={this.test} style={{ cursor: 'pointer' }}>
+            <Permission />(点击红字可以体验方法权限)
             <Refuse />
           </div>
+          <pre style={{ background: '#ddd', pneHeight: 2 }}>
+            {
+              `
+              @auth({
+                uiModuleId: 'uiModule2'
+              })
+              class Permission extends Component {
+                render() {
+                  return (
+                    <p style={{ color: 'red' }}>我应该会出现在界面上</p>
+                  )
+                }
+              }
+
+              @auth({
+                uiModuleId: 'uiModule3'
+              })
+              class Refuse extends Component {
+                render() {
+                  return (
+                    <p style={{ color: 'red' }}>我可能不会出现在界面上</p>
+                  )
+                }
+              }
+              `
+            }
+          </pre>
         </div>
 
         <div className={style.section}>
