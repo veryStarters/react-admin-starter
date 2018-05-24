@@ -32,5 +32,5 @@ module.exports = {
     "build/dll/*.js",
     "src/**/*.js"
   ],
-  "completeMessage": "To get started:\n\n  {{^inPlace}}cd {{destDirName}}\n  {{/inPlace}}yarn install\n  yarn run dev\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack"
+  "completeMessage": "To get started:\n\n  {{^inPlace}}cd {{destDirName}}\n  {{/inPlace}}yarn install\n  yarn start\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack"
 };
