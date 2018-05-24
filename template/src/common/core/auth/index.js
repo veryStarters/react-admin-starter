@@ -10,7 +10,7 @@ export default (
   {
     uiModuleId,
     associatedApi,
-    type,
+    isRoute = false,
     onReject = emptyFn,
     onAccept = emptyFn,
     preventDefault = false,
@@ -25,7 +25,6 @@ export default (
       authResult ? <Com {...props} /> : null
     )
   }
-  type = type || 'route'
   return (target, name, descriptor) => {
     // 方法装饰器
     if (descriptor &&
@@ -52,7 +51,7 @@ export default (
     }
 
     // 路由装饰器
-    if (type === 'route') {
+    if (isRoute) {
       if (authResult) {
         onAccept({
           code: 0,

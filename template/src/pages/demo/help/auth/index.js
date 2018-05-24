@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import auth from 'auth'
 import storeKit from 'storeKit'
 import config from 'config'
+import style from './index.pcss'
 
 @storeKit(store => {
   return {
@@ -11,7 +12,8 @@ import config from 'config'
 })
 @auth({
   // UI模块ID
-  uiModuleId: 2,
+  uiModuleId: 'uiModule1',
+  isRoute: true,
   // 关联的API, 优先级低于UI模块ID
   associatedApi: '/ddd/xxx/xxx/xxx',
   // 可省略
@@ -30,61 +32,166 @@ import config from 'config'
 class DemoAuth extends Component {
   render() {
     return (
-      <div>
-        <p>{this.props.appName}</p>
-        如果有权限，下方将会出现红色『权限内容』字样，否则会出现灰色『无权限』字样：（可以通过调整InnerComponent组件对应的装饰器中的uiModuleId来改变，为3时无权限）
-        <div onClick={this.test} style={{ cursor: 'pointer' }}>
-          <InnerComponent />
+      <div className={style.wrapper}>
+        <div className={style.section}>
+          <p>对于后台管理系统来说，权限控制是一个绕不开的话题。同时由于需要跟后端进行深度对接，在代码组织和实现上往往不是那么直观和方便。</p>
+          <p>RAS系统通过总结前期多个系统的权限设计实践，开发出了一套适合各种场景使用的权限管理实现机制，能极大降低用户的开发成本。</p>
         </div>
-        <p>权限模块及使用方法介绍</p>
-        {
-          auth({
-            uiModuleId: 2,
-            props: {
-              name: '方法形式的权限使用',
-              click: e => {
-                this.test()
-              }
-            },
-            component: props => {
-              return (
-                <div onClick={props.click} style={{ lineHeight: 2, cursor: 'pointer', color: 'red' }}>{props.name}</div>
-              )
-            }
-          })
-        }
-        <p>1、本系统的权限管理模块包含路由权限、组件权限和方法权限三种类型</p>
-        <p>2、不同类型的权限管理均通过统一的装饰器模式()来实现，对业务代码无任何侵入性</p>
-        <p>3、在使用权限管理模块之前，需要首先定义各个权限单元的编号，然后由后端在系统初始化前将当前用户所拥有的权限编号通过接口返回</p>
-        4、获取权限编号接口在本系统中叫getInitState, 需要实现该接口，接口返回数据为：
-        <pre style={{ background: '#ddd', pneHeight: 2 }}>
-          {
-            `
+        <div className={style.section}>
+          <p className={style.title}>设计要求及思路：</p>
+          <p>1、与具体业务代码解耦，对业务代码无侵入或者侵入性极弱</p>
+          <p>2、能支持路由级别、API级别、组件级别和方法级别的多种权限控制方式</p>
+          <p>3、能自定义被禁止访问时的后续处理逻辑</p>
+          <p>4、能自定义权限校验逻辑</p>
+        </div>
+        <div className={style.section}>
+          <p className={style.title}>权限数据结构：</p>
+          <pre style={{ background: '#ddd', pneHeight: 2 }}>
             {
-              code: 0,
-              msg: '数据获取成功',
-              data: {
-                permission: {
-                  1: true,
-                  2: true,
-                  other: false,
-                  5: true
-                },
-                ...
+              `
+              permission: {
+                uiModule1: true,
+                uiModule2: true,
+                apiUrl1: true,
+                apiUrl2: true,
+                routeUrl1: true,
+                routeUrl2: true,
+                funName1: true,
+                funName2: true
               }
+              `
             }
-            `
-          }
-        </pre>
-        <p>5、系统默认开启了权限管理，如需关闭，请至config/index.js文件中修改needAuth为false</p>
-        <p>6、配合getInitState接口返回的数据，请自行修正utils/authCheck.js中的权限校验逻辑</p>
-        <p>7、前期准备工作到这里就完成了，后面只需要到具体的组件页面中设置对应的装饰器即可，具体可参考本页面源码</p>
+          </pre>
+          <p>PS: 关于如何生成该权限列表的问题，由于涉及面稍微有点广，此处暂时不再展开，后面会有专门详细论述，目前仅需把它当成一个已知的数据即可。</p>
+        </div>
+        <div className={style.section}>
+          <p className={style.title}>基本使用方式</p>
+          <p>为了尽最大可能地解耦权限控制代码与业务逻辑代码，本系统采用装饰器模式来实现权限控制机制。即通过在组件、方法等权限单元外部包装权限代码来决定该组件或者方法是否应该被渲染或者调用。</p>
+          <p>通用的组件权限代码调用如下：</p>
+          <pre style={{ background: '#ddd', pneHeight: 2 }}>
+            {
+              `
+              @auth(authOption)
+              class Something extends React.Component {
+                render() {
+                  return (
+                    <div>我是有权限的人哦！</div>
+                  )
+                }
+              }
+              `
+            }
+          </pre>
+          <p>可以看到，通过附加装饰器@auth，在不改动任何Something代码的情况下，我们即可实现Something组件的权限控制。下面我们再举例说明各种具体的情况。</p>
+        </div>
+        <div className={style.section}>
+          <p className={style.title}>例子一：路由级别权限</p>
+          <p>在前端路由大行其道的今天，路由级别的权限自然由之前的后端控制让渡到了前端控制。</p>
+          <p>在vue以及之前版本的react中，路由权限的控制往往被实现在路由判断过程中（beforeEnter、onEnter等生命周期中）。</p>
+          <p>这样的做法虽然可行，但是会让路由判断过程的复杂度呈现指数级上升（在路由过程中可能需要异步获取权限数据来决定最终的路由）。</p>
+          <p>换个思路，路由的最终结果就是呈现一个组件，我们完全可以避开路由过程中的判断，转而在路由之后、渲染组件之前进行判断，也一样能达到相同的目的。</p>
+          <p>基于这个思路，路由权限实质上就演变成了对应路由的那个组件的权限。</p>
+        </div>
+        <div className={style.section}>
+          <p className={style.title}>例子二：API调用权限（不是API执行权限，那是后端同学需要做的）</p>
+          <p>一般来讲，对API的调用有且仅有如下几种模式：1、程序初始化过程中主动调用；2、某个按钮或者其它界面元素上绑定的事件调用；</p>
+          <p>对于前者，我们完全可以在代码中直接判断当前用户是否有调用该API的权限进行判断，如 if (permission['http://xxx.xxx.com/api/xxx']) {} ; </p>
+          <p>对于后者，我们则可以将该API和这个界面组件进行关联对应，从而将API的权限变换成组件的权限</p>
+        </div>
+        <div className={style.section}>
+          <p className={style.title}>例子三：组件权限</p>
+          <p>由例子一和例子二的分析可以知道，无论是路由权限还是API调用权限，最终都可以归纳为组件权限。因此，此处我们仅提供一个组件权限的详细代码示例：</p>
+          <pre style={{ background: '#ddd', pneHeight: 2 }}>
+            {
+              `
+              @auth({
+                uiModuleId: 'topHeaderRegister',      // 如果是路由组件或者纯UI组件，则直接给出一个名字
+                associatedApi： 'http://xx.com/api',  // 如果该组件关联了某个API接口，则直接给出这个api地址，跟uiModuleId二选一或者同时存在，但优先级低于uiModuleId
+                isRoute: true,                        // 如果是路由组件，该参数不可省略（暂时没想到更好方法。。。）
+                preventDefault: true,                 // 可省略。默认情况下，无权限路由组件跳转到指定禁止访问页，无权限普通组件隐藏显示；需要更改该默认设定时，此处设置成true
+                onReject() {                          // 可省略。preventDefault为true时生效，在目标路由或者组件无权限时，可以自定义返回一个组件，完成重定向或者更换显示组件
+                  return props => {
+                    return (
+                      <Redirect to={{ pathname: config.homeRoute + 'common/forbidden' }}/>
+                    )
+                  }
+                },
+                onAccept() {                                // 可省略。
+                  console.log('有权限时的回调')
+                }
+              })
+              class Something extends React.Component {
+                render() {
+                  return (
+                    <div>我是有权限的人哦！</div>
+                  )
+                }
+              }
+              `
+            }
+          </pre>
+        </div>
+        <div className={style.section}>
+          <p className={style.title}>例子三： 方法权限</p>
+          <p>方法权限的使用同组件权限，只需要在指定方法上方加上权限装饰器即可</p>
+          <pre style={{ background: '#ddd', pneHeight: 2 }}>
+            {
+              `
+              class Something extends React.Component {
+                @auth({
+                  funId: 'doSomething',         // 自定义方法Id
+                  preventDefault: true,         // 可省略。默认情况下，无权限方法将不执行任何操作；需要更改该默认设定时，此处设置成true
+                  onReject() {                  // 可省略。preventDefault为true时生效，在目标方法无权限执行时，可以自定义执行某些操作
+                    console.log('目前方法居然被禁止执行，只好我来代替了。。。')
+                  }
+                })
+                domSomething() {
+                  console.log('something')
+                }
+                render() {
+                  return (
+                    <div>我是有权限的人哦！</div>
+                  )
+                }
+              }
+              `
+            }
+          </pre>
+        </div>
+        <div className={style.section}>
+          <p className={style.title}>实际代码示例</p>
+          <p>下方放置了两个组件(会分别显示『我应该会出现在界面上』和『我可能不会出现在界面上』)。实际显示结果跟预期相符。</p>
+          <div onClick={this.test} style={{ cursor: 'pointer' }}>
+            <Permission />
+            <Refuse />
+          </div>
+        </div>
+
+        <div className={style.section}>
+          <p className={style.title}>不使用装饰器的另外一种使用形式</p>
+          <p>从上面的例子可以看到，必须为一个权限组件定义一个内部类（定义成方法形式的组件无效）才能使用装饰器，这对于一些很简单的按钮之类的元素，显得有点杀鸡用牛刀。有没有简单一点的使用方式呢？</p>
+          <p>试试下面这种方法吧！</p>
+          <pre style={{ background: '#ddd', pneHeight: 2 }}>
+            {
+              `
+              auth({
+                uiModuleId: 'uiModule1',
+                component: props => {
+                  return (
+                    <div style={{ lineHeight: 2, cursor: 'pointer', color: 'red' }}>不使用装饰器形式的调用</div>
+                  )
+                }
+              })
+              `
+            }
+          </pre>
+        </div>
       </div>
     )
   }
 
   @auth({
-    uiModuleId: 2,
+    uiModuleId: 'funId1',
     // 可省略
     // 默认情况下，无权限方法将不做任何操作
     // 如果想更改此默认设定，可以设置本参数为true，然后在onReject中自行处理
@@ -100,25 +207,23 @@ class DemoAuth extends Component {
 }
 
 @auth({
-  uiModuleId: 2,
-  type: 'component',
-  // 可省略
-  // 默认情况下，无权限组件将显示为空
-  // 如果想更改此默认设定，可以设置本参数为true，然后在onReject中自行返回需要的组件
-  preventDefault: true,
-  // 可省略
-  onReject() {
-    return props => {
-      return (
-        <p style={{ color: 'grey' }}>无权限</p>
-      )
-    }
-  }
+  uiModuleId: 'uiModule2'
 })
-class InnerComponent extends Component {
+class Permission extends Component {
   render() {
     return (
-      <p style={{ color: 'red' }}>权限内容</p>
+      <p style={{ color: 'red' }}>我应该会出现在界面上</p>
+    )
+  }
+}
+
+@auth({
+  uiModuleId: 'uiModule3'
+})
+class Refuse extends Component {
+  render() {
+    return (
+      <p style={{ color: 'red' }}>我可能不会出现在界面上</p>
     )
   }
 }

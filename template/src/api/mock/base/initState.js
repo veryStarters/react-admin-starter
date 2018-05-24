@@ -7,9 +7,9 @@ import Mock from 'mockjs'
 
 const data = Mock.mock({
   permission: {
-    1: true,
-    2: true,
-    3: false
+    uiModule1: true,
+    uiModule2: true,
+    funId1: true
   }
 })
 
