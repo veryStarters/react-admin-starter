@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import { Icon, message } from 'antd'
 
-/**
- * 最好放到外边去，此处仅为示例
- */
 class Tip extends Component {
   constructor(props) {
     super(props)
