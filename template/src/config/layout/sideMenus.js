@@ -31,9 +31,9 @@ export default [
         url: '/demo/list'
       },
       {
-        value: '详情',
+        value: '设置权限',
         icon: 'apple',
-        url: '/demo/detail'
+        url: '/demo/setup'
       }
     ]
   },
