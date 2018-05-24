@@ -40,9 +40,8 @@ class Home extends Component {
   render() {
     let { option } = this.state
     return (
-      <div style={{ height: '1000px' }}>
-        Hello, world! {this.props.appName}
-        <p>
+      <div>
+        <p style={{ lineHeight: 3 }}>
           I <i style={{ color: 'red' }} className='icon heart'/> You!! (PS: 点击下，指针会动哦！)
         </p>
         <EChart
