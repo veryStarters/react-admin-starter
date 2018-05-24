@@ -74,6 +74,7 @@
   .mainContent {
     margin-left: 200px;
     overflow: auto;
+    background: var(--main-bg);
     transition: margin 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
     &:global(.fixed) {
       .header {
@@ -86,7 +87,7 @@
 
   .mainContentCollapsed {
     margin-left: 80px;
-    background: #F8F8F8;
+    background: var(--main-bg);
     transition: margin 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
     &:global(.fixed) {
       .header {
@@ -147,7 +148,7 @@
       }
     }
     .body {
-      padding: 0 24px 24px;
+      padding: 20px;
     }
   }
 }

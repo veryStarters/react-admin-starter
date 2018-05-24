@@ -2,6 +2,7 @@
 
 :root {
   --menu-bg-color: #011925;
+  --main-bg: #f8f8f8;
 }
 
 /* 弹出的菜单样式 */
@@ -36,6 +37,9 @@
 /* 布局样式 */
 
 .layout {
+  :global(.ant-layout) {
+    background: var(--main-bg);
+  }
   .sidebar {
     /*====边栏收起状态====*/
     &:global(.ant-layout-sider-collapsed) {

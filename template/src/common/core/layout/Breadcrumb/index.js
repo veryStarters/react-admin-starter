@@ -33,9 +33,9 @@ class App extends Component {
     let resolveRoutes = []
     resolveRoutes = this.resolvePath(path, resolveRoutes)
     // 首页就不显示面包屑了
-    if (resolveRoutes.length === 1 && resolveRoutes[0].path === config.homeRoute) {
-      resolveRoutes = []
-    }
+    // if (resolveRoutes.length === 1 && resolveRoutes[0].path === config.homeRoute) {
+    //   resolveRoutes = []
+    // }
     let breadcrumbItems = resolveRoutes.map((resolveRoute, index, routes) => {
       return this.createBreadcrumbItem(resolveRoute, index, routes)
     })
@@ -77,7 +77,7 @@ class App extends Component {
   }
 
   render() {
-    let isHome = this.state.breadcrumbItems.length === 0
+    let isHome = this.state.breadcrumbItems.length === 1 && this.state.breadcrumbItems[0].key === config.homeRoute
     return (
       <Breadcrumb className={style.bread}>
         {!isHome
