@@ -10,14 +10,10 @@ export default [
     url: '/'
   },
   {
-    value: '用户管理',
-    icon: 'solution',
-    url: '/demo/user'
-  },
-  {
     value: '示例',
     icon: 'bell',
     url: '/demo',
+    defaultOpened: true,
     children: [
       {
         value: '图表统计',
