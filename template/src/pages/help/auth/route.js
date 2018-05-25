@@ -6,5 +6,5 @@
 */
 export default {
   title: '权限实现机制',
-  parent: 'demoHelp'
+  parent: 'help'
 }

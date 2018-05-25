@@ -18,8 +18,7 @@ class DemoSetup extends Component {
   render() {
     return (
       <div>
-        <p>本系统叫 {this.props.appName}，我是从store中获取的哦</p>
-        Hello, 当前页面名称叫 demoSetup!
+        ddd
       </div>
     )
   }

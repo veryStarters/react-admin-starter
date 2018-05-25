@@ -6,5 +6,5 @@
 */
 export default {
   title: '侧边栏配置',
-  parent: 'demoHelp'
+  parent: 'help'
 }

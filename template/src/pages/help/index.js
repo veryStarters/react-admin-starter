@@ -24,13 +24,13 @@ class Help extends Component {
       <div>
         <ul className={style.demos}>
           <li>
-            <Link to={'/demo/help/redux'}>1、Redux 使用方法</Link>
+            <Link to={'/help/redux'}>1、Redux 使用方法</Link>
           </li>
           <li>
-            <Link to={'/demo/help/auth'}>2、Auth 使用方法</Link>
+            <Link to={'/help/auth'}>2、Auth 使用方法</Link>
           </li>
           <li>
-            <Link to={'/demo/help/menu'}>3、菜单栏 使用方法</Link>
+            <Link to={'/help/menu'}>3、菜单栏 使用方法</Link>
           </li>
         </ul>
       </div>

@@ -32,7 +32,7 @@ export default [
       },
       {
         value: '设置权限',
-        icon: 'apple',
+        icon: 'setting',
         url: '/demo/setup'
       }
     ]
@@ -41,22 +41,22 @@ export default [
     value: '帮助',
     icon: 'question',
     defaultOpened: true,
-    url: '/demo/help',
+    url: '/help',
     children: [
       {
         value: '权限',
         icon: 'code',
-        url: '/demo/help/auth'
+        url: '/help/auth'
       },
       {
         value: '菜单',
         icon: 'smile',
-        url: '/demo/help/menu'
+        url: '/help/menu'
       },
       {
         value: 'Redux',
         icon: 'tag',
-        url: '/demo/help/redux'
+        url: '/help/redux'
       }
     ]
   }
