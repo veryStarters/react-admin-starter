@@ -1,6 +1,4 @@
-import { combineReducers } from 'redux'
-import { bindActionCreators } from 'redux'
-import { createStore, applyMiddleware } from 'redux'
+import { combineReducers, bindActionCreators, createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import * as modules from './modules'
 
