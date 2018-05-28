@@ -1,10 +1,8 @@
 import React from 'react'
-import authCheck from 'utils/authCheck'
+import authCheck from './authCheck'
 import { Redirect } from 'react-router-dom'
 import config from 'config'
-
-const emptyFn = () => {
-}
+const emptyFn = () => {}
 const emptyInitializer = () => emptyFn
 export default (
   {
@@ -23,7 +21,7 @@ export default (
   if (component) {
     const Com = component
     return (
-      authResult ? <Com {...props} /> : null
+      authResult ? <Com key={ '__' + setTimeout(0)} {...props} /> : null
     )
   }
   return (target, name, descriptor) => {

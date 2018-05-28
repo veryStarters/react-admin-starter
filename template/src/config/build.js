@@ -22,7 +22,8 @@ module.exports = {
     styles: resolve('common/styles'),
     images: resolve('common/images'),
     storeKit: resolve('common/core/store/storeKit.js'),
-    globalStore: resolve('store-global.js'),
+    globalStore: resolve('setGlobalStore.js'),
+    setInitState: resolve('setInitState.js'),
     components: resolve('components')
   },
   devHost: 'localhost',

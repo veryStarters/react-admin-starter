@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import { Anchor } from 'antd'
 import auth from 'auth'
 import storeKit from 'storeKit'
 import config from 'config'
 import style from './index.pcss'
+
+const Link = Anchor.Link
 
 @storeKit(store => {
   return {
@@ -12,10 +15,10 @@ import style from './index.pcss'
 })
 @auth({
   // UI模块ID
-  uiModuleId: 'uiModule1',
+  uiModuleId: 'uiModule2',
   isRoute: true,
   // 关联的API, 优先级低于UI模块ID
-  associatedApi: '/ddd/xxx/xxx/xxx',
+  associatedApi: '/api/xxx/xxx',
   // 可省略
   // 默认情况下，无权限路由自动跳转到/common/forbidden页；
   // 如果想更改此默认设定，可以设置本参数为true，然后在onReject中自行处理
@@ -36,16 +39,25 @@ class DemoAuth extends Component {
         <div className={style.section}>
           <p>对于后台管理系统来说，权限控制是一个绕不开的话题。同时由于需要跟后端进行深度对接，在代码组织和实现上往往不是那么直观和方便。</p>
           <p>RAS系统通过总结前期多个系统的权限设计实践，开发出了一套适合在各种场景下使用的权限管理机制，从而极大降低了用户的开发成本。</p>
+          <p className={style.title}>内容导航</p>
+          <Anchor>
+            <Link href="#designIdea" title="设计思路及要求" />
+            <Link href="#dataStructure" title="权限数据结构" />
+            <Link href="#getStart" title="基本使用方式" />
+            <Link href="#demo" title="实际代码示例" />
+            <Link href="#another" title="不使用装饰器另外一种使用形式" />
+            <Link href="#custom" title="自定义权限校验逻辑" />
+          </Anchor>
         </div>
         <div className={style.section}>
-          <p className={style.title}>设计要求及思路：</p>
+          <p className={style.title} id={'designIdea'}>设计思路及要求：</p>
           <p>1、与具体业务代码解耦，对业务代码无侵入或者侵入性极弱</p>
           <p>2、能支持路由级别、API级别、组件级别和方法级别的多种权限控制方式</p>
           <p>3、能自定义被禁止访问时的后续处理逻辑</p>
           <p>4、能自定义权限校验逻辑</p>
         </div>
         <div className={style.section}>
-          <p className={style.title}>权限数据结构：</p>
+          <p className={style.title} id={'dataStructure'}>权限数据结构：</p>
           <pre style={{ background: '#ddd', pneHeight: 2 }}>
             {
               `
@@ -65,7 +77,7 @@ class DemoAuth extends Component {
           <p>PS: 关于如何生成该权限列表的问题，由于涉及面稍微有点广，此处暂时不再展开，后面会有专门详细论述，目前仅需把它当成一个已知的数据即可。</p>
         </div>
         <div className={style.section}>
-          <p className={style.title}>基本使用方式</p>
+          <p className={style.title} id={'getStart'}>基本使用方式</p>
           <p>为了尽最大可能地解耦权限控制代码与业务逻辑代码，本系统采用装饰器模式来实现权限控制机制。即通过在组件、方法等权限单元外部包装权限代码来决定该组件或者方法是否应该被渲染或者调用。</p>
           <p>通用的组件权限代码调用如下：</p>
           <pre style={{ background: '#ddd', pneHeight: 2 }}>
@@ -159,10 +171,10 @@ class DemoAuth extends Component {
           </pre>
         </div>
         <div className={style.section}>
-          <p className={style.title}>实际代码示例</p>
+          <p className={style.title} id={'demo'}>实际代码示例</p>
           <p>下方放置了两个组件(会分别显示『我应该会出现在界面上』和『我可能不会出现在界面上』)。实际显示结果跟预期相符。</p>
           <div onClick={this.test} style={{ cursor: 'pointer' }}>
-            <Permission />(点击红字可以体验方法权限)
+            <Permission />(点击绿字可以体验方法权限)
             <Refuse />
           </div>
           <pre style={{ background: '#ddd', pneHeight: 2 }}>
@@ -174,7 +186,7 @@ class DemoAuth extends Component {
               class Permission extends Component {
                 render() {
                   return (
-                    <p style={{ color: 'red' }}>我应该会出现在界面上</p>
+                    <p style={{ color: 'green' }}>我应该会出现在界面上</p>
                   )
                 }
               }
@@ -195,7 +207,7 @@ class DemoAuth extends Component {
         </div>
 
         <div className={style.section}>
-          <p className={style.title}>不使用装饰器的另外一种使用形式</p>
+          <p className={style.title} id={'another'}>不使用装饰器的另外一种使用形式</p>
           <p>从上面的例子可以看到，必须为一个权限组件定义一个内部类（定义成方法形式的组件无效）才能使用装饰器，这对于一些很简单的按钮之类的元素，显得有点杀鸡用牛刀。有没有简单一点的使用方式呢？</p>
           <p>试试下面这种方法吧！</p>
           <pre style={{ background: '#ddd', pneHeight: 2 }}>
@@ -212,10 +224,25 @@ class DemoAuth extends Component {
               `
             }
           </pre>
+          {
+            [{
+              uiModuleId: 'uiModule1',
+              component: props => {
+                return <div style={{ color: 'green' }}>有权限，显示出来了，下面还有一个是没有权限的，显示不出来</div>
+              }
+            }, {
+              uiModuleId: 'uiModule3',
+              component: props => {
+                return <div style={{ color: 'red' }}>我是没权限的，估计没什么机会展示了。。。</div>
+              }
+            }].map(item => {
+              return auth(item)
+            })
+          }
         </div>
         <div className={style.section}>
-          <p className={style.title}>自定义权限校验逻辑</p>
-          <p>基于上述『权限数据结构』中的描述，RAS的权限校验逻辑特别简单,仅需判断permission是否存在对应的id即可。如果默认的权限数据结构不满足具体业务的需要，那也可以调整该数据结构，同时更新common/utils/authCheck.js中的权限判断逻辑。</p>
+          <p className={style.title} id={'custom'}>自定义权限校验逻辑</p>
+          <p>基于上述『权限数据结构』中的描述，RAS的权限校验逻辑特别简单,仅需判断permission是否存在对应的id即可。如果默认的权限数据结构不满足具体业务的需要，那也可以调整该数据结构，同时更新config/auth/check.js中的权限判断逻辑。</p>
           <p>默认的权限校验逻辑代码如下：</p>
           <pre style={{ background: '#ddd', pneHeight: 2 }}>
             {
@@ -223,7 +250,7 @@ class DemoAuth extends Component {
               import store from 'store'
               export default key => {
                 let state = store.getState()
-                let permission = state.global.appInitData.permission
+                let permission = state.global.initState.permission
                 return permission && !!permission[key]
               }
               `
@@ -256,7 +283,7 @@ class DemoAuth extends Component {
 class Permission extends Component {
   render() {
     return (
-      <p style={{ color: 'red' }}>我应该会出现在界面上</p>
+      <p style={{ color: 'green' }}>我应该会出现在界面上</p>
     )
   }
 }

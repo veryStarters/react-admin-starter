@@ -22,7 +22,7 @@ class DemoRedux extends Component {
     changeAppName('xxx管理系统')
   }
   changeTestKey = () => {
-    let { changeTestKey } = this.props.actions.demoHelpRedux
+    let { changeTestKey } = this.props.actions.helpRedux
     changeTestKey('testValue1')
   }
   render() {

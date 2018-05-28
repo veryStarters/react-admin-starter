@@ -3,8 +3,12 @@
  * 默认情况下，通过getInitState接口获取到的数据中包含permission字段，该字段为一个以权限单元code为key的简单对象
  */
 import store from 'store'
-export default key => {
+import authCheck from 'config/auth/check'
+
+const defaultAuthCheck = key => {
   let state = store.getState()
-  let permission = state.global.appInitData.permission
+  let permission = state.global.initState.permission
   return permission && !!permission[key]
 }
+
+export default typeof authCheck === 'function' ? authCheck : defaultAuthCheck
