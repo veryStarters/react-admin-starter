@@ -16,6 +16,11 @@ export const getSidebarMenu = setSidebarMenu => {
 
   // 也可以从接口获取menus数据
   api.getSidebarMenus().then(res => {
-    setSidebarMenu(res && res.code === 0 && res.data)
+    if (res.code === 0 && res.data) {
+      setSidebarMenu(res.data)
+    } else {
+      console.log('getSidebarMenus接口获取数据失败，请检查后重试！')
+      setSidebarMenu()
+    }
   })
 }

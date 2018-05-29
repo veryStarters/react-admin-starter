@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Menu } from 'antd'
-import sidebarMenus from 'config/layout/sideMenus'
+import sidebarMenus from 'config/layout/sidebarMenus'
 import createMenuItem from '../createMenuItem'
 import getMenusInfo from '../getMenusInfo'
 import fixMenus from '../fixMenus'
@@ -14,9 +14,10 @@ class SidebarMenu extends Component {
     let menusInfo = {}
     let selectedKeys = []
     let defaultOpenKeys = []
+    let fixedMenus = []
     if (sidebarMenus && sidebarMenus.length) {
-      fixMenus(sidebarMenus)
-      menusInfo = getMenusInfo(sidebarMenus, location.pathname)
+      fixedMenus = fixMenus(sidebarMenus)
+      menusInfo = getMenusInfo(fixedMenus, location.pathname)
       selectedKeys = [menusInfo.currentKey]
       defaultOpenKeys = menusInfo.defaultOpenKeys
     } else {
@@ -27,7 +28,7 @@ class SidebarMenu extends Component {
       mode: 'inline',
       selectedKeys: selectedKeys,
       defaultOpenKeys: defaultOpenKeys,
-      menus: sidebarMenus
+      menus: fixedMenus
     }
   }
 

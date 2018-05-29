@@ -16,10 +16,10 @@ class DemoMenutip extends PureComponent {
   }
   render() {
     return (
-      <div>
+      <div style={{ fontSize: '14px' }}>
         <p>侧边菜单栏的配置有两种方式：</p>
-        <p>1、如果无需按照权限来动态生成，则仅需在config/menus中配置menus参数即可</p>
-        <p>2、如果需要按照权限来动态生成，则需要提供一个getMenus接口来返回menus</p>
+        <p>1、如果无需按照权限来动态生成，则仅需在config/layout/sidebarMenus中配置即可</p>
+        <p>2、如果需要按照权限来动态生成，则需要提供一个getSidebarMenus接口来返回menus, 或者通过store获取</p>
         <p>3、getMenus的返回格式：</p>
         <pre style={{ background: '#ddd' }}>
           {

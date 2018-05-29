@@ -27,7 +27,7 @@ class DemoRedux extends Component {
   }
   render() {
     return (
-      <div>
+      <div style={{ fontSize: '14px' }}>
         <p>AppName: {this.props.appName}</p>
         <p>TestKey: {this.props.testKey}</p>
         <p>
