@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import storeKit from 'storeKit'
 import style from './index.pcss'
 import api from 'api'
-import { setUserInfo } from 'utils/loginHelper'
+import { setUserInfo } from 'loginHelper'
 import config from 'config'
 
 @storeKit(store => {

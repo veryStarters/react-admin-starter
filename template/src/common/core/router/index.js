@@ -5,7 +5,7 @@ import * as routesCustom from './routes-custom'
 let routers = []
 const name2path = name => {
   let homeRoute = config.homeRoute || '/'
-  if (name === 'home') {
+  if (name === config.homeName) {
     return homeRoute
   }
   return `${homeRoute}${name.replace(/([A-Z])/g, '/$1').toLowerCase()}`
@@ -33,7 +33,7 @@ const createRouter = ({ routeName, routeComponent, customRoute }) => {
     exact: true,
     component: routeComponent,
     singlePage: false,
-    parentPath: 'home'
+    parentPath: config.homeName || 'home'
   }, customRoute)
 }
 

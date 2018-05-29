@@ -92,12 +92,12 @@ class MainLayout extends Component {
     }
     popupItems[item.key].action.call(this)
   }
-  popupItems() {
+  popupItems(username) {
     const keys = Object.keys(layoutConfig.popupItems)
     return (
       <Menu onClick={this.handlePopupItems}>
         {
-          userInfo.username ? keys.map((key) => {
+          username ? keys.map((key) => {
             let item = layoutConfig.popupItems[key]
             return (
               <MenuItem key={key}>{item.title || ''}</MenuItem>
@@ -112,10 +112,7 @@ class MainLayout extends Component {
     const { routes } = this.props
     const { sidebarCollapsed } = this.state
     const username = (() => {
-      let name = userInfo.username
-      if (!name) {
-        return '游客'
-      }
+      let name = userInfo.username || userInfo.userName || userInfo.name || '游客'
       return name.length <= 14 ? name : name.substr(0, 13)
     })()
     return (
@@ -155,7 +152,7 @@ class MainLayout extends Component {
                 </td>
                 <td width={'140'} className={style.rightWrapper}>
                   <Dropdown
-                    overlay={this.popupItems()}
+                    overlay={this.popupItems(username)}
                     placement='bottomCenter'
                   >
                     <span><Icon type='user'/> {username}<Icon type={'down'}/></span>

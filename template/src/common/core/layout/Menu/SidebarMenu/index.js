@@ -4,6 +4,7 @@ import sidebarMenus from 'config/layout/sideMenus'
 import createMenuItem from '../createMenuItem'
 import getMenusInfo from '../getMenusInfo'
 import fixMenus from '../fixMenus'
+import config from 'config'
 import layoutConfig from '../../config'
 import { getSidebarMenu } from 'menuHelper'
 
@@ -37,7 +38,7 @@ class SidebarMenu extends Component {
           icon: 'error',
           value: '未取到menus配置',
           key: 'menuError',
-          url: '/demo/menutip'
+          url: config.homeRoute + 'help/menutip'
         }
       ],
       selectedKeys: ['menuError']

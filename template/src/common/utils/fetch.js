@@ -1,6 +1,6 @@
 import axios from 'axios'
 import config from 'config'
-import { getAccessToken } from './loginHelper'
+import { getAccessToken } from 'loginHelper'
 
 const buildEnv = process.env.BUILD_ENV || 'development'
 let fetcher = axios.create({
