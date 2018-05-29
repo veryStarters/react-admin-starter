@@ -12,7 +12,7 @@ let fetcher = axios.create({
     'Access-Control-Allow-Origin': '*',
     'AccessToken': getAccessToken()
   },
-  transformRequest: [function (data) {
+  transformRequest: [data => {
     const accessToken = getAccessToken()
     if (accessToken && !data.AccessToken) {
       data.AccessToken = accessToken
@@ -21,14 +21,14 @@ let fetcher = axios.create({
   }]
 })
 
-fetcher.interceptors.request.use((config) => {
+fetcher.interceptors.request.use(config => {
   return config
 }, function (error) {
   return Promise.reject(error)
 })
 
-fetcher.interceptors.response.use((response) => {
-  return response.data
+fetcher.interceptors.response.use(response => {
+  return config.responseInterceptor ? config.responseInterceptor(response) : response.data
 }, function (error) {
   return Promise.reject(error)
 })
@@ -44,7 +44,7 @@ export default async (url = '', params = {}, option = {}) => {
     if (typeof baseUrl === 'object') {
       baseUrl = baseUrl[buildEnv]
     }
-    // console.log('API BASE_URL: ', baseUrl)
+    console.log('Api base url: ', baseUrl)
     url = baseUrl + url
   }
   switch (method) {

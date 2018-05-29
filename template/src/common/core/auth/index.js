@@ -1,5 +1,5 @@
 import React from 'react'
-import authCheck from './authCheck'
+import authCheck from './check'
 import { Redirect } from 'react-router-dom'
 import config from 'config'
 const emptyFn = () => {}

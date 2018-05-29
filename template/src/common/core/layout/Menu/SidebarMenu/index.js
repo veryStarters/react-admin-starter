@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Menu } from 'antd'
 import sidebarMenus from 'config/layout/sideMenus'
-import api from 'api'
 import createMenuItem from '../createMenuItem'
 import getMenusInfo from '../getMenusInfo'
 import fixMenus from '../fixMenus'
 import layoutConfig from '../../config'
+import { getSidebarMenu } from 'menuHelper'
 
 class SidebarMenu extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class SidebarMenu extends Component {
       selectedKeys = [menusInfo.currentKey]
       defaultOpenKeys = menusInfo.defaultOpenKeys
     } else {
-      this.getMenus()
+      this.setMenus()
     }
     this.state = {
       theme: layoutConfig.theme || 'dark',
@@ -45,19 +45,15 @@ class SidebarMenu extends Component {
     console.log('getMenus接口返回数据为空或者出错')
   }
 
-  getMenus(params) {
-    api.getMenus(params || {}).then(res => {
-      if (res.code === 0 && res.data) {
-        let menus = res.data
-        fixMenus(menus)
-        let { currentKey } = getMenusInfo(menus, location.pathname)
-        this.setState({
-          menus: menus,
-          selectedKeys: [currentKey]
-        })
-      } else {
-        this.setDefaultMenus()
-      }
+  setMenus(params) {
+    getSidebarMenu(params).then(menus => {
+      menus = fixMenus(menus)
+      let { currentKey, defaultOpenKeys } = getMenusInfo(menus, location.pathname)
+      this.setState({
+        menus: menus,
+        defaultOpenKeys: defaultOpenKeys,
+        selectedKeys: [currentKey]
+      })
     }).catch(e => {
       this.setDefaultMenus()
     })

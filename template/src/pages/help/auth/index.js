@@ -45,7 +45,7 @@ class DemoAuth extends Component {
             <Link href="#dataStructure" title="权限数据结构" />
             <Link href="#getStart" title="基本使用方式" />
             <Link href="#demo" title="实际代码示例" />
-            <Link href="#another" title="不使用装饰器另外一种使用形式" />
+            <Link href="#another" title="方法形式的调用" />
             <Link href="#custom" title="自定义权限校验逻辑" />
           </Anchor>
         </div>
@@ -207,7 +207,7 @@ class DemoAuth extends Component {
         </div>
 
         <div className={style.section}>
-          <p className={style.title} id={'another'}>不使用装饰器的另外一种使用形式</p>
+          <p className={style.title} id={'another'}>方法形式的调用</p>
           <p>从上面的例子可以看到，必须为一个权限组件定义一个内部类（定义成方法形式的组件无效）才能使用装饰器，这对于一些很简单的按钮之类的元素，显得有点杀鸡用牛刀。有没有简单一点的使用方式呢？</p>
           <p>试试下面这种方法吧！</p>
           <pre style={{ background: '#ddd', pneHeight: 2 }}>
@@ -217,7 +217,7 @@ class DemoAuth extends Component {
                 uiModuleId: 'uiModule1',
                 component: props => {
                   return (
-                    <div style={{ lineHeight: 2, cursor: 'pointer', color: 'red' }}>不使用装饰器形式的调用</div>
+                    <div style={{ lineHeight: 2, cursor: 'pointer', color: 'red' }}>不使用装饰器而使用方法形式的调用</div>
                   )
                 }
               })

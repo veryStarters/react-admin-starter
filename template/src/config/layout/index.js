@@ -6,7 +6,12 @@ import api from 'api'
 import config from 'config'
 import * as topToolbars from './topToolbars.js'
 import Footer from 'components/Footer'
-import { getUserInfo, removeUserInfo } from 'utils/loginHelper'
+import { getUserInfo, removeUserInfo } from 'loginHelper'
+
+// 防止topToolbars为空（默认会存在default）的情况
+if (topToolbars.default) {
+  topToolbars.default = props => null
+}
 
 export default {
 

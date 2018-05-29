@@ -24,6 +24,8 @@ module.exports = {
     storeKit: resolve('common/core/store/storeKit.js'),
     globalStore: resolve('setGlobalStore.js'),
     setInitState: resolve('setInitState.js'),
+    loginHelper: resolve('loginHelper.js'),
+    menuHelper: resolve('menuHelper.js'),
     components: resolve('components')
   },
   devHost: 'localhost',

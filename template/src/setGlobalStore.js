@@ -14,7 +14,12 @@ const initState = {
   initState: {}
 }
 
-// 在此处定义reducers
+/**
+ * 全局reducers
+ * @param state
+ * @param action
+ * @returns {*}
+ */
 export const reducers = (state = initState, action) => {
   switch (action.type) {
     case actionType.CHANGE_APP_NAME:

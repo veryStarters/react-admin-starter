@@ -44,6 +44,7 @@ storage.getAll = () => {
   })
   return ret
 }
+
 storage.forEach = callback => {
   let key = ''
   let len = localStorage.length

@@ -5,9 +5,13 @@ import { Provider } from 'react-redux'
 import store from './store'
 import App from './app'
 import registerServiceWorker from './registerServiceWorker'
+import config from 'config'
 import setInitState from 'setInitState'
 
-setInitState()
+// 刷新时除登录页外，其余页面均需检查权限
+if (config.needAuth && location.pathname !== config.loginRoute) {
+  setInitState()
+}
 
 ReactDOM.render(
   <AppContainer>

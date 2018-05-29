@@ -15,9 +15,9 @@ const createData = params => {
       url: '/'
     },
     {
-      value: '用户管理',
+      value: '示例',
       icon: 'solution',
-      url: '/user'
+      url: '/demo'
     },
     {
       value: '帮助',

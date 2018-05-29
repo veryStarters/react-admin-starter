@@ -7,7 +7,7 @@ export default {
   logout(params) {
     return fetch('/logout', params)
   },
-  getMenus(params) {
+  getSidebarMenus(params) {
     return fetch('/base/menus', params)
   },
   // 获取APP初始化信息，包含权限等内容

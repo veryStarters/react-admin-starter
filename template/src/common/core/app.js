@@ -7,7 +7,7 @@ import {
 import routes from './router'
 import Layout from './layout'
 import config from 'config'
-import { loginMonitor } from 'utils/loginHelper'
+import { loginMonitor } from 'loginHelper'
 
 class App extends Component {
   componentDidMount() {

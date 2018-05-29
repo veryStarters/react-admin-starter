@@ -11,7 +11,7 @@ import classnames from 'classnames'
 import 'styles/index.pcss'
 import style from './index.pcss'
 
-import { getUserInfo, checkLogin } from 'utils/loginHelper'
+import { getUserInfo, checkLogin } from 'loginHelper'
 
 const { Sider, Content } = Layout
 const MenuItem = Menu.Item

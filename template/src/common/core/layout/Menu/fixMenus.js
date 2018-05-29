@@ -11,5 +11,6 @@ const fixMenus = (menus, parent = null) => {
       item.parent = parent
     }
   })
+  return menus
 }
 export default fixMenus

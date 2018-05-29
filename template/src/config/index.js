@@ -1,7 +1,9 @@
+import { message } from 'antd'
+
 /**
  * 业务相关配置
  */
-export default {
+const Config = {
   // 应用名称
   appName: 'XXX 生 命 周 期',
   // 子名称
@@ -13,7 +15,7 @@ export default {
   // 是否开启权限校验, 默认false
   needAuth: true,
   // 会话过期时间，单位ms
-  sessionDuration: 30 * 60 * 1000,
+  sessionDuration: 60 * 60 * 1000,
   // 登录路由
   loginRoute: '/login',
   // 监控全局路由变化
@@ -47,5 +49,22 @@ export default {
       changeOrigin: true,
       pathRewrite: {}
     }
+  },
+  // req切面配置
+  requestInterceptor(req) {
+    return req
+  },
+  // response切面配置
+  responseInterceptor(res) {
+    const data = res.data
+    if (data.code !== 0) {
+      if (data.code === 20101) {
+        location.href = Config.loginRoute
+      }
+      message.error(data.errmsg)
+    }
+    return res.data
   }
 }
+
+export default Config
