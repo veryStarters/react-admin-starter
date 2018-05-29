@@ -1,14 +1,21 @@
 import api from 'api'
-
+// import store from 'store'
 /**
- * 获取后端返回的菜单树,需要返回一个promise
- * @param params
+ * 从后端或者store中获取menus数据
+ * @param setSidebarMenu
  * @returns {Promise.<*>}
  */
-export const getSidebarMenu = async params => {
-  let res = await api.getSidebarMenus(params || {})
-  if (res && res.code === 0 && res.data) {
-    return Promise.resolve(res.data)
-  }
-  return Promise.reject(res)
+export const getSidebarMenu = setSidebarMenu => {
+  // 可以从store获取menus数据
+  // const unsubscribe = store.subscribe(() => {
+  //   const state = store.getState()
+  //   const { sidebarMenus } = state.global.initState
+  //   setSidebarMenu && setSidebarMenu(sidebarMenus && sidebarMenus.length && sidebarMenus)
+  //   unsubscribe()
+  // })
+
+  // 也可以从接口获取menus数据
+  api.getSidebarMenus().then(res => {
+    setSidebarMenu(res && res.code === 0 && res.data)
+  })
 }

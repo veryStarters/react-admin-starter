@@ -46,8 +46,12 @@ class SidebarMenu extends Component {
     console.log('getMenus接口返回数据为空或者出错')
   }
 
-  setMenus(params) {
-    getSidebarMenu(params).then(menus => {
+  setMenus() {
+    getSidebarMenu(menus => {
+      if (!menus) {
+        this.setDefaultMenus()
+        return
+      }
       menus = fixMenus(menus)
       let { currentKey, defaultOpenKeys } = getMenusInfo(menus, location.pathname)
       this.setState({
@@ -55,8 +59,6 @@ class SidebarMenu extends Component {
         defaultOpenKeys: defaultOpenKeys,
         selectedKeys: [currentKey]
       })
-    }).catch(e => {
-      this.setDefaultMenus()
     })
   }
 
