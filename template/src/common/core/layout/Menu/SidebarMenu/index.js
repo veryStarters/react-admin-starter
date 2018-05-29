@@ -39,7 +39,7 @@ class SidebarMenu extends Component {
           icon: 'error',
           value: '未取到menus配置',
           key: 'menuError',
-          url: config.homeRoute + 'help/menutip'
+          url: config.homeRoute + 'help/menu'
         }
       ],
       selectedKeys: ['menuError']
