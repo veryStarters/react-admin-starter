@@ -5,10 +5,10 @@
 import store from 'store'
 import authCheck from 'config/auth/check'
 
-const defaultAuthCheck = key => {
+const defaultAuthCheck = authName => {
   let state = store.getState()
   let permission = state.global.initState.permission
-  return permission && !!permission[key]
+  return permission && !!permission[authName || '']
 }
 
 export default typeof authCheck === 'function' ? authCheck : defaultAuthCheck

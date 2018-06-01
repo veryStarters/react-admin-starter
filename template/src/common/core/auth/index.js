@@ -6,9 +6,7 @@ const emptyFn = () => {}
 const emptyInitializer = () => emptyFn
 export default (
   {
-    uiModuleId,
-    associatedApi,
-    funId,
+    authName,
     isRoute = false,
     onReject = emptyFn,
     onAccept = emptyFn,
@@ -17,7 +15,7 @@ export default (
     props = null
   }
 ) => {
-  const authResult = !!authCheck(uiModuleId || associatedApi || funId)
+  const authResult = !!authCheck(authName)
   if (component) {
     const Com = component
     return (

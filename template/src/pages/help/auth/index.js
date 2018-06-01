@@ -15,7 +15,8 @@ const Link = Anchor.Link
 })
 @auth({
   // UI模块ID
-  uiModuleId: 'uiModule2',
+  authName: 'uiModule2',
+  // 如果是页面级的路由组件，则需要明确指出该组件为Route组件
   isRoute: true,
   // 关联的API, 优先级低于UI模块ID
   associatedApi: '/api/xxx/xxx',
@@ -117,8 +118,7 @@ class DemoAuth extends Component {
             {
               `
               @auth({
-                uiModuleId: 'topHeaderRegister',      // 如果是路由组件或者纯UI组件，则直接给出一个名字
-                associatedApi： 'http://xx.com/api',  // 如果该组件关联了某个API接口，则直接给出这个api地址，跟uiModuleId二选一或者同时存在，但优先级低于uiModuleId
+                authName: 'topHeaderRegister',      // 如果是路由组件或者纯UI组件，则直接给出一个名字
                 isRoute: true,                        // 如果是路由组件，该参数不可省略（暂时没想到更好方法。。。）
                 preventDefault: true,                 // 可省略。默认情况下，无权限路由组件跳转到指定禁止访问页，无权限普通组件隐藏显示；需要更改该默认设定时，此处设置成true
                 onReject() {                          // 可省略。preventDefault为true时生效，在目标路由或者组件无权限时，可以自定义返回一个组件，完成重定向或者更换显示组件
@@ -151,7 +151,7 @@ class DemoAuth extends Component {
               `
               class Something extends React.Component {
                 @auth({
-                  funId: 'doSomething',         // 自定义方法Id
+                  authName: 'doSomething',         // 自定义方法Id
                   preventDefault: true,         // 可省略。默认情况下，无权限方法将不执行任何操作；需要更改该默认设定时，此处设置成true
                   onReject() {                  // 可省略。preventDefault为true时生效，在目标方法无权限执行时，可以自定义执行某些操作
                     console.log('目前方法居然被禁止执行，只好我来代替了。。。')
@@ -181,7 +181,7 @@ class DemoAuth extends Component {
             {
               `
               @auth({
-                uiModuleId: 'uiModule2'
+                authName: 'uiModule2'
               })
               class Permission extends Component {
                 render() {
@@ -192,7 +192,7 @@ class DemoAuth extends Component {
               }
 
               @auth({
-                uiModuleId: 'uiModule3'
+                authName: 'uiModule3'
               })
               class Refuse extends Component {
                 render() {
@@ -214,7 +214,7 @@ class DemoAuth extends Component {
             {
               `
               auth({
-                uiModuleId: 'uiModule1',
+                authName: 'uiModule1',
                 component: props => {
                   return (
                     <div style={{ lineHeight: 2, cursor: 'pointer', color: 'red' }}>不使用装饰器而使用方法形式的调用</div>
@@ -226,12 +226,12 @@ class DemoAuth extends Component {
           </pre>
           {
             [{
-              uiModuleId: 'uiModule1',
+              authName: 'uiModule1',
               component: props => {
                 return <div style={{ color: 'green' }}>有权限，显示出来了，下面还有一个是没有权限的，显示不出来</div>
               }
             }, {
-              uiModuleId: 'uiModule3',
+              authName: 'uiModule3',
               component: props => {
                 return <div style={{ color: 'red' }}>我是没权限的，估计没什么机会展示了。。。</div>
               }
@@ -248,10 +248,10 @@ class DemoAuth extends Component {
             {
               `
               import store from 'store'
-              export default key => {
+              export default authName => {
                 let state = store.getState()
                 let permission = state.global.initState.permission
-                return permission && !!permission[key]
+                return permission && !!permission[authName]
               }
               `
             }
@@ -262,7 +262,7 @@ class DemoAuth extends Component {
   }
 
   @auth({
-    funId: 'funId1',
+    authName: 'funId1',
     // 可省略
     // 默认情况下，无权限方法将不做任何操作
     // 如果想更改此默认设定，可以设置本参数为true，然后在onReject中自行处理
@@ -273,12 +273,12 @@ class DemoAuth extends Component {
     }
   })
   test = () => {
-    alert('我被点击了！！如果希望弹出alert框的方法被禁止，修改源码中funId即可')
+    alert('我被点击了！！如果希望弹出alert框的方法被禁止，修改源码中auth即可')
   }
 }
 
 @auth({
-  uiModuleId: 'uiModule2'
+  authName: 'uiModule2'
 })
 class Permission extends Component {
   render() {
@@ -289,7 +289,7 @@ class Permission extends Component {
 }
 
 @auth({
-  uiModuleId: 'uiModule3'
+  authName: 'uiModule3'
 })
 class Refuse extends Component {
   render() {
