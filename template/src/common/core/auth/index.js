@@ -2,8 +2,12 @@ import React from 'react'
 import authCheck from './check'
 import { Redirect } from 'react-router-dom'
 import config from 'config'
+import AuthComponent from './Auth'
 const emptyFn = () => {}
 const emptyInitializer = () => emptyFn
+
+export const Auth = AuthComponent
+
 export default (
   {
     authName,

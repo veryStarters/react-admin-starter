@@ -8,34 +8,42 @@ import registerServiceWorker from './registerServiceWorker'
 import config from 'config'
 import setInitState from 'setInitState'
 
+const startApp = () => {
+  ReactDOM.render(
+    <AppContainer>
+      <Provider store={store}>
+        <App/>
+      </Provider>
+    </AppContainer>,
+    document.getElementById('root')
+  )
+
+  if (module.hot && process.env.NODE_ENV === 'development') {
+    module.hot.accept('./app', () => {
+      const NextApp = require('./app').default
+      ReactDOM.render(
+        <AppContainer>
+          <Provider store={store}>
+            <NextApp/>
+          </Provider>
+        </AppContainer>,
+        document.getElementById('root')
+      )
+    })
+  }
+
+  registerServiceWorker()
+}
+
 // 刷新时除登录页外，其余页面均需检查权限
 if (config.needAuth && location.pathname !== config.loginRoute) {
-  setInitState()
-}
-
-ReactDOM.render(
-  <AppContainer>
-    <Provider store={store}>
-      <App/>
-    </Provider>
-  </AppContainer>,
-  document.getElementById('root')
-)
-
-if (module.hot && process.env.NODE_ENV === 'development') {
-  module.hot.accept('./app', () => {
-    const NextApp = require('./app').default
-    ReactDOM.render(
-      <AppContainer>
-        <Provider store={store}>
-          <NextApp/>
-        </Provider>
-      </AppContainer>,
-      document.getElementById('root')
-    )
+  setInitState(() => {
+    startApp()
   })
+} else {
+  startApp()
 }
 
-registerServiceWorker()
+
 
 

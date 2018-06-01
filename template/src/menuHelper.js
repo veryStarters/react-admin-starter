@@ -7,12 +7,9 @@ import api from 'api'
  */
 export const getSidebarMenu = setSidebarMenu => {
   // 可以从store获取menus数据
-  // const unsubscribe = store.subscribe(() => {
-  //   const state = store.getState()
-  //   const { sidebarMenus } = state.global.initState
-  //   setSidebarMenu && setSidebarMenu(sidebarMenus && sidebarMenus.length && sidebarMenus)
-  //   unsubscribe()
-  // })
+  // const state = store.getState()
+  // const { sidebarMenus } = state.global.initState
+  // setSidebarMenu && setSidebarMenu(sidebarMenus && sidebarMenus.length && sidebarMenus)
 
   // 也可以从接口获取menus数据
   api.getSidebarMenus().then(res => {

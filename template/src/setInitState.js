@@ -4,12 +4,14 @@
 import api from 'api'
 import store from 'store'
 import config from 'config'
+import { message } from 'antd'
 import { getAccessToken } from 'loginHelper'
 const { global } = store.getState()
 
 
-export default async () => {
+export default async (callback) => {
   if (!config.needAuth || (global.initState && global.initState.permission)) {
+    callback && callback()
     return
   }
   let res = await api.getInitState({ token: getAccessToken() })
@@ -19,8 +21,9 @@ export default async () => {
       initState: res.data
     })
   } else {
-    console.error('当前项目已开启权限功能，需要getInitState接口，并返回对应权限数据结构。具体请见/help/auth')
+    message.error('当前项目已开启权限功能，需要getInitState接口，并返回对应权限数据结构。具体请见/help/auth')
   }
+  callback && callback()
 }
 
 

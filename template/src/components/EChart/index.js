@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import echarts from 'echarts/lib/echarts'
-import PropStyles from 'prop-types'
+import propTypes from 'prop-types'
 
 class EChart extends Component {
   constructor(props) {
@@ -45,12 +45,12 @@ class EChart extends Component {
 }
 
 EChart.propStyle = {
-  option: PropStyles.object,
-  style: PropStyles.string,
-  className: PropStyles.string,
-  onClick: PropStyles.func,
-  onMouseOver: PropStyles.func,
-  onMouseOut: PropStyles.func
+  option: propTypes.object,
+  style: propTypes.string,
+  className: propTypes.string,
+  onClick: propTypes.func,
+  onMouseOver: propTypes.func,
+  onMouseOut: propTypes.func
 }
 
 export default EChart

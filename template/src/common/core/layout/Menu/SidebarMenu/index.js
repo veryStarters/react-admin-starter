@@ -15,13 +15,12 @@ class SidebarMenu extends Component {
     let selectedKeys = []
     let defaultOpenKeys = []
     let fixedMenus = []
+    // 如果菜单是本地配置的，直接设置；否则需要在didMount中完成设置
     if (sidebarMenus && sidebarMenus.length) {
       fixedMenus = fixMenus(sidebarMenus)
       menusInfo = getMenusInfo(fixedMenus, location.pathname)
       selectedKeys = [menusInfo.currentKey]
       defaultOpenKeys = menusInfo.defaultOpenKeys
-    } else {
-      this.setMenus()
     }
     this.state = {
       theme: layoutConfig.theme || 'dark',
@@ -29,6 +28,11 @@ class SidebarMenu extends Component {
       selectedKeys: selectedKeys,
       defaultOpenKeys: defaultOpenKeys,
       menus: fixedMenus
+    }
+  }
+  componentDidMount() {
+    if (!sidebarMenus || !sidebarMenus.length) {
+      this.setMenus()
     }
   }
 

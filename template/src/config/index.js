@@ -1,5 +1,3 @@
-import { message } from 'antd'
-
 /**
  * 业务相关配置
  */
@@ -50,19 +48,8 @@ const Config = {
       pathRewrite: {}
     }
   },
-  // req切面配置
-  requestInterceptor(req) {
-    return req
-  },
   // response切面配置
   responseInterceptor(res) {
-    const data = res.data
-    if (data.code !== 0) {
-      if (data.code === 20101) {
-        location.href = Config.loginRoute
-      }
-      message.error(data.errmsg)
-    }
     return res.data
   }
 }
