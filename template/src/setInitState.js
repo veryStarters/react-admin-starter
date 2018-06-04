@@ -8,7 +8,7 @@ import { message } from 'antd'
 import { getAccessToken, checkLogin } from 'loginHelper'
 
 export default async (callback) => {
-  // 如果还没登录，直接跳转到登录页
+  // 如果还没登录或者登录已经失效，直接跳转到登录页
   if (!checkLogin()) {
     location.href = config.loginRoute
     return
