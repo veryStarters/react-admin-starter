@@ -44,6 +44,11 @@ export default [
     url: '/help',
     children: [
       {
+        value: '架构思路',
+        icon: 'book',
+        url: '/help/design'
+      },
+      {
         value: '权限',
         icon: 'code',
         url: '/help/auth'

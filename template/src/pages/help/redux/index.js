@@ -19,21 +19,19 @@ class DemoRedux extends Component {
   }
   changeAppName = () => {
     let { changeAppName } = this.props.actions
-    changeAppName('xxx管理系统')
+    changeAppName('管理系统')
   }
   changeTestKey = () => {
     let { changeTestKey } = this.props.actions.helpRedux
-    changeTestKey('testValue1')
+    changeTestKey('另外的值')
   }
   render() {
     return (
       <div style={{ fontSize: '14px' }}>
         <p>AppName: {this.props.appName}</p>
         <p>TestKey: {this.props.testKey}</p>
-        <p>
+        <p style={{ marginTop: '10px' }}>
           <Button onClick={this.changeAppName}>更改AppName</Button>
-        </p>
-        <p>
           <Button onClick={this.changeTestKey}>更改TestKey</Button>
         </p>
       </div>

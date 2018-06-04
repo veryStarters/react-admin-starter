@@ -209,10 +209,14 @@ class DemoAuth extends Component {
         <div className={style.section}>
           <p className={style.title} id={'another'}>方法形式的调用</p>
           <p>从上面的例子可以看到，必须为一个权限组件定义一个内部类（定义成方法形式的组件无效）才能使用装饰器，这对于一些很简单的按钮之类的元素，显得有点杀鸡用牛刀。有没有简单一点的使用方式呢？</p>
-          <p>试试下面这种方法吧！</p>
+          <p>试试下面这两种方法吧！</p>
           <pre style={{ background: '#ddd', pneHeight: 2 }}>
             {
               `
+              import React from 'react'
+              import auth, { Auth } from 'auth'
+
+              // 方法形式
               auth({
                 authName: 'uiModule1',
                 component: props => {
@@ -221,6 +225,22 @@ class DemoAuth extends Component {
                   )
                 }
               })
+
+              // 包裹组件形式
+              class Test extends from React.Component {
+                render() {
+                  return (
+                    <div>
+                      <Auth authName={'uiModule1'}>
+                        <div>有权限</div>
+                      </Auth>
+                      <Auth authName={'uiModule3'} onReject={this.reject} preventDefault={true}>
+                        <div>无权限</div>
+                      </Auth>
+                    </div>
+                  )
+                }
+              }
               `
             }
           </pre>
