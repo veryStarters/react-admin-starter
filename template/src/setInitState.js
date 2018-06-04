@@ -5,13 +5,12 @@ import api from 'api'
 import store from 'store'
 import config from 'config'
 import { message } from 'antd'
-import { getAccessToken } from 'loginHelper'
-const { global } = store.getState()
-
+import { getAccessToken, checkLogin } from 'loginHelper'
 
 export default async (callback) => {
-  if (!config.needAuth || (global.initState && global.initState.permission)) {
-    callback && callback()
+  // 如果还没登录，直接跳转到登录页
+  if (!checkLogin()) {
+    location.href = config.loginRoute
     return
   }
   let res = await api.getInitState({ token: getAccessToken() })
