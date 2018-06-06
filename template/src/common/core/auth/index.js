@@ -12,6 +12,7 @@ export default (
   {
     authName,
     isRoute = false,
+    condition = true,
     onReject = emptyFn,
     onAccept = emptyFn,
     preventDefault = false,
@@ -19,11 +20,11 @@ export default (
     props = null
   }
 ) => {
-  const authResult = !!authCheck(authName)
+  const authResult = !!authCheck(authName, condition)
   if (component) {
-    const Com = component
+    const Component = component
     return (
-      authResult ? <Com key={ '__' + setTimeout(0)} {...props} /> : null
+      authResult ? <Component key={ '__' + setTimeout(0)} {...props} /> : null
     )
   }
   return (target, name, descriptor) => {
@@ -90,7 +91,7 @@ export default (
       code: -1,
       msg: '不允许访问本组件'
     })
-    return props => {
+    return () => {
       return null
     }
   }

@@ -98,7 +98,7 @@ const Watcher = {
           ])
           let name = util.path2name(path)
           // 如果index.js创建于components目录，则仅填充模板，不创建路由
-          if (filePath.indexOf('/components/') !== -1) {
+          if (/\/pages\/.*\/components\//.test(filePath)) {
             // 填充component模板文件
             if (!util.checkExitsAndEmpty(filePath)) {
               util.mkFile(filePath, fixTpl(componentTemplate, name.replace(/Components/g, '')))
