@@ -7,7 +7,7 @@ const resolve = function (dir) {
 }
 module.exports = {
   // 入口JS
-  appIndexJs: 'src/common/core/index.js',
+  appIndexJs: 'src/index.js',
   // 模块名称
   alias: {
     src: resolve('.'),
@@ -22,11 +22,11 @@ module.exports = {
     styles: resolve('common/styles'),
     images: resolve('common/images'),
     injectRedux: resolve('common/core/store/injectRedux.js'),
-    setGlobalStore: resolve('pagesHelper/setGlobalStore.js'),
-    setInitState: resolve('pagesHelper/setInitState.js'),
-    loginHelper: resolve('pagesHelper/loginHelper.js'),
-    menuHelper: resolve('pagesHelper/menuHelper.js'),
-    authCheck: resolve('pagesHelper/authCheck'),
+    setGlobalStore: resolve('appkit/setGlobalStore.js'),
+    setInitState: resolve('appkit/setInitState.js'),
+    loginHelper: resolve('appkit/loginHelper.js'),
+    menuHelper: resolve('appkit/menuHelper.js'),
+    authCheck: resolve('appkit/authCheck'),
     components: resolve('components')
   },
   devHost: 'localhost',
