@@ -43,7 +43,7 @@ class HelpDesign extends Component {
               <li>5、哼哧哼哧自己模拟了一堆省份数据，产品告诉我只有张三能看到所有省份，李四和王五不能查看港澳台…</li>
               <li>6、终于开发完成了，测试说你得给我搞出几个不同的测试环境、预发环境出来</li>
             </ul>
-            <p>
+            <p className={style.subTitle}>
               从上面的这几个场景我们不难归纳出一个框架需要解决的一些通用问题：
             </p>
             <ul>
@@ -59,6 +59,9 @@ class HelpDesign extends Component {
         </section>
         <section>
           <p className={style.title}>1、代码组织结构</p>
+          <div className={style.part}>
+            <p>对于开发者来说，一个拥有良好代码组织结构的系统往往能起到降低业务耦合和系统复杂度，提升开发效率，愉悦开发体验等众多作用。</p>
+          </div>
         </section>
       </div>
     )
