@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
-import storeKit from 'storeKit'
+import injectRedux from 'injectRedux'
 
-@storeKit(store => {
+@injectRedux(store => {
   return {
     appName: store.global.appName
   }

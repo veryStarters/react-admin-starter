@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import storeKit from 'storeKit'
+import injectRedux from 'injectRedux'
 import option1 from './echarts/option1'
 import EChart from 'components/EChart'
 import 'echarts/lib/chart/gauge'
 
 // 注入redux
-@storeKit(store => {
+@injectRedux(store => {
   return {
     appName: store.global.appName
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import storeKit from 'storeKit'
+import injectRedux from 'injectRedux'
 import EChart from 'components/EChart'
 import style from './index.pcss'
 
@@ -14,7 +14,7 @@ import 'echarts/lib/component/title'
 import { Button } from 'antd'
 
 // 注入redux
-@storeKit(store => {
+@injectRedux(store => {
   return {
     appName: store.global.appName
   }

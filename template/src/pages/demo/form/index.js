@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { Icon, Input, Button, Select, DatePicker } from 'antd'
-import storeKit from 'storeKit'
+import injectRedux from 'injectRedux'
 import { formKit, createForm } from 'utils/formHelper'
 import style from './index.pcss'
 
 const Option = Select.Option
 
 // 注入redux
-@storeKit(store => {
+@injectRedux(store => {
   return {
     appName: store.global.appName
   }

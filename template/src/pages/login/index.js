@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import storeKit from 'storeKit'
+import injectRedux from 'injectRedux'
 import style from './index.pcss'
 import api from 'api'
 import { setUserInfo } from 'loginHelper'
 import config from 'config'
 
-@storeKit(store => {
+@injectRedux(store => {
   return {
     appName: store.global.appName
   }

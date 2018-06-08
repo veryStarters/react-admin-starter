@@ -21,7 +21,7 @@ module.exports = {
     common: resolve('common'),
     styles: resolve('common/styles'),
     images: resolve('common/images'),
-    storeKit: resolve('common/core/store/storeKit.js'),
+    injectRedux: resolve('common/core/store/injectRedux.js'),
     globalStore: resolve('setGlobalStore.js'),
     setInitState: resolve('setInitState.js'),
     loginHelper: resolve('loginHelper.js'),

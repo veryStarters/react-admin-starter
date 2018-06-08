@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Table, Pagination } from 'antd'
-import storeKit from 'storeKit'
+import injectRedux from 'injectRedux'
 import api from 'api'
 
-@storeKit(store => {
+@injectRedux(store => {
   return {
     appName: store.global.appName
   }

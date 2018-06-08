@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import storeKit from 'storeKit'
+import injectRedux from 'injectRedux'
 import { Auth } from 'auth'
 // 注入redux
-@storeKit(store => {
+@injectRedux(store => {
   return {
     appName: store.global.appName
   }

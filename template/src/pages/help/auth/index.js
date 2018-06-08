@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { Anchor } from 'antd'
 import auth from 'auth'
-import storeKit from 'storeKit'
+import injectRedux from 'injectRedux'
 import config from 'config'
 import style from './index.pcss'
 
 const Link = Anchor.Link
 
-@storeKit(store => {
+@injectRedux(store => {
   return {
     appName: store.global.appName
   }
