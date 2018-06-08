@@ -18,7 +18,7 @@ const Watcher = {
     util.clearFileContent(
       modulesPath,
       ['本文件由系统生成，一般情况下无需修改'],
-      'export const global = require(\'globalStore\')\n'
+      'export const global = require(\'setGlobalStore\')\n'
     )
     const watcher = chokidar.watch(modulesDir, {
       ignored: /(^|[\/\\])\../

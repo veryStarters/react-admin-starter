@@ -1,5 +1,5 @@
 import store from 'store'
-import authCheck from 'config/auth/check'
+import authCheck from 'authCheck'
 /**
  * 默认情况下，通过getInitState接口获取到的数据中包含permission字段，该字段为一个以权限单元code为key的简单对象
  * @param authName  权限单元名称（可以是组件id，路由地址，api地址等能标识当前权限单元唯一性的任何id）
