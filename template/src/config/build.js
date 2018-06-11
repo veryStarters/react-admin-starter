@@ -19,6 +19,7 @@ module.exports = {
     fonts: resolve('common/fonts'),
     config: resolve('config'),
     common: resolve('common'),
+    core: resolve('common/core'),
     styles: resolve('common/styles'),
     images: resolve('common/images'),
     injectRedux: resolve('common/core/store/injectRedux.js'),

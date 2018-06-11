@@ -2,9 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
-import store from 'common/core/store'
-import App from 'common/core/app'
-import registerServiceWorker from 'common/core/registerServiceWorker'
+import store from 'store'
+import App from 'core/app'
+import registerServiceWorker from 'core/registerServiceWorker'
 import config from 'config'
 import setInitState from 'setInitState'
 
@@ -19,8 +19,8 @@ const startApp = () => {
   )
 
   if (module.hot && process.env.NODE_ENV === 'development') {
-    module.hot.accept('common/core/app', () => {
-      const NextApp = require('common/core/app').default
+    module.hot.accept('core/app', () => {
+      const NextApp = require('core/app').default
       ReactDOM.render(
         <AppContainer>
           <Provider store={store}>
