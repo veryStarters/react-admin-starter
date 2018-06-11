@@ -1,5 +1,16 @@
 section {
   line-height: 2;
+  &.anchor {
+    position: fixed;
+    right: 40px;
+    :global {
+      .ant-anchor-wrapper {
+        background-color: #ddd;
+        border-radius: 10px;
+        padding: 10px;
+      }
+    }
+  }
   .title {
     font-weight: bold;
     font-size: 16px;

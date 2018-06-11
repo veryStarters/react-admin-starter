@@ -6,6 +6,12 @@
 
 /* 全局样式定义 */
 
-:global(.global-test) {
-  color: green;
+:global {
+  .clearfix {
+    &::after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+  }
 }
