@@ -1,15 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-
-const style = {
-  demos: {
-    margin: 0,
-    padding: 0,
-    li: {
-      listStyle: 'none'
-    }
-  }
-}
+import style from './style.pcss'
 
 class Help extends Component {
   constructor(props) {

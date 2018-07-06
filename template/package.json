@@ -61,6 +61,7 @@
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
+    "jest-localstorage-mock": "^2.2.0",
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
     "mockjs": "^1.0.1-beta3",
@@ -91,7 +92,8 @@
       "test/**/*.{js,jsx,mjs}"
     ],
     "setupFiles": [
-      "<rootDir>/build/polyfills.js"
+      "<rootDir>/build/polyfills.js",
+      "jest-localstorage-mock"
     ],
     "testMatch": [
       "<rootDir>/test/**/__tests__/**/*.{js,jsx,mjs}",
@@ -108,9 +110,24 @@
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
     ],
     "moduleNameMapper": {
-      "^react-native$": "react-native-web",
-      "^src": "<rootDir>/src",
-      "^pages": "<rootDir>/src/pages"
+      "^src(.*)": "<rootDir>/src$1",
+      "^pages(.*)\\.js": "<rootDir>/src/pages$1.js",
+      "^pages(.*)": "<rootDir>/src/pages$1",
+      "^config$": "<rootDir>/src/config/index.js",
+      "^config(.*)+": "<rootDir>/src/config$1",
+      "^components(.*)": "<rootDir>/src/components$1",
+      "^api$": "<rootDir>/src/api/index.js",
+      "^loginHelper$": "<rootDir>/src/appkit/loginHelper.js",
+      "^menuHelper$": "<rootDir>/src/appkit/menuHelper.js",
+      "^authCheck$": "<rootDir>/src/appkit/authCheck.js",
+      "^setInitState$": "<rootDir>/src/appkit/setInitState.js",
+      "^setGlobalStore$": "<rootDir>/src/appkit/setGlobalStore.js",
+      "^injectRedux$": "<rootDir>/src/common/core/store/injectRedux.js",
+      "^images(.*)": "<rootDir>/src/common/images$1",
+      "^styles(.*)": "<rootDir>/src/common/styles$1",
+      "^fonts(.*)": "<rootDir>/src/common/fonts$1",
+      "^core(.*)": "<rootDir>/src/common/core$1",
+      "^utils(.*)": "<rootDir>/src/common/utils$1.js"
     },
     "moduleFileExtensions": [
       "web.js",
