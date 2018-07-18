@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
+  "main": "electron/main.js",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "BUILD_ENV=production node scripts/build.js",
@@ -10,7 +11,15 @@
     "build:test": "BUILD_ENV=test node scripts/build.js",
     "dll": "webpack --config build/webpack.config.dll.js",
     "test": "node scripts/test.js --env=jsdom",
-    "updateRAS": "node scripts/upgrade.js"
+    "updateRAS": "node scripts/upgrade.js",
+    "electron:build": "electron-builder",
+    "electron": "electron ."
+  },
+  "build": {
+    "appId": "com.taoqili.myapp",
+    "mac": {
+      "category": "game"
+    }
   },
   "dependencies": {
     "antd": "^3.3.1",
@@ -49,6 +58,8 @@
     "cssnano": "^3.10.0",
     "dotenv": "4.0.0",
     "dotenv-expand": "4.2.0",
+    "electron": "^2.0.5",
+    "electron-builder": "^20.22.0",
     "eslint": "4.10.0",
     "eslint-config-react-app": "^2.1.0",
     "eslint-loader": "1.9.0",

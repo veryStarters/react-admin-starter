@@ -138,7 +138,7 @@ class MainLayout extends Component {
         <Layout className={classnames({ [style.mainContentCollapsed]: sidebarCollapsed, [style.mainContent]: !sidebarCollapsed, 'fixed': layoutConfig.fixedHeader || false })}>
           {(/Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor))
             ? '' : <Alert message='请使用google chrome浏览器使用系统' banner closable/>}
-          <table className={style.header}>
+          <table width={'100%'} className={style.header}>
             <tbody>
               <tr width={'100%'}>
                 <td width={'64'} className={style.collapseButton} onClick={this.toggleSidebar}>
