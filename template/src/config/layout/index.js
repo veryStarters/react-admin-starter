@@ -35,10 +35,11 @@ export default {
       }
     },
     hello: {
+      hidden: false,
       title: (props) => {
         return (
           <div onClick={() => { alert('你点了组件元素') }}>
-            组件元素
+            打开自定义
           </div>
         )
       }

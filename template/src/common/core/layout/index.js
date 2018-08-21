@@ -91,6 +91,9 @@ class MainLayout extends Component {
         {
           keys.map((key) => {
             let item = layoutConfig.popupItems[key]
+            if (item.hidden) {
+              return null
+            }
             const title = typeof item.title === 'string' ? item.title : <item.title />
             return (
               <MenuItem key={key}>{title}</MenuItem>
