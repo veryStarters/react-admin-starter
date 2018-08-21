@@ -82,6 +82,7 @@ class MainLayout extends Component {
   handlePopupItems = async (item) => {
     let { popupItems } = layoutConfig
     let popupItem = popupItems[item.key]
+    if (!popupItem) return
     let action = popupItem.action || function() {}
     if (item.key === 'rasLogin') {
       if (action) {
