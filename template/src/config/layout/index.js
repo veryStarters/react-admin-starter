@@ -38,7 +38,7 @@ export default {
       hidden: false,
       title: (props) => {
         return (
-          <div onClick={() => { alert('你点了组件元素') }}>
+          <div onClick={() => { alert('你点了自定义组件元素') }}>
             打开自定义
           </div>
         )
