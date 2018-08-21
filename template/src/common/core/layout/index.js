@@ -79,20 +79,10 @@ class MainLayout extends Component {
   }
 
   // 执行弹出层中定义的操作
-  handlePopupItems = async (item) => {
+  handlePopupItems = (item) => {
     let { popupItems } = layoutConfig
     let popupItem = popupItems[item.key]
-    if (!popupItem) return
-    let action = popupItem.action || function() {}
-    if (item.key === 'rasLogin') {
-      if (action) {
-        action.call(this)
-      } else {
-        location.href = config.loginRoute
-      }
-      return
-    }
-    action.call(this)
+    popupItem.action && popupItem.action.call(this)
   }
   popupItems(username) {
     const keys = Object.keys(layoutConfig.popupItems)
