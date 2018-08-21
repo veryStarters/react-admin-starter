@@ -84,18 +84,18 @@ class MainLayout extends Component {
     let popupItem = popupItems[item.key]
     popupItem.action && popupItem.action.call(this)
   }
-  popupItems(username) {
+  popupItems() {
     const keys = Object.keys(layoutConfig.popupItems)
     return (
       <Menu onClick={this.handlePopupItems}>
         {
-          username ? keys.map((key) => {
+          keys.map((key) => {
             let item = layoutConfig.popupItems[key]
             const title = typeof item.title === 'string' ? item.title : <item.title />
             return (
               <MenuItem key={key}>{title}</MenuItem>
             )
-          }) : <MenuItem key={'rasLogin'}>{'登 录'}</MenuItem>
+          })
         }
       </Menu>
     )
@@ -145,7 +145,7 @@ class MainLayout extends Component {
                 </td>
                 <td width={'140'} className={style.rightWrapper}>
                   <Dropdown
-                    overlay={this.popupItems(username)}
+                    overlay={this.popupItems()}
                     placement='bottomCenter'
                   >
                     <span><Icon type='user'/> {username}<Icon type={'down'}/></span>
