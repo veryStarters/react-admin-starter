@@ -82,15 +82,16 @@ class MainLayout extends Component {
   handlePopupItems = async (item) => {
     let { popupItems } = layoutConfig
     let popupItem = popupItems[item.key]
+    let action = popupItem.action || function() {}
     if (item.key === 'rasLogin') {
-      if (popupItem && popupItem.action) {
-        popupItem.action.call(this)
+      if (action) {
+        action.call(this)
       } else {
         location.href = config.loginRoute
       }
       return
     }
-    popupItems[item.key].action.call(this)
+    action.call(this)
   }
   popupItems(username) {
     const keys = Object.keys(layoutConfig.popupItems)
@@ -99,8 +100,9 @@ class MainLayout extends Component {
         {
           username ? keys.map((key) => {
             let item = layoutConfig.popupItems[key]
+            const title = typeof item.title === 'string' ? item.title : <item.title />
             return (
-              <MenuItem key={key}>{item.title || ''}</MenuItem>
+              <MenuItem key={key}>{title}</MenuItem>
             )
           }) : <MenuItem key={'rasLogin'}>{'登 录'}</MenuItem>
         }
